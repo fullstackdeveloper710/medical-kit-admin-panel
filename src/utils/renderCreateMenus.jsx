@@ -15,6 +15,8 @@ let createMenus = {
   "/reports": ["Create Report", "Create Group"],
   "/resource": ["Upload Files"],
   "/messaging": ["Create article", "Create Notification"],
+  "/notifications": null,
+
 };
 
 const CreateActions = ({ title }) => {

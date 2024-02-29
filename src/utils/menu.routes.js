@@ -61,4 +61,9 @@ export const menus = [
     icon: <FaBell className="icon" />,
     link: "/messaging",
   },
+  {
+    title: "Notifications",
+    icon: <FaBell className="icon" />,
+    link: "/notifications",
+  },
 ];

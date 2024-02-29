@@ -42,6 +42,7 @@ function Users() {
   };
   return (
     <div className="kit-management">
+      
       <DataTableComponent
         title={"User Management"}
         columns={columns}

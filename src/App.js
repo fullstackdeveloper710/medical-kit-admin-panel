@@ -25,6 +25,7 @@ import Distributor from "./pages/Distributors/Distributor";
 import Reports from "./pages/ReportManagement/Reports";
 import { Card } from "react-bootstrap";
 import RenderCreateMenus from "./utils/renderCreateMenus";
+import Notifications from "./pages/Notifications/Notification";
 function App(props) {
   const location = useLocation();
 
@@ -61,6 +62,9 @@ function App(props) {
               <Route path="/resource" element={<Resource />} />
               <Route path="/distributors" element={<Distributor />} />
               <Route path="/reports" element={<Reports />} />
+              <Route path="/reports" element={<Reports />} />
+              <Route path="/notifications" element={<Notifications />} />
+
             </Routes>
           </Card>
         </div>

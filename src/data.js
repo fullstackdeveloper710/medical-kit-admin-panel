@@ -19,6 +19,8 @@ const tableData = [
     category: "How To Video",
     type: "Article",
     scheduled: "14 February 2024",
+    notification:"The topic of the question",
+    notificationTime:"3 mins ago",
     status: "Approved to Publish ",    actions: [{ name: "Complaint", type: "primary" }],
   },
   {
@@ -40,6 +42,8 @@ const tableData = [
     type: "Article",
     scheduled: "14 February 2024",
     status: "Approved to Publish ",
+    notification:"The topic of the question",
+    notificationTime:"3 mins ago",
     actions: [{ name: "Expiring", type: "secondary" }],
   },
   {
@@ -61,6 +65,8 @@ const tableData = [
     type: "Article",
     scheduled: "14 February 2024",
     status: "Approved to Publish ",
+    notification:"The topic of the question",
+    notificationTime:"3 mins ago",
     actions: [{ name: " Update", type: "tertiary" }],
   },
   {
@@ -82,6 +88,8 @@ const tableData = [
     type: "Article",
     scheduled: "14 February 2024",
     status: "Approved to Publish ",
+    notification:"The topic of the question",
+    notificationTime:"3 mins ago",
     actions: [{ name: " Update", type: "tertiary" }],
   },
   {
@@ -103,6 +111,8 @@ const tableData = [
     type: "Article",
     scheduled: "14 February 2024",
     status: "Approved to Publish ",
+    notification:"The topic of the question",
+    notificationTime:"3 mins ago",
     actions: [{ name: "Expiring", type: "secondary" }],
   },
 
@@ -125,6 +135,8 @@ const tableData = [
     type: "Article",
     scheduled: "14 February 2024",
     status: "Approved to Publish ",
+    notification:"The topic of the question",
+    notificationTime:"3 mins ago",
     actions: [{ name: "Complaint", type: "primary" }],
   },
 
@@ -147,6 +159,8 @@ const tableData = [
     type: "Article",
     scheduled: "14 February 2024",
     status: "Approved to Publish ",
+    notification:"The topic of the question",
+    notificationTime:"3 mins ago",
     actions: [{ name: "Expiring", type: "secondary" }],
   },
   {
@@ -168,6 +182,8 @@ const tableData = [
     type: "Article",
     scheduled: "14 February 2024",
     status: "Approved to Publish ",
+    notification:"The topic of the question",
+    notificationTime:"3 mins ago",
     actions: [{ name: "Expiring", type: "secondary" }],
   },
   {
@@ -189,6 +205,8 @@ const tableData = [
     type: "Article",
     scheduled: "14 February 2024",
     status: "Approved to Publish ",
+    notification:"The topic of the question",
+    notificationTime:"3 mins ago",
     actions: [{ name: "Expiring", type: "secondary" }],
   },
   //
