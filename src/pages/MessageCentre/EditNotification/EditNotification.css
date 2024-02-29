@@ -1,7 +1,7 @@
 .search_btn_add form{
     position: relative;
   }
-  .checkboxes {}
+  /* .checkboxes {} */
   
   .checkboxes input.form-check-input {
       appearance: none;
