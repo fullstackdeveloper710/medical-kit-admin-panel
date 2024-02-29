@@ -1,0 +1,42 @@
+/* .text-editor {
+    width: 755px;
+    height: 1891px;
+    position: absolute;
+    top: 120px;
+    left: 280px;
+    padding: 20px;
+    border-radius: 16px;
+  } */
+  
+  .text-editor  > * {
+    margin-bottom: 30px;
+  }
+  
+  .select_wrapper ,.date_wrapper{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.select_wrapper label,.date_wrapper  label {
+    font-size: 16px;
+    letter-spacing: 0em;
+    color: #16161D;
+}
+
+.select_wrapper select ,.date_wrapper input{
+    flex: 1;
+    margin-left: 15px;
+    padding: 10px;
+    border: 1px solid #1717171f;
+    width: 100%;
+}
+.btn_groups{
+    display: flex;
+}
+
+.btn_groups .btn:last-child {
+    margin-left: auto;
+    flex: 1;
+    margin-left: 10px;
+}

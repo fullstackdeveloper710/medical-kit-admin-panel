@@ -1,0 +1,35 @@
+.search_btn_add form{
+  position: relative;
+}
+.checkboxes {}
+
+.checkboxes input.form-check-input {
+    appearance: none;
+    background: #E4E4E4;
+    width: 24px;
+    height: 24px;
+}
+
+.checkboxes label.form-check-label {
+    font-family: Inter;
+    font-size: 10px;
+    font-weight: 500;
+    line-height: 15px;
+    letter-spacing: -0.011em;
+    margin-left:7px;
+}
+
+.checkboxes input.form-check-input:checked {
+    background:#0d6efd;
+}
+
+.search_btn_add form input {
+    padding: 15px;
+}
+
+.search_btn_add form button {
+    position: absolute;
+    right: 10px;
+    top: 7px;
+    padding: 7px 25px;
+}

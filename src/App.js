@@ -1,25 +1,74 @@
-import logo from './logo.svg';
-import './App.css';
+// App.js
 
-function App() {
+import React from "react";
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  useLocation,
+  useRoutes,
+  BrowserRouter,
+} from "react-router-dom";
+import Sidebar from "./components/Sidebar/SideBar";
+import Users from "./pages/UserManagement/Users";
+import Products from "./pages/Products/Products";
+import "./App.css";
+import Header from "./components/Header/Header";
+import Kits from "./pages/KitManagement/Kits";
+import Dashboard from "./pages/Dashboard/Dashboard";
+import MessageCentre from "./pages/MessageCentre/MessageCentre";
+import EditArticle from "./pages/MessageCentre/EditArticle/EditArticle";
+import BusinessProfile from "./pages/BusinessProfile";
+import EditNotification from "./pages/MessageCentre/EditNotification/EditNotification";
+import Resource from "./pages/ResourceManagement/Resource";
+import Distributor from "./pages/Distributors/Distributor";
+import Reports from "./pages/ReportManagement/Reports";
+import { Card } from "react-bootstrap";
+import RenderCreateMenus from "./utils/renderCreateMenus";
+function App(props) {
+  const location = useLocation();
+
+  console.log(location.pathname);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="wrapper">
+      <Sidebar />
+      <div className="main_container">
+        {/* Use Routes instead of Switch */}
+        <Header />
+        <div style={{ padding: 20 }}>
+          <RenderCreateMenus pathname={location.pathname} />
+          <Card
+            style={{
+              padding: 10,
+              marginLeft: 20,
+              border: "none",
+              backgroundColor:
+                location.pathname === "/" || location.pathname == "/reports"
+                  ? "transparent"
+                  : "white",
+            }}
+          >
+            <Routes>
+              <Route path="/" element={<Dashboard />} />
+              <Route path="/users" element={<Users />} />
+              <Route path="/products" element={<Products />} />
+              <Route path="/kit" element={<Kits />} />
+              <Route path="/messaging" element={<MessageCentre />} />
+              <Route path="/editor" element={<EditArticle />} />
+              <Route path="/businessprofile" element={<BusinessProfile />} />
+              <Route path="/edit-notification" element={<EditNotification />} />
+              <Route path="/resource" element={<Resource />} />
+              <Route path="/distributors" element={<Distributor />} />
+              <Route path="/reports" element={<Reports />} />
+            </Routes>
+          </Card>
+        </div>
+      </div>
     </div>
+
+    // <Router>
+    //  </Router>
   );
 }
-
 export default App;

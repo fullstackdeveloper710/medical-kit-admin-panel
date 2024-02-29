@@ -1,0 +1,162 @@
+.sidebar {
+  width: 250px;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  color: #fff;
+  padding-top: 20px;
+}
+.custom-div-child{
+font-size: 10px;
+font-weight: 400;
+line-height: 12px;
+letter-spacing: 0.1em;
+text-align: left;
+
+
+}
+
+.logo img {
+  width: 200px;
+  height: 105px;
+  display: block;
+}
+
+.nav-links {
+  list-style: none;
+  padding: 0;
+  /* color: #585874; */
+
+}
+
+.nav-links li {
+  margin-bottom: 10px;
+  color: #585874;
+
+}
+
+.nav-links li a {
+  text-decoration: none;
+  /* color: #333; */
+  display: flex;
+  align-items: center;
+}
+
+.nav-links li a:hover {
+  color: #006aff;
+
+}
+
+.heading {
+  font-family: Inter;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 17px;
+  letter-spacing: 0em;
+  text-align: left;
+  margin-bottom: 20px;
+  color: #555;
+  background-color: #006AFF;
+  padding: 10px;
+}
+
+.sub-heading {
+  font-family: Inter;
+  font-size: 10px;
+  font-weight: 400;
+  line-height: 12px;
+  letter-spacing: 0.1em;
+  text-align: left;
+  color: #585874;
+}
+
+.custom-div {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.custom-div-child {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  background-color: #f0f0f0;
+  padding: 30px;
+}
+
+
+.logout {
+  width: 53px;
+    height: 20px;
+    font-family: Inter;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 20px;
+    letter-spacing: 0em;
+    text-align: left;
+    /* background-color: #006AFF; */
+    color: #585874;
+
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.sidebar .logo {
+  padding-bottom: 55px;
+}
+
+.wrapper .sidebar .navigation {
+  height: calc(100vh - 200px);
+  overflow: auto;
+}
+.sidebar .navigation ul.nav-links li a {
+  gap: 10px;
+  font-family: Inter;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 17px;
+  letter-spacing: 0em;
+  color: #585874;
+  padding: 13px;
+}
+
+.wrapper .sidebar .navigation::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* Track */
+.wrapper .sidebar .navigation::-webkit-scrollbar-track {
+  background: #f1f1f1; 
+}
+ 
+/* Handle */
+.wrapper .sidebar .navigation::-webkit-scrollbar-thumb {
+  background: #888; 
+}
+
+/* Handle on hover */
+.wrapper .sidebar .navigation::-webkit-scrollbar-thumb:hover {
+  background: #555; 
+}
+.logout {
+  
+  font-family: Inter;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: #585874 !important; /* Apply color with !important */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.active-menu {
+  background-color: #E5F0FF;
+  color:#006AFF !important;
+  border-radius: 10px;
+  margin-right: 5px;
+}
