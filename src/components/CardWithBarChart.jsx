@@ -100,7 +100,7 @@ const CardWithBarChart = () => {
           </h3>
         </div>
 
-        <div id="chart">
+        <div id="chart">3
           <ReactApexChart
             options={state.options}
             series={state.series}

@@ -50,14 +50,14 @@ function EditNotification() {
     "Private households",
   ];
   const checkboxes = [
-    "Checkbox 1",
-    "Checkbox 2",
-    "Checkbox 3",
-    "Checkbox 4",
-    "Checkbox 5",
-    "Checkbox 6",
-    "Checkbox 7",
-    "Checkbox 8",
+    "General Users",
+    "User Admin",
+    "User Super Admin",
+    "General Distributors",
+    "Distributor Admin",
+    "Distributor Super Admin",
+    "Reliance Medical Admin",
+    "Reliance Medical Super Admin",
   ];
 
   useEffect(() => {
@@ -237,7 +237,15 @@ function EditNotification() {
               </Form>
             </div>
 
+           <div className="span_styles">
+           <span>Product Name</span>
+            <span>LOT Number</span>
+         
            
+          
+
+
+           </div>
 
             <div className="btn_groups">
               <CustomButton
@@ -249,14 +257,8 @@ function EditNotification() {
               </CustomButton>{" "}
               <CustomButton onClick={handleSave}>Save Changes</CustomButton>
             </div>
-            <span>
-              text
-            </span>
-            <span>
-              text
-            </span>
-            <span>text</span>
-            <span>text</span>
+             
+           
 
           </div>
         </Col>
