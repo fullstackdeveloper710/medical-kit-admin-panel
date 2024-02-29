@@ -33,6 +33,8 @@ const tableData = [
     frequency:"1 x Monthly",
     recipients:"5",
     lastSent:"12 Jan 2024 ",
+    notification:"The topic of the question",
+    notificationTime:"3 mins ago",
      actions: [{ name: "Complaint", type: "primary" }],
   },
   {
@@ -67,6 +69,8 @@ const tableData = [
     frequency:"1 x Monthly",
     recipients:"5",
     lastSent:"12 Jan 2024 ",
+    notification:"The topic of the question",
+    notificationTime:"3 mins ago",
     actions: [{ name: "Expiring", type: "secondary" }],
   },
   {
@@ -101,6 +105,8 @@ const tableData = [
     frequency:"1 x Monthly",
     recipients:"5",
     lastSent:"12 Jan 2024 ",
+    notification:"The topic of the question",
+    notificationTime:"3 mins ago",
     actions: [{ name: " Update", type: "tertiary" }],
   },
   {
@@ -135,6 +141,8 @@ const tableData = [
     frequency:"1 x Monthly",
     recipients:"5",
     lastSent:"12 Jan 2024 ",
+    notification:"The topic of the question",
+    notificationTime:"3 mins ago",
     actions: [{ name: " Update", type: "tertiary" }],
   },
   {
@@ -169,6 +177,8 @@ const tableData = [
     frequency:"1 x Monthly",
     recipients:"5",
     lastSent:"12 Jan 2024 ",
+    notification:"The topic of the question",
+    notificationTime:"3 mins ago",
     actions: [{ name: "Expiring", type: "secondary" }],
   },
 
@@ -204,6 +214,8 @@ const tableData = [
     frequency:"1 x Monthly",
     recipients:"5",
     lastSent:"12 Jan 2024 ",
+    notification:"The topic of the question",
+    notificationTime:"3 mins ago",
     actions: [{ name: "Complaint", type: "primary" }],
   },
 
@@ -239,6 +251,8 @@ const tableData = [
     frequency:"1 x Monthly",
     recipients:"5",
     lastSent:"12 Jan 2024 ",
+    notification:"The topic of the question",
+    notificationTime:"3 mins ago",
     actions: [{ name: "Expiring", type: "secondary" }],
   },
   {
@@ -273,6 +287,8 @@ const tableData = [
     frequency:"1 x Monthly",
     recipients:"5",
     lastSent:"12 Jan 2024 ",
+    notification:"The topic of the question",
+    notificationTime:"3 mins ago",
     actions: [{ name: "Expiring", type: "secondary" }],
   },
   {
@@ -307,6 +323,8 @@ const tableData = [
     frequency:"1 x Monthly",
     recipients:"5",
     lastSent:"12 Jan 2024 ",
+    notification:"The topic of the question",
+    notificationTime:"3 mins ago",
     actions: [{ name: "Expiring", type: "secondary" }],
   },
   //

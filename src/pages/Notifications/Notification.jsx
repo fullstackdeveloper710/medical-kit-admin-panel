@@ -10,9 +10,28 @@ import {
 import { FaBell } from "react-icons/fa";
 import "./Notification.css";
 import tableData from "../../data";
-import profilePic from "../../Assets/Profile/profile.png";
+import profilePic from "../../Assets/Profile/Icon.png";
 import CustomPagination from "../../components/Common/Pagination";
+import DataTableComponent from "../../components/DataTable";
 
+
+export const  notificationcolumns = [
+  {
+    name: "",
+    selector: (row) => (
+      <div className="product-wrapper">
+        <img
+          src={profilePic}
+          // alt={row.product}
+          className="product-image"
+        />
+        <span>{row.notification}</span>
+        <p>{row.notificationTime}</p>
+      </div>
+    )
+  },
+  
+];
 function Notifications() {
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 5;
@@ -39,52 +58,14 @@ function Notifications() {
   };
 
   return (
-    <div className="product-management">
-      <Container>
-        <Row className="align-items-left">
-          <Col>
-            <h3 className="listing">Notifications(3 Unread) </h3>
-          </Col>
-        </Row>
-        <Row>
-          <Col md={12}>
-            <Table striped bordered hover className="table">
-              <tbody>
-                {currentItems.map((row) => (
-                  <tr key={row.id}>
-                    <td>                                                                                     
-                      <div className="notification-content">
-                        <div className="notification-profile">
-                          <input type="checkbox" />
-                          <img
-                            src={profilePic}
-                            alt="Profile Pic"
-                            className="profile-pic"
-                          />
-                        </div>
-                        <div className="notification-description">
-                          <h5>{row.notification}</h5>
-                          <p className="notification-text">
-                            {row.notificationTime}
-                          </p>
-                        </div>
-                      </div>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </Table>
-          </Col>
-        </Row>
-        <CustomPagination
-          pages={totalPages}
-          currentPage={currentPage}
-          onPageChange={onPageChange}
-          onNextPage={onNextPage} 
-          onPreviousPage={onPreviousPage} 
-        />
-      </Container>
-    </div>
+    <div className="notification">
+    <DataTableComponent
+      title={"Notifications(3 unread )"}
+      columns={notificationcolumns}
+      data={tableData}
+      selectedRows
+    />
+</div>
   );
 }
 
