@@ -19,11 +19,11 @@ export const  columns = [
   {
     name: "Product",
     selector: (row) => (
-      <div className="product-wrapper">
+      <div className="products-wrapper">
         <img
           src={products}
           alt={row.product}
-          className="product-image"
+          className="products-image"
         />
         <span>{row.product}</span>
       </div>

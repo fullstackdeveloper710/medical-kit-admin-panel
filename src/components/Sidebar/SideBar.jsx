@@ -4,7 +4,7 @@ import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import logo from "../../Assets/Logo/logo.png";
 import "./Sidebar.css";
-import { menuLogout, menus } from "../../utils/menu.routes";
+import { menus } from "../../utils/menu.routes";
 import { FaSignOutAlt } from "react-icons/fa";
 function Sidebar() {
   const location = useLocation();
@@ -54,6 +54,7 @@ function Sidebar() {
           <p className="sub-heading">UTILITIES</p>
           <ul className="nav-links">
             {menus
+              .filter((x, i) => i > 5)
               .map((menu, i) => {
                 return (
                   <li key={i}>
@@ -66,15 +67,10 @@ function Sidebar() {
               })}
           </ul>
         </div>
-        {/* <div className="logout ">
-        <ul className="nav-links"> */}
         <div className="logout d-flex align-items-center">
   <FaSignOutAlt className="icon" />
   Logout
 </div>
-
-            
-        
       </div>
     </div>
   );

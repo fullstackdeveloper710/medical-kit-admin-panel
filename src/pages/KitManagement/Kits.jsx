@@ -20,7 +20,16 @@ import DataTableComponent from "../../components/DataTable";
 export const KitColumns = [
   {
     name: "Product",
-    selector: (row) => row.product,
+    selector: (row) => (
+      <div className="products-wrapper">
+        <img
+          src={products}
+          alt={row.product}
+          className="products-image"
+        />
+        <span>{row.product}</span>
+      </div>
+    )
   },
   {
     name: "Registered To",
