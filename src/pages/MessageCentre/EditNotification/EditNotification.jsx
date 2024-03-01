@@ -7,7 +7,7 @@ import {
   Form,
   FormControl,
 } from "react-bootstrap";
-import notificationImage from "../../../Assets/images/mobile.png";
+import notificationImage from "../../../Assets/images/Background.png";
 import CustomButton from "../../../components/Common/Button/Button";
 import DateTimePicker from "../../../components/Common/DatePicker/DatePicker";
 import "./EditNotification.css";
@@ -101,34 +101,7 @@ function EditNotification() {
         {/* Image representing the phone screen */}
         <img src={notificationImage} alt="Notification Image" />
 
-        {/* Notification name */}
-        <div
-          className="notification-name"
-          style={{
-            position: 'absolute',
-            top: '50px',
-            left: '20px',
-            color: 'white',
-            fontSize: '18px',
-            fontWeight: 'bold',
-          }}
-        >
-          John Doe
-        </div>
-
-        {/* Notification message */}
-        <div
-          className="notification-message"
-          style={{
-            position: 'absolute',
-            top: '100px',
-            left: '20px',
-            color: 'white',
-            fontSize: '14px',
-          }}
-        >
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-        </div>
+     
       </div>
     </Col>
         <Col md={4}>

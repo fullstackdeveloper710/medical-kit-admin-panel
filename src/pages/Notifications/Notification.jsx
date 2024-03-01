@@ -25,6 +25,7 @@ export const  notificationcolumns = [
           // alt={row.product}
           className="product-image"
         />
+        
         <span>{row.notification}</span>
         <p>{row.notificationTime}</p>
       </div>
