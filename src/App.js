@@ -28,9 +28,8 @@ import { Card } from "react-bootstrap";
 import RenderCreateMenus from "./utils/renderCreateMenus";
 import Notifications from "./pages/Notifications/Notification";
 import DistributorInformation from "./pages/Distributors/DistributorInformation";
-function App(props) {
+function App() {
   const location = useLocation();
-
   return (
     <div className="wrapper">
       <Sidebar />
@@ -63,8 +62,6 @@ function App(props) {
               <Route path="/distributors" element={<Distributor />} />
               <Route path="/distributorinfo" element={<DistributorInformation />} />
               <Route path="/reports" element={<Reports />} />
-              <Route path="/reports" element={<Reports />} />
-
               <Route path="/reports" element={<Reports />} />
               <Route path="/notifications" element={<Notifications />} />
 
