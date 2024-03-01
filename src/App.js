@@ -30,6 +30,7 @@ function App(props) {
 
   console.log(location.pathname);
 
+  
   return (
     <div className="wrapper">
       <Sidebar />
