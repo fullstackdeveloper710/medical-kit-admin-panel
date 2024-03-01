@@ -20,15 +20,16 @@ export const  notificationcolumns = [
     name: "",
     selector: (row) => (
       <div className="product-wrapper">
-        <img
-          src={profilePic}
-          // alt={row.product}
-          className="product-image"
-        />
-        
-        <span>{row.notification}</span>
-        <p>{row.notificationTime}</p>
+  <img
+    src={profilePic}
+    alt={row.product}
+    className="product-image"
+  />      <div className="notification-info">
+      <span className="notification-text">{row.notification}</span>
+        <p className="text-muted">{row.notificationTime}</p>
       </div>
+    </div>
+    
     )
   },
   

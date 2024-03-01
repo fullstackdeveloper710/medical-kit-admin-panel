@@ -53,3 +53,88 @@ body{
   /* Add styles for the content area */
   flex: 1; /* Content will grow to fill the remaining space */
 }
+/* styles.css */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+*{
+  box-sizing: border-box;
+}
+body{
+  font-family: "Inter", sans-serif;
+}
+.sidebar {
+  /* background: #333; */
+  color: black;
+  height: 100%;
+  padding: 20px;
+}
+
+.sidebar h2 {
+  margin-bottom: 20px;
+}
+
+.sidebar ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.sidebar ul li {
+  margin-bottom: 10px;
+}
+
+.sidebar ul li a {
+  color:black;
+  text-decoration: none;
+}
+
+.main_container {
+  margin-left: 250px;
+  padding:0px 20px 20px 20px;
+}
+/* App.css */
+
+.wrapper {
+ display:flex;
+}
+
+.sidebar {
+  /* Add styles for the sidebar */
+  flex: 0 0 auto; /* Sidebar won't grow or shrink */
+  width: 250px; /* Adjust width as needed */
+}
+
+.main_container {
+  /* Add styles for the content area */
+  flex: 1; /* Content will grow to fill the remaining space */
+}
+
+
+/* common css */
+.input_style,.textarea_style,.form_style input,.form_style select.PhoneInputCountrySelect{
+  padding: 15px 20px;
+  font-size: 14px;
+  letter-spacing: -0.011em;
+  width: 100%;
+  border: 1px solid #E4E4E4;
+}
+.form_style .form-group{
+  margin-bottom: 15px;
+}
+.checkboxes input.form-check-input {
+    appearance: none;
+    background: #E4E4E4;
+    width: 24px;
+    height: 24px;
+}
+
+.checkboxes label.form-check-label {
+    font-family: Inter;
+    font-size: 10px;
+    font-weight: 500;
+    line-height: 15px;
+    letter-spacing: -0.011em;
+    margin-left:7px;
+}
+
+.checkboxes input.form-check-input:checked {
+    background:#0d6efd;
+}

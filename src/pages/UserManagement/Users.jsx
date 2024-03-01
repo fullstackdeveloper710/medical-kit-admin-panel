@@ -16,38 +16,31 @@ import CustomPagination from "../../components/Common/Pagination";
 import DataTableComponent from "../../components/DataTable";
 import { columns } from "../Products/Products";
 
-
-export const  usercolumns = [
+export const usercolumns = [
   {
     name: "Last Name",
     selector: (row) => row.lastName,
-    
   },
   {
     name: "First Name",
     selector: (row) => row.firstName,
-    
   },
   {
     name: "Job Title",
     selector: (row) => row.jobTitle,
-    
   },
 
   {
     name: "Location",
     selector: (row) => row.location,
-    
   },
   {
     name: "Area",
     selector: (row) => row.area,
-    
   },
   {
     name: "Role",
     selector: (row) => row.role,
-    
   },
 ];
 function Users() {
@@ -76,7 +69,6 @@ function Users() {
   };
   return (
     <div className="kit-management">
-      
       <DataTableComponent
         title={"User Management"}
         columns={usercolumns}

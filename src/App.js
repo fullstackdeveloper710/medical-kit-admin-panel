@@ -26,6 +26,7 @@ import Reports from "./pages/ReportManagement/Reports";
 import { Card } from "react-bootstrap";
 import RenderCreateMenus from "./utils/renderCreateMenus";
 import Notifications from "./pages/Notifications/Notification";
+import UserManagement from "./pages/UserManagement/UserManagement/UserManagent";
 function App(props) {
   const location = useLocation();
 
@@ -56,6 +57,8 @@ function App(props) {
               <Route path="/products" element={<Products />} />
               <Route path="/kit" element={<Kits />} />
               <Route path="/messaging" element={<MessageCentre />} />
+              <Route path="/user-management" element={<UserManagement />} />
+
               <Route path="/editarticle" element={<EditArticle />} />
               <Route path="/businessprofile" element={<BusinessProfile />} />
               <Route path="/edit-notification" element={<EditNotification />} />
