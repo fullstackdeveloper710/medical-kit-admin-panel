@@ -22,7 +22,7 @@ let createMenus = {
   "/resource": ["Upload Files"],
   "/messaging": [
     { title: "Create article", link: "/editarticle" },
-    { title: "Create Notification", link: "/edit-notification" },
+    { title:"Create Notification", link: "/edit-notification" },
   ],
   "/notifications": null,
 };
