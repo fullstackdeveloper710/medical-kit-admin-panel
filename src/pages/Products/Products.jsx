@@ -18,8 +18,16 @@ import DataTableComponent from "../../components/DataTable";
 export const  columns = [
   {
     name: "Product",
-    selector: (row) => row.product,
-    
+    selector: (row) => (
+      <div className="product-wrapper">
+        <img
+          src={products}
+          alt={row.product}
+          className="product-image"
+        />
+        <span>{row.product}</span>
+      </div>
+    )
   },
   {
     name: "Brand",

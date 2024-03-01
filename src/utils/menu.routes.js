@@ -15,10 +15,12 @@ import {
   FaUser,
   FaUsers,
 } from "react-icons/fa";
+import { RxDashboard } from "react-icons/rx";
+
 export const menus = [
   {
     title: "Dashboard",
-    icon: <FaSquare className="icon" />,
+    icon: <RxDashboard className="icon" />,
     link: "/",
   },
   {
@@ -60,5 +62,10 @@ export const menus = [
     title: "Message Center",
     icon: <FaBell className="icon" />,
     link: "/messaging",
+  },
+  {
+    title: "Notifications",
+    icon: <FaBell className="icon" />,
+    link: "/notifications",
   },
 ];
