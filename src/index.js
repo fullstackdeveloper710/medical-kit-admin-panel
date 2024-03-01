@@ -6,7 +6,6 @@ import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap/dist/js/bootstrap.js";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter, Router } from "react-router-dom";
-
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   // <React.StrictMode>
