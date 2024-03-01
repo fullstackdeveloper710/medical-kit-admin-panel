@@ -25,6 +25,36 @@ import DataTableComponent from "../../components/DataTable";
 import { columns } from "../Products/Products";
 
 // import DateTimePicker from "../../../components/DatePicker/DatePicker";
+export const  reportscolumns = [
+  {
+    name: "Report Name",
+    selector: (row) => row.reportName,
+    
+  },
+  {
+    name: "Frequency",
+    selector: (row) => row.frequency,
+    
+  },
+  {
+    name: "Recipients",
+    selector: (row) => row.recipients,
+    
+  },
+
+  {
+    name: "Last Sent",
+    selector: (row) => row.lastSent,
+    
+  },
+  {
+    name: "Status",
+    selector: (row) => row.status,
+    
+  },
+  
+];
+
 
 function Reports() {
   const [content, setContent] = useState(``);
@@ -88,7 +118,7 @@ function Reports() {
         <Row>
           <Col md={8}>
             <DataTableComponent
-              columns={columns}
+              columns={reportscolumns}
               data={tableData}
               selectedRows={true}
               title={"Reports"}

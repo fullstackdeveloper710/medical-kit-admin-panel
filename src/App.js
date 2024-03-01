@@ -13,6 +13,7 @@ import Sidebar from "./components/Sidebar/SideBar";
 import Users from "./pages/UserManagement/Users";
 import Products from "./pages/Products/Products";
 import "./App.css";
+import 'react-phone-input-2/lib/style.css'
 import Header from "./components/Header/Header";
 import Kits from "./pages/KitManagement/Kits";
 import Dashboard from "./pages/Dashboard/Dashboard";
@@ -25,12 +26,11 @@ import Distributor from "./pages/Distributors/Distributor";
 import Reports from "./pages/ReportManagement/Reports";
 import { Card } from "react-bootstrap";
 import RenderCreateMenus from "./utils/renderCreateMenus";
+import Notifications from "./pages/Notifications/Notification";
+import DistributorInformation from "./pages/Distributors/DistributorInformation";
 function App(props) {
   const location = useLocation();
 
-  console.log(location.pathname);
-
-  
   return (
     <div className="wrapper">
       <Sidebar />
@@ -56,12 +56,17 @@ function App(props) {
               <Route path="/products" element={<Products />} />
               <Route path="/kit" element={<Kits />} />
               <Route path="/messaging" element={<MessageCentre />} />
-              <Route path="/editor" element={<EditArticle />} />
+              <Route path="/editarticle" element={<EditArticle />} />
               <Route path="/businessprofile" element={<BusinessProfile />} />
               <Route path="/edit-notification" element={<EditNotification />} />
               <Route path="/resource" element={<Resource />} />
               <Route path="/distributors" element={<Distributor />} />
+              <Route path="/distributorinfo" element={<DistributorInformation />} />
               <Route path="/reports" element={<Reports />} />
+              <Route path="/reports" element={<Reports />} />
+              <Route path="/notifications" element={<Notifications />} />
+
+
             </Routes>
           </Card>
         </div>

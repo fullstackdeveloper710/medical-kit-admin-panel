@@ -10,7 +10,7 @@ function Header() {
   return (
     <div className="header">
       <div className="search">
-        <input type="text" placeholder="Search for kits" className="search-input" />
+        <input type="text" placeholder="Search " className="search-input" />
         <FaSearch className="search-icon" /> {/* Add the search icon */}
       </div>
       <div className="profile">
@@ -18,8 +18,8 @@ function Header() {
           <img src={profilePic} alt="Profile" className="profile-pic" />
         </div>
         <div className=''>
-        <span className="admin-name">Admin User</span>
-        <span className="superadmin-name">Subname</span>
+        <span className="admin-name">Tom Jackman</span>
+        <span className="superadmin-name">Super Admin</span>
         </div>
       </div>
     </div>

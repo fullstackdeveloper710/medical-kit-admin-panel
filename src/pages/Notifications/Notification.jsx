@@ -4,51 +4,37 @@ import {
   Row,
   Col,
   Table,
-  Button,
   DropdownButton,
   Dropdown,
 } from "react-bootstrap";
-import { FaFileExport, FaFileImport, FaPlus } from "react-icons/fa";
-import "./MessageCentre.css";
+import { FaBell } from "react-icons/fa";
+import "./Notification.css";
 import tableData from "../../data";
-import products from "../../Assets/images/product.png";
+import profilePic from "../../Assets/Profile/Icon.png";
 import CustomPagination from "../../components/Common/Pagination";
 import DataTableComponent from "../../components/DataTable";
-import { columns } from "../Products/Products";
 
-export const  Messagecolumns = [
-  {
-    name: "Subject",
-    selector: (row) => row.subject,
-    
-  },
-  {
-    name: "Category",
-    selector: (row) => row.category,
-    
-  },
-  {
-    name: "Type",
-    selector: (row) => row.type,
-    
-  },
 
+export const  notificationcolumns = [
   {
-    name: "Scheduled",
-    selector: (row) => row.scheduled,
-    
-  },
-  {
-    name: "Status",
-    selector: (row) => row.status,
-    
+    name: "",
+    selector: (row) => (
+      <div className="product-wrapper">
+        <img
+          src={profilePic}
+          // alt={row.product}
+          className="product-image"
+        />
+        <span>{row.notification}</span>
+        <p>{row.notificationTime}</p>
+      </div>
+    )
   },
   
 ];
-
-function MessageCentre() {
+function Notifications() {
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 5; // Number of items per page
+  const itemsPerPage = 5;
 
   const totalPages = Math.ceil(tableData.length / itemsPerPage);
 
@@ -70,16 +56,17 @@ function MessageCentre() {
       setCurrentPage(currentPage - 1);
     }
   };
+
   return (
-    <div className="kit-management">
-      <DataTableComponent
-        title={"Message Center"}
-        columns={Messagecolumns}
-        data={tableData}
-        selectedRows
-      />
-    </div>
+    <div className="notification">
+    <DataTableComponent
+      title={"Notifications(3 unread )"}
+      columns={notificationcolumns}
+      data={tableData}
+      selectedRows
+    />
+</div>
   );
 }
 
-export default MessageCentre;
+export default Notifications;
