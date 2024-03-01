@@ -64,6 +64,8 @@ function App(props) {
               <Route path="/distributorinfo" element={<DistributorInformation />} />
               <Route path="/reports" element={<Reports />} />
               <Route path="/reports" element={<Reports />} />
+
+              <Route path="/reports" element={<Reports />} />
               <Route path="/notifications" element={<Notifications />} />
 
 
