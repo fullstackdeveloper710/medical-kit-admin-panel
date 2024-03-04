@@ -61,29 +61,7 @@ export const KitColumns = [
 ];
 
 function Kits() {
-  const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 5; // Number of items per page
-
-  const totalPages = Math.ceil(tableData.length / itemsPerPage);
-
-  const indexOfLastItem = currentPage * itemsPerPage;
-  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentItems = tableData.slice(indexOfFirstItem, indexOfLastItem);
-
-  const onPageChange = (pageNumber) => {
-    setCurrentPage(pageNumber);
-  };
-  const onNextPage = () => {
-    if (currentPage < totalPages) {
-      setCurrentPage(currentPage + 1);
-    }
-  };
-
-  const onPreviousPage = () => {
-    if (currentPage > 1) {
-      setCurrentPage(currentPage - 1);
-    }
-  };
+  
   return (
     <div className="kit-management">
       <DataTableComponent
