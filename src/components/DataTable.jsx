@@ -8,7 +8,6 @@ const DataTableComponent = ({ title, data, columns, selectedRows }) => {
         <h3 style={{ fontWeight: "700px", fontSize: "24px" }} className="px-2">
           {title}
         </h3>
-
         <DataTable
           className="mt-3"
           columns={columns}

@@ -13,7 +13,7 @@ import Sidebar from "./components/Sidebar/SideBar";
 import Users from "./pages/UserManagement/Users";
 import Products from "./pages/Products/Products";
 import "./App.css";
-import 'react-phone-input-2/lib/style.css'
+import "react-phone-input-2/lib/style.css";
 import Header from "./components/Header/Header";
 import Kits from "./pages/KitManagement/Kits";
 import Dashboard from "./pages/Dashboard/Dashboard";
@@ -25,9 +25,10 @@ import Resource from "./pages/ResourceManagement/Resource";
 import Distributor from "./pages/Distributors/Distributor";
 import Reports from "./pages/ReportManagement/Reports";
 import { Card } from "react-bootstrap";
-import RenderCreateMenus from "./utils/renderCreateMenus";
+import RenderCreateMenus, { createMenus } from "./utils/renderCreateMenus";
 import Notifications from "./pages/Notifications/Notification";
 import DistributorInformation from "./pages/Distributors/DistributorInformation";
+import ReportEditor from "./pages/ReportManagement/ReportEditor";
 function App() {
   const location = useLocation();
   return (
@@ -37,7 +38,9 @@ function App() {
         {/* Use Routes instead of Switch */}
         <Header />
         <div style={{ padding: 20 }}>
-          <RenderCreateMenus pathname={location.pathname} />
+          {!createMenus[location.pathname] ? null : (
+            <RenderCreateMenus pathname={location.pathname} />
+          )}
           <Card
             style={{
               padding: 10,
@@ -60,12 +63,14 @@ function App() {
               <Route path="/edit-notification" element={<EditNotification />} />
               <Route path="/resource" element={<Resource />} />
               <Route path="/distributors" element={<Distributor />} />
-              <Route path="/distributorinfo" element={<DistributorInformation />} />
+              <Route
+                path="/distributorinfo"
+                element={<DistributorInformation />}
+              />
               <Route path="/reports" element={<Reports />} />
               <Route path="/reports" element={<Reports />} />
+              <Route path="/reporteditor" element={<ReportEditor />} />
               <Route path="/notifications" element={<Notifications />} />
-
-
             </Routes>
           </Card>
         </div>

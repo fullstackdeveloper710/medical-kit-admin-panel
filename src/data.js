@@ -203,7 +203,7 @@ const tableData = [
     companyName:"Company Name",
     country:'UK',
     county:'Surrey',
-    superAdmin:"John Jackson ",
+    superAdmin:"John Jackson",
     approver:"Ariel Corts",
     type: "Article",
     scheduled: "14 February 2024",
