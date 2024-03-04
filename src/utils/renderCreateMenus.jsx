@@ -22,7 +22,7 @@ let createMenus = {
   "/resource": ["Upload Files"],
   "/messaging": [
     { title: "Create article", link: "/editarticle" },
-    { title:"Create Notification", link: "/edit-notification" },
+    { title: "Create Notification", link: "/edit-notification" },
   ],
   "/notifications": null,
 };
@@ -44,7 +44,11 @@ const CreateActions = ({ title, link }) => {
 const RenderCreateMenus = ({ pathname }) => {
   return (
     <Container>
-      <Row className={`text-row kits_row px-4 ${pathname === '/' ? '' : 'align-items-center'}`}>
+      <Row
+        className={`text-row kits_row px-4 ${
+          pathname === "/" ? "" : "align-items-center"
+        }`}
+      >
         <div className="d-flex justify-content-start align-items-center gap-4">
           {createMenus[pathname] &&
             Array.isArray(createMenus[pathname]) &&

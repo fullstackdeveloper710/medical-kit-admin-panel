@@ -157,8 +157,9 @@ function Resource() {
                   <Form.Label>Alt Text:</Form.Label>
                   <Form.Control
                     type="text"
-                    name="name"
-                    value={formData.name}
+                    name="altText"
+                    placeholder='Alt Text'
+                    value={formData.altText}
                     onChange={handleChange}
                   />
                 </Form.Group>
@@ -166,8 +167,9 @@ function Resource() {
                   <Form.Label>Title:</Form.Label>
                   <Form.Control
                     type="text"
-                    name="name"
-                    value={formData.name}
+                    name="title"
+                    placeholder="Title"
+                    value={formData.title}
                     onChange={handleChange}
                   />
                 </Form.Group>
@@ -177,7 +179,18 @@ function Resource() {
                   <Form.Control
                     type="text"
                     name="name"
+                    placeholder="Name"
                     value={formData.name}
+                    onChange={handleChange}
+                  />
+                </Form.Group>
+                <Form.Group className="mb-3" controlId="name">
+                  <Form.Label>Caption</Form.Label>
+                  <Form.Control
+                    type="text"
+                    name="caption"
+                    placeholder="Caption"
+                    value={formData.caption}
                     onChange={handleChange}
                   />
                 </Form.Group>
@@ -188,6 +201,7 @@ function Resource() {
                     as="textarea"
                     rows={4}
                     name="description"
+                    placeholder='Description'
                     value={formData.description}
                     onChange={handleChange}
                   />
