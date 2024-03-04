@@ -68,9 +68,9 @@ function Sidebar() {
           </ul>
         </div>
         <div className="logout d-flex align-items-center">
-  <FaSignOutAlt className="icon" />
-  Logout
-</div>
+          <FaSignOutAlt className="icon" />
+          Logout
+        </div>
       </div>
     </div>
   );

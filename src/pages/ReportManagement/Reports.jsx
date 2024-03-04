@@ -154,24 +154,6 @@ function Reports() {
 
                 <p className="mt-4">Sales Reps</p>
 
-                {/* <Form>
-                  <Form.Group as={Col}>
-                    Director name
-                    <Form.Control type="text" placeholder="Director Name" />
-
-                    Edit and Delete options
-                    <div className="d-flex mt-2 edit_delete">
-                      <span>
-                        <FaEdit />
-                        Edit
-                      </span>
-                      <span variant="danger">
-                        <FaTrash /> Delete
-                      </span>
-                    </div>
-                    <span>Sales Reps</span>
-                  </Form.Group>
-                </Form> */}
               </div>
             </Card>
           </Col>

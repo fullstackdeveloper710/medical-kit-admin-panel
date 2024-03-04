@@ -58,7 +58,6 @@ function App(props) {
               <Route path="/kit" element={<Kits />} />
               <Route path="/messaging" element={<MessageCentre />} />
               <Route path="/user-management" element={<UserManagement />} />
-
               <Route path="/editarticle" element={<EditArticle />} />
               <Route path="/businessprofile" element={<BusinessProfile />} />
               <Route path="/edit-notification" element={<EditNotification />} />
@@ -67,8 +66,6 @@ function App(props) {
               <Route path="/reports" element={<Reports />} />
               <Route path="/reports" element={<Reports />} />
               <Route path="/notifications" element={<Notifications />} />
-
-
             </Routes>
           </Card>
         </div>

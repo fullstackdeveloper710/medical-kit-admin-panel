@@ -44,7 +44,7 @@ const CreateActions = ({ title, link }) => {
 const RenderCreateMenus = ({ pathname }) => {
   return (
     <Container>
-      <Row className="align-items-center text-row kits_row px-4">
+      <Row className={`text-row kits_row px-4 ${pathname === '/' ? '' : 'align-items-center'}`}>
         <div className="d-flex justify-content-start align-items-center gap-4">
           {createMenus[pathname] &&
             Array.isArray(createMenus[pathname]) &&
