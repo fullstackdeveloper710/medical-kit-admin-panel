@@ -84,28 +84,22 @@ function EditNotification() {
     setContent(newContent);
   };
   return (
-    <Container>
+    <div>
       <Row>
-      <Col md={4}>
+      <Col md={3}>
       <div
         className="notification-card"
         style={{
-          position: 'relative',
-          width: '277px',
-          height: '590px',
-          top: '6px',
-          left: '11px',
-          borderRadius: '50px',
         }}
       >
         {/* Image representing the phone screen */}
-        <img src={notificationImage} alt="Notification Image" />
+        <img src={notificationImage} className="img-fluid" alt="Notification Image" />
 
      
       </div>
     </Col>
-        <Col md={4}>
-          <div className="notification-card">
+        <Col md={5}>
+          <div className="notification-card card border-0  p-3">
             <h3 className="listing">Edit Notification</h3>
             <div className="title-box mb-2">
              <div className="d-flex justify-content-between pb-2">
@@ -154,7 +148,7 @@ function EditNotification() {
         </Col>
 
         <Col md={4}>
-          <div className="notification-card">
+          <div className="notification-card card border-0  p-3">
             <h3 className="listing">Publish Details</h3>
             <div className="select_wrapper mb-3">
               <label htmlFor="">Status:</label>
@@ -187,11 +181,8 @@ function EditNotification() {
                 <option>user Defined</option>
               </select>
             </div>
-            <div className="select_wrapper mb-3">
-              <p>
-                Restrict notifications to users who have registered the
-                following products
-              </p>
+            <div className="select_wrapper my-3">
+              <b>Restrict notifications to users who have registered the following products</b>
             </div>
             <div className="search_btn_add mb-3">
               <Form inline>
@@ -236,7 +227,7 @@ function EditNotification() {
           </div>
         </Col>
       </Row>
-    </Container>
+    </div>
   );
 }
 

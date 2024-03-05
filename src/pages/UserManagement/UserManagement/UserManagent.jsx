@@ -95,13 +95,16 @@ function UserManagement() {
       </Container>
       <Container>
         <Row>
-          <Col md={4}>
-            <img src={profilepic} alt="Profile Picture" className="img-fluid" />
-            <Row>
-              <Col>
-                <span>Edit</span>
-              </Col>
-            </Row>
+        <Col md={4}> 
+          {/* <div className="divider" /> */}
+
+          <div className="recommended_logo box d-flex justify-content-center align-items-center flex-column">
+            <p>Recommended logo</p>
+            <p>Specifications</p>
+            <p>500px X 300px</p>
+            <p>transparent PNG</p>
+          </div>
+          <p className="text-center edit_btn">Edit</p>
           </Col>
 
           <Col md={8}>

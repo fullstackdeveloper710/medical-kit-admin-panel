@@ -34,7 +34,7 @@ const DataTableComponent = ({ title, data, columns, selectedRows }) => {
   return (
     <Card style={{ border: "none" }}>
       <div style={{ padding: 10 }}>
-        <h3 style={{ fontWeight: "700px", fontSize: "24px" }} className="px-2">
+        <h3  className="px-2 card_title">
           {title}
         </h3>
 

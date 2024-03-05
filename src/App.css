@@ -14,7 +14,9 @@ body{
   height: 100%;
   padding: 20px;
 }
-
+.content_block{
+  min-height: 70vh;
+}
 .sidebar h2 {
   margin-bottom: 20px;
 }
@@ -39,6 +41,13 @@ body{
 }
 /* App.css */
 
+.card_title {
+  font-family: Inter;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 29px;
+  letter-spacing: 0em;
+}
 .wrapper {
  display:flex;
 }
@@ -137,4 +146,89 @@ body{
 
 .checkboxes input.form-check-input:checked {
     background:#0d6efd;
+}
+.btn.icon-button:focus-visible,
+.btn.icon-button:active{
+    border: 0px !important;
+    outline: 0px !important;
+    background-color: #fff !important;
+    box-shadow: unset !important;
+}
+.business_block h4.text-center {
+  padding-bottom: 20px;
+  margin-bottom: 15px;
+  border-bottom: 1px solid #C5C5D3;
+}
+.notification-card div p {
+  font-size: 12px;
+  color: #16161D;
+  line-height: 25px;
+}
+.business_input {
+  display: flex !important;
+}
+
+.business_input input.PhoneInputInput {
+  border: 0px;
+}
+
+input.PhoneInputInput:focus {
+  outline: 0px;
+}
+/* table css */
+.rdt_TableHeadRow, .rdt_TableRow {
+  padding: 15px;
+  padding-left: 0px !important;
+}
+img.products-image {
+  width: 50px;
+  height: 53px;
+  margin-right: 5px;
+  object-fit: contain;
+}
+.rdt_TableHeadRow .lnOUep {
+  font-size: 16px;
+  font-weight: 400;
+  color: #A8A8BD;
+}
+
+body .button-text,
+.icon-button h3{
+  flex: 1;
+}
+.icon-button{
+  width: 100%;
+}
+.fWilUa div span.m-1.badge.bg-success,
+.registered_table div#cell-7-1 .badge.bg-success{
+    background: #D9F2DD !important;
+    color: #359742;
+}
+
+.fWilUa div span.m-1.badge.bg-warning,
+.registered_table div#cell-7-1 .badge.bg-warning{
+    background: #FFF5CC !IMPORTANT;
+    color: #CCA300;
+}
+.registered_table div#cell-7-1 span {
+  width: 100px;
+}
+.fWilUa div span.m-1.badge.bg-danger,
+.registered_table div#cell-7-1 .badge.bg-danger{
+    background: #FFE5E5 !important;
+    color: #FF6666;
+}
+@media (max-width:1366px) {
+  body .button-text{
+    font-size: 18px;
+    line-height: auto !important;
+  }
+  body .kits_row .icon-button svg {
+    padding: 10px;
+    width: 35px;
+    height: 35px;
+    background: #006AFF;
+    color: #fff;
+    border-radius: 50%;
+}
 }

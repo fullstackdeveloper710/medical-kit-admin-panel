@@ -27,6 +27,7 @@ import { Card } from "react-bootstrap";
 import RenderCreateMenus from "./utils/renderCreateMenus";
 import Notifications from "./pages/Notifications/Notification";
 import UserManagement from "./pages/UserManagement/UserManagement/UserManagent";
+import CreateUser from "./pages/UserManagement/CreateUser/CreateUser";
 function App(props) {
   const location = useLocation();
 
@@ -38,15 +39,16 @@ function App(props) {
       <div className="main_container">
         {/* Use Routes instead of Switch */}
         <Header />
-        <div style={{ padding: 20 }}>
+        <div className="right_content_wrapper" style={{ padding: 20 }}>
           <RenderCreateMenus pathname={location.pathname} />
           <Card
+             className="content_block"
             style={{
+              
               padding: 10,
-              marginLeft: 20,
               border: "none",
               backgroundColor:
-                location.pathname === "/" || location.pathname == "/reports"
+                location.pathname === "/" || location.pathname == "/reports" || location.pathname == "/resource" || location.pathname == "/edit-notification"
                   ? "transparent"
                   : "white",
             }}
@@ -58,6 +60,7 @@ function App(props) {
               <Route path="/kit" element={<Kits />} />
               <Route path="/messaging" element={<MessageCentre />} />
               <Route path="/user-management" element={<UserManagement />} />
+              <Route path="/create-users" element={<CreateUser />} />
               <Route path="/editarticle" element={<EditArticle />} />
               <Route path="/businessprofile" element={<BusinessProfile />} />
               <Route path="/edit-notification" element={<EditNotification />} />

@@ -145,6 +145,7 @@ text-align: left;
 }
 
 .active-menu {
+  font-weight: bold !important;
   background-color: #E5F0FF;
   color:#006AFF !important;
   border-radius: 10px;

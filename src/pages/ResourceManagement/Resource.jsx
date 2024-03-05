@@ -89,14 +89,17 @@ function Resource() {
 
   return (
     <div className="resources">
-      <Container>
-        <Row className="align-items-center border-bottom pb-3 mb-3">
+      <div>
+        
+        <Row className="justify-content-between gap-2 resources_block flex-nowrap">
+          <Col md={8} className="card p-3 border-0 box-shadow">
+          <Row className="align-items-center border-bottom justify-content-between pb-3 mb-3">
           <Col md={2}>
             <div className=" mb-3">
               <h3 className="listing pb-0 mb-0">Media</h3>
             </div>
           </Col>
-          <Col className="col-md-6 select_wrapper">
+          <Col className="col-md-7 select_wrapper">
             <select>
               <option disabled selected value="">
                 All dates
@@ -109,8 +112,6 @@ function Resource() {
             </select>
           </Col>
         </Row>
-        <Row>
-          <Col md={8}>
             <div className="row">
               {imageUrls.map((imageUrl, index) => (
                 <div key={index} className="col-md-3 p-2">
@@ -132,9 +133,9 @@ function Resource() {
             />
           </Col>
           {selectedImage && (
-            <Col md={4}>
+            <Col md={4} className="card p-3 border-0  box-shadow">
               <h3 className="listing">Selected media</h3>
-              <div className="row align-items-center">
+              <div className="row align-items-center pb-3 border-bottom mb-3">
                 <div className="col-md-6">
                   <img
                     src={selectedImage}
@@ -143,7 +144,7 @@ function Resource() {
                   />
                 </div>
                 <div className="col-md-6 pe-0">
-                  <div className="img_details">
+                  <div className="img_details ">
                     <h5 className="name_img">name of file.jpg</h5>
                     <span className="date_created">Date created</span>
                     <span className="size">size KB</span>
@@ -154,28 +155,28 @@ function Resource() {
               </div>
               <Form onSubmit={handleSubmit}>
                 <Form.Group className="mb-3" controlId="name">
-                  <Form.Label>Alt Text:</Form.Label>
+                  <Form.Label>Alt Text</Form.Label>
                   <Form.Control
                     type="text"
-                    name="altText"
-                    placeholder='Alt Text'
-                    value={formData.altText}
+                    name="name"
+                    placeholder="Alt Text"
+                    value={formData.name}
                     onChange={handleChange}
                   />
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="name">
-                  <Form.Label>Title:</Form.Label>
+                  <Form.Label>Title</Form.Label>
                   <Form.Control
                     type="text"
-                    name="title"
+                    name="name"
                     placeholder="Title"
-                    value={formData.title}
+                    value={formData.name}
                     onChange={handleChange}
                   />
                 </Form.Group>
 
                 <Form.Group className="mb-3" controlId="name">
-                  <Form.Label>Name:</Form.Label>
+                  <Form.Label>Name</Form.Label>
                   <Form.Control
                     type="text"
                     name="name"
@@ -184,24 +185,14 @@ function Resource() {
                     onChange={handleChange}
                   />
                 </Form.Group>
-                <Form.Group className="mb-3" controlId="name">
-                  <Form.Label>Caption</Form.Label>
-                  <Form.Control
-                    type="text"
-                    name="caption"
-                    placeholder="Caption"
-                    value={formData.caption}
-                    onChange={handleChange}
-                  />
-                </Form.Group>
 
                 <Form.Group className="mb-3" controlId="description">
-                  <Form.Label>Description:</Form.Label>
+                  <Form.Label>Description</Form.Label>
                   <Form.Control
                     as="textarea"
                     rows={4}
+                    placeholder="Description"
                     name="description"
-                    placeholder='Description'
                     value={formData.description}
                     onChange={handleChange}
                   />
@@ -214,7 +205,7 @@ function Resource() {
             </Col>
           )}
         </Row>
-      </Container>
+      </div>
     </div>
   );
 }

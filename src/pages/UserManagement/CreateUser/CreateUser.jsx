@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import {
   Container,
   Row,
@@ -13,8 +12,12 @@ import profilepic from "../../../Assets/Profile/profile.png";
 import { Formik, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import PhoneInput from "react-phone-number-input";
-import CustomButton from "../../../components/Common/Button/Button";
 import "react-phone-number-input/style.css";
+import CustomButton from "../../../components/Common/Button/Button";
+import { FaStopCircle, FaTrash } from "react-icons/fa";
+import { FaCircleStop } from "react-icons/fa6";
+import "./CreateUser.css";
+import { useState } from "react";
 
 function CreateUser() {
   const [content, setContent] = useState();
@@ -49,34 +52,59 @@ function CreateUser() {
   const initialValues = {
     firstName: "",
     lastName: "",
+    businessEmail: "",
+    officeLocation: "",
     countryCode: "",
+    employeeId: "",
+    jobTitle: "",
+    assignRole: "",
   };
+  const phonenumberRegex =
+  /^[+]?[0-9]{1,3}?[-.\\s]?[(]?[0-9]{1,4}[)]?[-.\\s]?[0-9]{1,4}[-.\\s]?[0-9]{1,9}$/;
 
-  // Define validation schema
   const validationSchema = Yup.object().shape({
     firstName: Yup.string().required("First Name is required"),
     lastName: Yup.string().required("Last Name is required"),
-    countryCode: Yup.string().required("Country Code is required"),
+    businessEmail: Yup.string()
+      .email("Invalid email format")
+      .required("Business Email is required"),
+    officeLocation: Yup.string().required("Office Location is required"),
+    country_code: Yup.string().required("Country Code is required"),
+    phone: Yup.string()
+      .matches(phonenumberRegex, "*Enter a valid Phone Number")
+      .required("*Enter a valid Phone Number"),
+
+    employeeId: Yup.string().required("Employee ID is required"),
+    jobTitle: Yup.string().required("Job Title is required"),
+    assignRole: Yup.string().required("Role is required"),
   });
+
   return (
     <div className="create-user">
       <Container>
         <Row className="align-items-c">
-          <Col >
-            <h3 className="listing"style={{ textAlign: "center", paddingBottom: "20px" }}>Create New User</h3>
+          <Col>
+            <h3
+              className="listing"
+              style={{ textAlign: "center", paddingBottom: "20px" }}
+            >
+              Create New User
+            </h3>
           </Col>
         </Row>
       </Container>
       <Container>
-        <Row>
-          <Col md={4}>
-            <img src={profilepic} alt="Profile Picture" className="img-fluid" />
-            {/* <Button variant="primary">Edit Profile</Button> */}
-            <Row>
-              <Col>
-                <span>Edit</span>
-              </Col>
-            </Row>
+       <Row>
+          <Col md={4}> 
+          {/* <div className="divider" /> */}
+
+          <div className="recommended_logo box d-flex justify-content-center align-items-center flex-column">
+            <p>Recommended logo</p>
+            <p>Specifications</p>
+            <p>500px X 300px</p>
+            <p>transparent PNG</p>
+          </div>
+          <p className="text-center edit_btn">Edit</p>
           </Col>
 
           <Col md={8}>
@@ -90,7 +118,15 @@ function CreateUser() {
                 }, 400);
               }}
             >
-              {({ isSubmitting, setFieldValue }) => (
+              {({
+              setFieldValue,
+              values,
+              isSubmitting,
+              errors,
+              touched,
+              handleChange,
+              handleSubmit,
+              handleBlur, }) => (
                 <Form className="form_style">
                   <Row>
                     <Col>
@@ -100,7 +136,11 @@ function CreateUser() {
                           name="firstName"
                           placeholder="First Name"
                         />
-                        <ErrorMessage name="firstName" component="div" />
+                        <span style={{ color: "red", fontSize: "small" }}>
+                          {errors.firstName &&
+                            touched.firstName &&
+                            errors.firstName}
+                        </span>
                       </div>
                     </Col>
 
@@ -111,7 +151,11 @@ function CreateUser() {
                           name="lastName"
                           placeholder="Last Name"
                         />
-                        <ErrorMessage name="lastName" component="div" />
+                        <span style={{ color: "red", fontSize: "small" }}>
+                          {errors.lastName &&
+                            touched.lastName &&
+                            errors.lastName}
+                        </span>{" "}
                       </div>
                     </Col>
                   </Row>
@@ -123,7 +167,11 @@ function CreateUser() {
                           name="businessEmail"
                           placeholder=" Business Email"
                         />
-                        <ErrorMessage name="businessEmail" component="div" />
+                        <span style={{ color: "red", fontSize: "small" }}>
+                          {errors.businessEmail &&
+                            touched.businessEmail &&
+                            errors.businessEmail}
+                        </span>{" "}
                       </div>
                     </Col>
 
@@ -134,21 +182,47 @@ function CreateUser() {
                           name="officeLocation"
                           placeholder=" Office Location"
                         />
-                        <ErrorMessage name="officeLocation" component="div" />
+                        <span style={{ color: "red", fontSize: "small" }}>
+                          {errors.officeLocation &&
+                            touched.officeLocation &&
+                            errors.officeLocation}
+                        </span>{" "}
                       </div>
                     </Col>
                   </Row>
                   <Row>
                     <Col>
                       <div className="form-group">
-                        <PhoneInput
-                          country={"us"}
-                          onChange={(value) =>
-                            setFieldValue("countryCode", value)
+                      <PhoneInput
+                        placeholder="Phone Number"
+                        value={values.phone}
+                        country={values.country_code}
+                        onChange={(value, country,phone) => {
+                          handleChange({ target: { name: "phone", value } });
+
+                          // Check if country is available before accessing its properties
+                          if (country && country.countryCallingCode) {
+                            const updatedCountryCode = `+${country.countryCallingCode}`;
+                            handleChange({
+                              target: {
+                                name: "country_code",
+                                value: updatedCountryCode,
+                              },
+                            });
+                          } else {
+                            handleChange({
+                              target: {
+                                name: "country_code",
+                                value: values.country_code,
+                              },
+                            });
                           }
-                          placeholder="Number"
-                        />
-                        <ErrorMessage name="countryCode" component="div" />
+                        }}
+                      />
+
+                      <span style={{ color: "red" }}>
+                        {errors.phone && touched.phone && errors.phone}
+                      </span>
                       </div>
                     </Col>
                     <Col>
@@ -158,7 +232,11 @@ function CreateUser() {
                           name="employeeId"
                           placeholder=" Employee ID"
                         />
-                        <ErrorMessage name="employeeId" component="div" />
+                        <span style={{ color: "red", fontSize: "small" }}>
+                          {errors.employeeId &&
+                            touched.employeeId &&
+                            errors.employeeId}
+                        </span>{" "}
                       </div>
                     </Col>
                   </Row>
@@ -170,7 +248,11 @@ function CreateUser() {
                           name="jobTitle"
                           placeholder="Job Title"
                         />
-                        <ErrorMessage name="jobTitle" component="div" />
+                        <span style={{ color: "red", fontSize: "small" }}>
+                          {errors.jobTitle &&
+                            touched.jobTitle &&
+                            errors.jobTitle}
+                        </span>{" "}
                       </div>
                     </Col>
                     <Col>
@@ -187,11 +269,11 @@ function CreateUser() {
                             </option>
                           ))}
                         </Field>
-                        <ErrorMessage
-                          name="assignRole"
-                          component="div"
-                          className="error"
-                        />
+                        <span style={{ color: "red", fontSize: "small" }}>
+                          {errors.assignRole &&
+                            touched.assignRole &&
+                            errors.assignRole}
+                        </span>
                       </div>
                     </Col>
                   </Row>
@@ -204,18 +286,22 @@ function CreateUser() {
 
       <Container>
         <Row>
-        <Col>
-  <h3 style={{
-    styleName: "Category Head",
-    fontFamily: "Open Sans",
-    fontSize: "20px",
-    fontWeight: "700",
-    lineHeight: "15px",
-    letterSpacing: "-0.011em",
-    textAlign: "left"
-  }} className="listing">Permissions</h3>
-</Col>
-
+          <Col>
+            <h3
+              style={{
+                styleName: "Category Head",
+                fontFamily: "Open Sans",
+                fontSize: "20px",
+                fontWeight: "700",
+                lineHeight: "15px",
+                letterSpacing: "-0.011em",
+                textAlign: "left",
+              }}
+              className="listing"
+            >
+              Permissions
+            </h3>
+          </Col>
         </Row>
 
         <Form>
@@ -281,6 +367,17 @@ function CreateUser() {
       </Container>
       <Container>
         <Row className="justify-content-end py-5">
+          <Col md={6}>
+            <div className="btn_groups ms-md-5 ps-md-5">
+              <button className="btn btn-outline-none usermgmt-button" disabled>
+                Disable
+              </button>
+              <button className="btn btn-outline-none  usermgmt-button">
+                <FaTrash />
+                Delete
+              </button>
+            </div>
+          </Col>
           <Col md={6}>
             <div className="btn_groups ms-md-5 ps-md-5">
               <CustomButton

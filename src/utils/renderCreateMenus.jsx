@@ -9,7 +9,8 @@ let createMenus = {
   "/kit": ["Create Kits", "Import Kits", "Export Kits"],
   "/users": [
     { title: "Invite Admin", link: "/user-management" },
-    "Create Users",
+    { title: "Create Users", link: "/create-users" },
+
     "Import Users",
     "Export Users",
   ],
@@ -29,7 +30,7 @@ let createMenus = {
 
 const CreateActions = ({ title, link }) => {
   return (
-    <Col xs={12} md={4}>
+    <Col xs={12} md={3}>
       <Card style={{ borderRadius: 16, border: "none" }}>
         <Link to={link}>
           <Button variant="primary" className="icon-button">
@@ -43,39 +44,37 @@ const CreateActions = ({ title, link }) => {
 };
 const RenderCreateMenus = ({ pathname }) => {
   return (
-    <Container>
+    <div>
       <Row
-        className={`text-row kits_row px-4 ${
-          pathname === "/" ? "" : "align-items-center"
+        className={`text-row kits_row top_btns   ${
+          pathname === "/" ? "d-none  " : "justify-content-start"
         }`}
       >
-        <div className="d-flex justify-content-start align-items-center gap-4">
-          {createMenus[pathname] &&
-            Array.isArray(createMenus[pathname]) &&
-            createMenus[pathname].map((menuItem, i) => {
-              if (typeof menuItem === "string") {
-                return (
-                  <CreateActions
-                    key={i}
-                    title={menuItem}
-                    link={`/${menuItem.toLowerCase().replace(" ", "-")}`}
-                  />
-                );
-              } else if (menuItem && menuItem.title && menuItem.link) {
-                return (
-                  <CreateActions
-                    key={i}
-                    title={menuItem.title}
-                    link={menuItem.link}
-                  />
-                );
-              } else {
-                return null;
-              }
-            })}
-        </div>
+        {createMenus[pathname] &&
+          Array.isArray(createMenus[pathname]) &&
+          createMenus[pathname].map((menuItem, i) => {
+            if (typeof menuItem === "string") {
+              return (
+                <CreateActions
+                  key={i}
+                  title={menuItem}
+                  link={`/${menuItem.toLowerCase().replace(" ", "-")}`}
+                />
+              );
+            } else if (menuItem && menuItem.title && menuItem.link) {
+              return (
+                <CreateActions
+                  key={i}
+                  title={menuItem.title}
+                  link={menuItem.link}
+                />
+              );
+            } else {
+              return null;
+            }
+          })}
       </Row>
-    </Container>
+    </div>
   );
 };
 

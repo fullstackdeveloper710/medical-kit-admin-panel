@@ -14,10 +14,18 @@
     padding: 5px 10px;
     cursor: pointer;
     border-radius: 4px;
-    color: #ccc; /* Default grey color */
+    color: #ccc;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
   
   .page-number.selected {
     background-color: #E5F0FF; 
     color:#006AFF/* Selected color */
   }
+  .custom-pagination button.btn.btn-light {
+    border: 1px solid #C5C5D3;
+}

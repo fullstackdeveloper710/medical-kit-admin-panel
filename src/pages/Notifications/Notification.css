@@ -1,10 +1,4 @@
 /* Kits.css */
-
-.text-row {
-    display: flex;
-    justify-content: space-between;
-  }
-  
  /* Kits.css */
 
  .notification-text {
@@ -56,7 +50,7 @@
 }
   /* Kits.css */
   .kits_row {
-    padding: 35px 0px;
+    padding: 10px 0px 35px 0px;
 }
 
 .kits_row button {
@@ -71,11 +65,14 @@
 }
 /* Button icons */
 
+.top_btns a{
+  text-decoration: none;
+}
   
   .button-text {
     /* Use the styleName provided */
     font-family: Inter;
-    font-size: 24px;
+    font-size: 20px;
     font-weight: 700;
     line-height: 29px;
     letter-spacing: 0em;
@@ -91,10 +88,6 @@
     margin-bottom: 10px; /* Adjust as needed */
   }
   
-  /* Align buttons to the center */
-  .text-row {
-    justify-content: center;
-  }
   /* Kits.css */
 
 /* Styles for the table header */

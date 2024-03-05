@@ -8,6 +8,9 @@
     width: 100%; /* Full width */
     /* background-color: #333; */
    background-color: white;
+   position: sticky;
+   top: 0px;
+   z-index: 999;
   }
   
   .logo a {
@@ -23,12 +26,21 @@
 
 .header .search input {
   border-radius: 12px;
-  padding: 14px 20px 14px 35px !important;
+  padding: 14px 20px 14px 54px !important;
   width: 100%;
   border: 1px solid #F1F1F4;
   font-size: 14px;
   letter-spacing: 0em;
   background-color: #F1F1F4;
+}
+.header .search input::placeholder{
+font-family: Inter;
+font-size: 14px;
+font-weight: 400;
+line-height: 20px;
+letter-spacing: 0em;
+text-align: left;
+
 }
 .search {
   display: flex;
@@ -40,7 +52,7 @@
   font-size: 20px;
   color: #aaa;
   position: absolute;
-  left: 10px;
+  left: 22px;
 }
   
   
@@ -58,33 +70,25 @@
     overflow: hidden;
     margin-right: 12px; /* Adjust as needed */
   }
-  .profile-pic {
+  .profile .profile-pic {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    padding: 0px;
   }
   .admin-name {
-    /* Your admin name styles here */
-    /* Add your styleName: B1/Bold; CSS here */
-    font-family: Inter;
     font-size: 16px;
     font-weight: 700;
-    line-height: 22px;
-    letter-spacing: 0em;
-    text-align: left;
-    color: black;
+    color: #16161D;
   }
   
   .superadmin-name {
-    /* Your subname styles here */
-    /* Add your styleName: B3/Regular; CSS here */
     display: block;
-    font-family: Inter;
     font-size: 12px;
     font-weight: 400;
     line-height: 17px;
     letter-spacing: 0em;
     text-align: left;
-    color: black;
+    color: #A8A8BD;
   }
   
