@@ -1,9 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import Form from "react-bootstrap/Form";
 import { MdLocationDisabled } from "react-icons/md";
 import { GoTrash } from "react-icons/go";
 import PhoneInput from "react-phone-input-2";
-
 import "./index.css";
 import { Col, Row } from "react-bootstrap";
 const DistributorInformation = () => {
@@ -114,6 +113,7 @@ const DistributorInformation = () => {
             <button className="btn btn-primary ms-4 w-50">Save Changes</button>
           </div>
         </div>
+        
       </div>
     </div>
   );

@@ -22,7 +22,7 @@ function Sidebar() {
             .filter((x, i) => i === 0)
             .map((menu, i) => {
               return (
-                <li>
+                <li key={i}>
                   <Link className={activeClass(menu.link)} to={menu.link}>
                     {menu.icon}
                     {menu.title}
