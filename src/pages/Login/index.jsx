@@ -1,11 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import loginlogo from "../../Assets/Logo/logo.png";
 import "./index.css";
 import { useNavigate } from "react-router-dom";
 const Login = () => {
-  const navigate = useNavigate()
+  const [data, setData]= useState({
+    email:"",
+    password:"",
+  })
+  const [error, setError]= useState({
+    emailError:"",
+    passwordError:"",
+  })
+  const {email, password}= data;
+  const navigate = useNavigate();
   return (
     <div className="container">
       <div className="row align-items-center vh-100">
@@ -26,10 +35,8 @@ const Login = () => {
               </Form.Group>
               <div className="d-flex align-items-center justify-content-between">
                 <Button variant="primary" type="submit" onClick={(e) =>{
-                  e.preventDefault()
-                  navigate('/')
-
-                  
+                  e.preventDefault();
+                  navigate('/');     
                 }}>
                   Login
                 </Button>
