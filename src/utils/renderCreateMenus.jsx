@@ -2,25 +2,40 @@ import { useEffect } from "react";
 import { Button, Card, Col, Container, Row } from "react-bootstrap";
 import { FaPlus } from "react-icons/fa";
 import { Link } from "react-router-dom";
-let createMenus = {
+
+
+
+export const createMenus = {
   "/": null,
   "/businessprofile": null,
-  "/products": ["Create Products", "Import Products", "Export Products"],
-  "/kit": ["Create Kits", "Import Kits", "Export Kits"],
-  "/users": [
+  "/products": [
+    { title: "Create Products", link: "" },
+    { title: "Import Products", link: "" },
+    { title: "Export Products", link: "" },
+  ], 
+  "/kit": [
+    { title: "Create Kits", link: "" },
+    { title: "Import Kits", link: "" },
+    { title: "Export Kits", link: "" },
+  ],
+    "/users": [
     { title: "Invite Admin", link: "/user-management" },
     { title: "Create Users", link: "/create-users" },
+    { title: "Import Users", link: "" },
+    { title: "Export Users", link: "" },
 
-    "Import Users",
-    "Export Users",
   ],
   "/distributors": [
-    "Create Distributors",
-    "import Distributors",
-    "Export Distributors",
+    { title: "Create Distributors", link: "/distributorinfo" },
+    { title: "import Distributors", link: "" },
+    { title: "Export Distributors", link: "" },
   ],
-  "/reports": ["Create Report", "Create Group"],
-  "/resource": ["Upload Files"],
+  "/reports": [
+    { title: "Create Report", link: "/reporteditor" },
+    { title: "Create Group", link: "" },
+  ], 
+  
+  "/resource": [{ title: "Upload Files", link: "" }],
   "/messaging": [
     { title: "Create article", link: "/editarticle" },
     { title: "Create Notification", link: "/edit-notification" },
@@ -30,7 +45,7 @@ let createMenus = {
 
 const CreateActions = ({ title, link }) => {
   return (
-    <Col xs={12} md={3}>
+    <Col xs={12} md={4}>
       <Card style={{ borderRadius: 16, border: "none" }}>
         <Link to={link}>
           <Button variant="primary" className="icon-button">
@@ -42,40 +57,24 @@ const CreateActions = ({ title, link }) => {
     </Col>
   );
 };
+
 const RenderCreateMenus = ({ pathname }) => {
   return (
-    <div>
-      <Row
-        className={`text-row kits_row top_btns   ${
-          pathname === "/" ? "d-none  " : "justify-content-start"
-        }`}
-      >
-        {createMenus[pathname] &&
-          Array.isArray(createMenus[pathname]) &&
-          createMenus[pathname].map((menuItem, i) => {
-            if (typeof menuItem === "string") {
-              return (
-                <CreateActions
-                  key={i}
-                  title={menuItem}
-                  link={`/${menuItem.toLowerCase().replace(" ", "-")}`}
-                />
-              );
-            } else if (menuItem && menuItem.title && menuItem.link) {
-              return (
-                <CreateActions
-                  key={i}
-                  title={menuItem.title}
-                  link={menuItem.link}
-                />
-              );
-            } else {
-              return null;
-            }
+    <Container>
+      <Row className="align-items-center text-row kits_row px-4">
+        <div className="d-flex justify-content-start align-items-center gap-4">
+          {createMenus[pathname].map((menuItem, i) => {
+            return( <CreateActions
+              key={i}
+              title={menuItem.title}
+              link={menuItem.link !== "" ? menuItem.link : null}
+            />)
           })}
+        </div>
       </Row>
-    </div>
+    </Container>
   );
 };
+
 
 export default RenderCreateMenus;

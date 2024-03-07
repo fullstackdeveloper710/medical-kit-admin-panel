@@ -17,8 +17,8 @@ const BusinessProfile = () => {
     businessEmail: Yup.string()
       .email("Invalid email")
       .required("Business Email is required"),
-    superAdmin: Yup.string().email("Invalid email"),
-    approver: Yup.string().email("Invalid email"),
+    superAdmin: Yup.string().email("Invalid email").required("Email is required"),
+    approver: Yup.string().email("Invalid email").required("Email is required"),
   });
 
   return (

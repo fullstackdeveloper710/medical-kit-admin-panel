@@ -11,10 +11,7 @@ import {
 import { FaFileExport, FaFileImport, FaPlus } from "react-icons/fa";
 import "./Users.css";
 import tableData from "../../data";
-import products from "../../Assets/images/product.png";
-import CustomPagination from "../../components/Common/Pagination";
 import DataTableComponent from "../../components/DataTable";
-import { columns } from "../Products/Products";
 
 export const usercolumns = [
   {

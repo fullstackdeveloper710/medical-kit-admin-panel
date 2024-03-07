@@ -1,82 +1,57 @@
-// App.js
-
-import React from "react";
-import {
-  BrowserRouter as Router,
-  Route,
-  Routes,
-  useLocation,
-  useRoutes,
-  BrowserRouter,
-} from "react-router-dom";
+import React  from "react";
+import { Route, Routes, useLocation } from "react-router-dom";
 import Sidebar from "./components/Sidebar/SideBar";
-import Users from "./pages/UserManagement/Users";
-import Products from "./pages/Products/Products";
 import "./App.css";
+import "react-phone-input-2/lib/style.css";
 import Header from "./components/Header/Header";
-import Kits from "./pages/KitManagement/Kits";
-import Dashboard from "./pages/Dashboard/Dashboard";
-import MessageCentre from "./pages/MessageCentre/MessageCentre";
-import EditArticle from "./pages/MessageCentre/EditArticle/EditArticle";
-import BusinessProfile from "./pages/BusinessProfile";
-import EditNotification from "./pages/MessageCentre/EditNotification/EditNotification";
-import Resource from "./pages/ResourceManagement/Resource";
-import Distributor from "./pages/Distributors/Distributor";
-import Reports from "./pages/ReportManagement/Reports";
 import { Card } from "react-bootstrap";
-import RenderCreateMenus from "./utils/renderCreateMenus";
-import Notifications from "./pages/Notifications/Notification";
-import UserManagement from "./pages/UserManagement/UserManagement/UserManagent";
-import CreateUser from "./pages/UserManagement/CreateUser/CreateUser";
-function App(props) {
+import RenderCreateMenus, { createMenus } from "./utils/renderCreateMenus";
+import RouterData from "./router";
+import Login from "./pages/Login";
+function App() {
   const location = useLocation();
-
-  console.log(location.pathname);
-
   return (
-    <div className="wrapper">
-      <Sidebar />
-      <div className="main_container">
-        {/* Use Routes instead of Switch */}
-        <Header />
-        <div className="right_content_wrapper" style={{ padding: 20 }}>
-          <RenderCreateMenus pathname={location.pathname} />
-          <Card
-             className="content_block"
-            style={{
-              
-              padding: 10,
-              border: "none",
-              backgroundColor:
-                location.pathname === "/" || location.pathname == "/reports" || location.pathname == "/resource" || location.pathname == "/edit-notification"
-                  ? "transparent"
-                  : "white",
-            }}
-          >
-            <Routes>
-              <Route path="/" element={<Dashboard />} />
-              <Route path="/users" element={<Users />} />
-              <Route path="/products" element={<Products />} />
-              <Route path="/kit" element={<Kits />} />
-              <Route path="/messaging" element={<MessageCentre />} />
-              <Route path="/user-management" element={<UserManagement />} />
-              <Route path="/create-users" element={<CreateUser />} />
-              <Route path="/editarticle" element={<EditArticle />} />
-              <Route path="/businessprofile" element={<BusinessProfile />} />
-              <Route path="/edit-notification" element={<EditNotification />} />
-              <Route path="/resource" element={<Resource />} />
-              <Route path="/distributors" element={<Distributor />} />
-              <Route path="/reports" element={<Reports />} />
-              <Route path="/reports" element={<Reports />} />
-              <Route path="/notifications" element={<Notifications />} />
-            </Routes>
-          </Card>
+    <>
+      {location.pathname === "/login" ? (
+        <div className="auth">
+          <Login />
         </div>
-      </div>
-    </div>
-
-    // <Router>
-    //  </Router>
+      ) : (
+        <div className="wrapper">
+          <Sidebar />
+          <div className="main_container">
+            <Header />
+            <div style={{ padding: 20 }}>
+              {!createMenus[location.pathname] ? null : (
+                <RenderCreateMenus pathname={location.pathname} />
+              )}
+              <Card
+                style={{
+                  padding: 10,
+                  marginLeft: 20,
+                  border: "none",
+                  backgroundColor:
+                    location.pathname === "/" ||
+                    location.pathname === "/reports"
+                      ? "transparent"
+                      : "white",
+                }}
+              >
+                <Routes>
+                  {RouterData.map((curElm, index) => (
+                    <Route
+                      key={index}
+                      path={curElm.path}
+                      element={curElm.element}
+                    />
+                  ))}
+                </Routes>
+              </Card>
+            </div>
+          </div>
+        </div>
+      )}
+    </>
   );
 }
 export default App;

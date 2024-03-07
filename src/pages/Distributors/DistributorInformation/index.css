@@ -1,0 +1,9 @@
+.distributorinfo .companylogo{
+    background-color: #E5F0FF;
+    padding:15px;
+    text-align: center;
+}
+
+ .phoneinput input.form-control{
+    width: 100% !important;
+ }
