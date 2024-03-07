@@ -1,3 +1,4 @@
+
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { ApiEndPoint, StatusCode } from "../../services/helper";
 import API from "../../services/api";
@@ -35,4 +36,5 @@ export const loginuser=createAsyncThunk("user/login", async(data)=>{
         console.log(error)
     }
 })
+
 
