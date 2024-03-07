@@ -12,6 +12,8 @@ import Products from "../pages/Products/Products";
 import ReportEditor from "../pages/ReportManagement/ReportEditor";
 import Reports from "../pages/ReportManagement/Reports";
 import Resource from "../pages/ResourceManagement/Resource";
+import CreateUser from "../pages/UserManagement/CreateUser/CreateUser";
+import UserManagement from "../pages/UserManagement/UserManagement/UserManagent";
 import Users from "../pages/UserManagement/Users";
 const RouterData= [
     {
@@ -70,7 +72,16 @@ const RouterData= [
     {
         path:"/notifications",
         element:<Notifications />
+    },
+    {
+        path:"/user-management",
+        element:<UserManagement />
+    },
+    {
+        path:"/create-users",
+        element:<CreateUser />
     }
+
 
 ]
 

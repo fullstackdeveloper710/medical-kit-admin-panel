@@ -8,7 +8,7 @@ import CardWithTable from "../../components/CardWithTable";
 function Dashboard() {
   return (
     <div className="">
-      <div className="row">
+      <div className="row dashboard_row">
         <div className="col-md-8">
           <div className="row">
             <div className="col-md-6">
@@ -22,7 +22,7 @@ function Dashboard() {
             </div>
           </div>
         </div>
-        <div className="col-md-4">
+        <div className="col-md-4 h-100">
           <CardWithMap />
         </div>
       </div>

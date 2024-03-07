@@ -133,8 +133,8 @@ function Resource() {
               pages={totalPages}
               currentPage={currentPage}
               onPageChange={onPageChange}
-              onNextPage={onNextPage} // Pass onNextPage function
-              onPreviousPage={onPreviousPage} // Pass onPreviousPage function
+              onNextPage={onNextPage} 
+              onPreviousPage={onPreviousPage} 
             />
           </Col>
           {selectedImage && (

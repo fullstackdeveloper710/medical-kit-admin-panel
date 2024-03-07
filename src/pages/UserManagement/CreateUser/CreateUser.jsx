@@ -14,7 +14,7 @@ import * as Yup from "yup";
 import PhoneInput from "react-phone-number-input";
 import "react-phone-number-input/style.css";
 import CustomButton from "../../../components/Common/Button/Button";
-import { FaStopCircle, FaTrash } from "react-icons/fa";
+import { FaBan, FaStopCircle, FaTrash } from "react-icons/fa";
 import { FaCircleStop } from "react-icons/fa6";
 import "./CreateUser.css";
 import { useState } from "react";
@@ -367,12 +367,12 @@ function CreateUser() {
       </Container>
       <Container>
         <Row className="justify-content-end py-5">
-          <Col md={6}>
-            <div className="btn_groups ms-md-5 ps-md-5">
-              <button className="btn btn-outline-none usermgmt-button" disabled>
-                Disable
+        <Col md={6}>
+            <div className="disable_delete_action">
+              <button className=" usermgmt-button" disabled>
+               <FaBan/> Disable
               </button>
-              <button className="btn btn-outline-none  usermgmt-button">
+              <button className="  usermgmt-button">
                 <FaTrash />
                 Delete
               </button>

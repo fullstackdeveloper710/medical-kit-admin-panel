@@ -31,19 +31,21 @@ function EditArticle() {
 
   return (
     <div>
-      <Row>
+      <Row className="edit_article_row">
         <Col md={8}>
+          <div className="card p-3 border-0">
           <h3 className="listing">Edit Article</h3>
           <div className="text-editor">
             <CmsEditor
               content={content}
               handleChange={handleChange}
               handleSave={handleSave}
-              onCancelHandler={onCancelHandler}
-            />
+              onCancelHandler={onCancelHandler}/>
+          </div>
           </div>
         </Col>
         <Col md={4}>
+        <div className="card p-3 border-0">
           <h3 className="listing">Publish Details</h3>
           <div className="select_wrapper mb-3">
             <label htmlFor="">Status:</label>
@@ -102,6 +104,7 @@ function EditArticle() {
            onClick={handleSave}>
             Save Changes
           </CustomButton>
+               </div>
                </div>
         </Col>
       </Row>
