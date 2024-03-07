@@ -1,3 +1,4 @@
+
 import BusinessProfile from "../pages/BusinessProfile";
 import Dashboard from "../pages/Dashboard/Dashboard";
 import Distributor from "../pages/Distributors/Distributor";
@@ -74,10 +75,3 @@ const RouterData= [
 ]
 
 export default RouterData;
-
-
-
-
-
-
-

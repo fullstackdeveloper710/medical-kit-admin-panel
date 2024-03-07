@@ -7,7 +7,7 @@ import CardWithTable from "../../components/CardWithTable";
 
 function Dashboard() {
   return (
-    <div className="container">
+    <div className="">
       <div className="row">
         <div className="col-md-8">
           <div className="row">

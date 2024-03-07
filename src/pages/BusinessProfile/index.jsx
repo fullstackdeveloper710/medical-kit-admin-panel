@@ -1,84 +1,169 @@
-import { Form } from "react-bootstrap";
-import "../BusinessProfile/style.css";
-import Button from "react-bootstrap/Button";
-import MapImage from "../../Assets/images/mapImage.png";
-import { FaPlus } from "react-icons/fa";
 import React from "react";
+import { Form } from "react-bootstrap";
+import { Formik, Field, ErrorMessage } from "formik";
+import * as Yup from "yup";
+import Button from "react-bootstrap/Button";
+import { FaPlus } from "react-icons/fa";
+import MapImage from "../../Assets/images/mapImage.png";
+import "../BusinessProfile/style.css";
+import PhoneInput from "react-phone-number-input";
+import "react-phone-number-input/style.css";
 
 const BusinessProfile = () => {
+  const validationSchema = Yup.object().shape({
+    businessName: Yup.string().required("Business Name is required"),
+    email: Yup.string().email("Invalid email").required("Email is required"),
+    number: Yup.string().required("Number is required"),
+    businessEmail: Yup.string()
+      .email("Invalid email")
+      .required("Business Email is required"),
+    superAdmin: Yup.string().email("Invalid email").required("Email is required"),
+    approver: Yup.string().email("Invalid email").required("Email is required"),
+  });
+
   return (
-    <div className="container">
+    <div className="p-3 business_block">
       <h4 className="text-center">
-        <b 
-        >Business Profile</b>
+        <b>Business Profile</b>
       </h4>
 
       <div className="divider" />
 
       <div className="row ">
         <div className="col-sm-3">
-          <div className="box d-flex justify-content-center align-items-center flex-column">
+          <div className="recommended_logo box d-flex justify-content-center align-items-center flex-column">
             <p>Recommended logo</p>
             <p>Specifications</p>
             <p>500px X 300px</p>
             <p>transparent PNG</p>
           </div>
-          <p className="text-center">Edit</p>
+          <p className="text-center edit_btn">Edit</p>
         </div>
 
-        <div className="col-sm-8">
-          <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-            <Form.Control type="email" placeholder="Business Name" />
-          </Form.Group>
+        <div className="col-sm-9">
+          <Formik
+            initialValues={{
+              businessName: "",
+              email: "",
+              number: "",
+              businessEmail: "",
+              superAdmin: "",
+              approver: "",
+            }}
+            validationSchema={validationSchema}
+            onSubmit={(values, { setSubmitting }) => {
+              setTimeout(() => {
+                alert(JSON.stringify(values, null, 2));
+                setSubmitting(false);
+              }, 400);
+            }}
+          >
+            {({ isSubmitting, values, setFieldValue }) => (
+              <Form>
+                <div className="">
+                  <Form.Group
+                    className="mb-3"
+                    controlId="exampleForm.ControlInput1"
+                  >
+                    <Field
+                      type="text"
+                      name="businessName"
+                      className="form-control"
+                      placeholder="Business Name"
+                    />
+                    <ErrorMessage
+                      name="businessName"
+                      component="div"
+                      className="text-danger"
+                    />
+                  </Form.Group>
 
-          <div className="row">
-            <div className="col-sm-2">
-              <Form.Group
-                className="mb-3"
-                controlId="exampleForm.ControlInput1"
-              >
-                <Form.Control type="email" placeholder="name@example.com" />
-              </Form.Group>
-            </div>
-            <div className="col-sm-4">
-              <Form.Group
-                className="mb-3"
-                controlId="exampleForm.ControlInput1"
-              >
-                <Form.Control type="email" placeholder="Number" />
-              </Form.Group>
-            </div>
-            <div className="col-sm-6">
-              <Form.Group
-                className="mb-3"
-                controlId="exampleForm.ControlInput1"
-              >
-                <Form.Control type="email" placeholder="Business Email" />
-              </Form.Group>
-            </div>
-          </div>
-          <div className="divider"></div>
-          <div className="row">
-            <div className="col-sm-6">
-              <Form.Group
-                className="mb-3"
-                controlId="exampleForm.ControlInput1"
-              >
-                <Form.Label>Assigned Super Admin</Form.Label>
-                <Form.Control type="email" placeholder="Super Admin" />
-              </Form.Group>
-            </div>
-            <div className="col-sm-6">
-              {" "}
-              <Form.Group
-                className="mb-3"
-                controlId="exampleForm.ControlInput1"
-              >
-                <Form.Label>Assigned Approver</Form.Label>
-                <Form.Control type="email" placeholder="Approver" />
-              </Form.Group>
-            </div>
-          </div>
+                  <div className="row">
+                    
+                    <div className="col-sm-6">
+                      <Form.Group
+                        className="mb-3"
+                        controlId="exampleForm.ControlInput1"
+                      >
+                        <PhoneInput
+                          international
+                          defaultCountry="US"
+                          value={values.number} 
+                          onChange={(value) => setFieldValue("number", value)} 
+                          className="form-control business_input" 
+                          placeholder="Phone Number"
+                        />
+                        <ErrorMessage
+                          name="number"
+                          component="div"
+                          className="text-danger"
+                        />
+                      </Form.Group>
+                    </div>
+                    <div className="col-sm-6">
+                      <Form.Group
+                        className="mb-3"
+                        controlId="exampleForm.ControlInput1"
+                      >
+                        <Field
+                          type="email"
+                          name="businessEmail"
+                          className="form-control"
+                          placeholder="Business Email"
+                        />
+                        <ErrorMessage
+                          name="businessEmail"
+                          component="div"
+                          className="text-danger"
+                        />
+                      </Form.Group>
+                    </div>
+                  </div>
+                  <div className="divider"></div>
+                  <div className="row">
+                    <div className="col-sm-6">
+                      <Form.Group
+                        className="mb-3"
+                        controlId="exampleForm.ControlInput1"
+                      >
+                        <Form.Label>Assigned Super Admin</Form.Label>
+                        <Field
+                          type="email"
+                          name="superAdmin"
+                          className="form-control"
+                          placeholder="Super Admin"
+                        />
+                        <ErrorMessage
+                          name="superAdmin"
+                          component="div"
+                          className="text-danger"
+                        />
+                      </Form.Group>
+                    </div>
+                    <div className="col-sm-6">
+                      <Form.Group
+                        className="mb-3"
+                        controlId="exampleForm.ControlInput1"
+                      >
+                        <Form.Label>Assigned Approver</Form.Label>
+                        <Field
+                          type="email"
+                          name="approver"
+                          className="form-control"
+                          placeholder="Approver"
+                        />
+                        <ErrorMessage
+                          name="approver"
+                          component="div"
+                          className="text-danger"
+                        />
+                      </Form.Group>
+                    </div>
+                  </div>
+                </div>
+              </Form>
+            )}
+          </Formik>
         </div>
       </div>
 
@@ -87,6 +172,7 @@ const BusinessProfile = () => {
       <h4 className="text-center">
         <b>Company Locations</b>
       </h4>
+      {/* Locations Display */}
       <div className="row gx-5 mt-3">
         <div className="col-md-4 p-2">
           <>

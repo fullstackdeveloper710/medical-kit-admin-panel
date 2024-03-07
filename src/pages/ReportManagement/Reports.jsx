@@ -114,7 +114,7 @@ function Reports() {
   };
   return (
     <div className="reports">
-      <Container>
+      <div>
         <Row>
           <Col md={8}>
             <DataTableComponent
@@ -125,21 +125,19 @@ function Reports() {
             />
           </Col>
           <Col md={4}>
-            <Card style={{ border: "none", padding: 10 }}>
+            <Card style={{ border: "none", }}>
               <h3 className="listing text-center">Report Groups</h3>
-              <div className="divider"></div>
+             
 
               <div className="title-box mb-2">
-                <div className="d-flex justify-content-between pb-2">
+                <div className="d-flex justify-content-between px-3 pb-2">
                   <p className="mb-0">Admin Team</p>
                 </div>
                 <div className="person-box">
                   <b>Directors</b>
-                  <div className="divider"></div>
-                  <p className="mt-3">
-                    person 1 , person 2 , person 3 , person 4{" "}
-                  </p>
-                  <p>person 5 , person 6 , person 7 </p>
+                  <p className="mt-3 border-top border-bottom py-3">
+                  <span> person 1</span> ,<span> person 2</span> , <span>person 3</span> ,<span> person 4{" "}</span>
+                  <span> person 5</span> ,<span> person 6</span> ,<span> person 7</span> </p>
 
                   <div className="d-flex mt-2 edit_delete">
                     <span>
@@ -152,31 +150,13 @@ function Reports() {
                   </div>
                 </div>
 
-                <p className="mt-4">Sales Reps</p>
+                <p className="mt-4 px-3">Sales Reps</p>
 
-                {/* <Form>
-                  <Form.Group as={Col}>
-                    Director name
-                    <Form.Control type="text" placeholder="Director Name" />
-
-                    Edit and Delete options
-                    <div className="d-flex mt-2 edit_delete">
-                      <span>
-                        <FaEdit />
-                        Edit
-                      </span>
-                      <span variant="danger">
-                        <FaTrash /> Delete
-                      </span>
-                    </div>
-                    <span>Sales Reps</span>
-                  </Form.Group>
-                </Form> */}
               </div>
             </Card>
           </Col>
         </Row>
-      </Container>
+      </div>
     </div>
   );
 }

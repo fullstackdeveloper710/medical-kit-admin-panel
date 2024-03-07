@@ -30,7 +30,7 @@ function EditArticle() {
   };
 
   return (
-    <Container>
+    <div>
       <Row>
         <Col md={8}>
           <h3 className="listing">Edit Article</h3>
@@ -105,7 +105,7 @@ function EditArticle() {
                </div>
         </Col>
       </Row>
-    </Container>
+    </div>
   );
 }
 

@@ -20,7 +20,16 @@ import DataTableComponent from "../../components/DataTable";
 export const KitColumns = [
   {
     name: "Product",
-    selector: (row) => row.product,
+    selector: (row) => (
+      <div className="products-wrapper">
+        <img
+          src={products}
+          alt={row.product}
+          className="products-image"
+        />
+        <span>{row.product}</span>
+      </div>
+    )
   },
   {
     name: "Registered To",
@@ -52,29 +61,7 @@ export const KitColumns = [
 ];
 
 function Kits() {
-  const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 5; // Number of items per page
-
-  const totalPages = Math.ceil(tableData.length / itemsPerPage);
-
-  const indexOfLastItem = currentPage * itemsPerPage;
-  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentItems = tableData.slice(indexOfFirstItem, indexOfLastItem);
-
-  const onPageChange = (pageNumber) => {
-    setCurrentPage(pageNumber);
-  };
-  const onNextPage = () => {
-    if (currentPage < totalPages) {
-      setCurrentPage(currentPage + 1);
-    }
-  };
-
-  const onPreviousPage = () => {
-    if (currentPage > 1) {
-      setCurrentPage(currentPage - 1);
-    }
-  };
+  
   return (
     <div className="kit-management">
       <DataTableComponent

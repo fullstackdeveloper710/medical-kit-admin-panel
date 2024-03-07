@@ -1,18 +1,31 @@
 /* Kits.css */
-
-.text-row {
-    display: flex;
-    justify-content: space-between;
-  }
-  
  /* Kits.css */
 
+ .notification-text {
+  font-family: Inter;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 22px;
+  letter-spacing: 0em;
+  text-align: left;
+}
+.text-muted {
+  font-family: Inter;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: #E5F0FF;
+}
 
   
   .text-icon span {
     font-size: 16px; /* Adjust text size as needed */
   }
  
+ 
+  
   
 /* Kits.css */
 
@@ -37,7 +50,7 @@
 }
   /* Kits.css */
   .kits_row {
-    padding: 35px 0px;
+    padding: 10px 0px 35px 0px;
 }
 
 .kits_row button {
@@ -52,11 +65,14 @@
 }
 /* Button icons */
 
+.top_btns a{
+  text-decoration: none;
+}
   
   .button-text {
     /* Use the styleName provided */
     font-family: Inter;
-    font-size: 24px;
+    font-size: 20px;
     font-weight: 700;
     line-height: 29px;
     letter-spacing: 0em;
@@ -72,10 +88,6 @@
     margin-bottom: 10px; /* Adjust as needed */
   }
   
-  /* Align buttons to the center */
-  .text-row {
-    justify-content: center;
-  }
   /* Kits.css */
 
 /* Styles for the table header */
@@ -88,6 +100,9 @@
     /* Add additional styling properties as needed */
   
   
+  }
+  .product-wrapper {
+    display: flex;
   }
   
   /* Styles for the table body */
@@ -163,9 +178,13 @@
     margin-right: 20px; /* Adjust gap */
   }
   .product-image {
-  
-    object-fit: cover; /* Ensure the image covers the entire area */
+    width: 50px;
+    height: 50px;
+    padding: 5px 2px 0px 2px;
+    border-radius: 30px;
+    margin-right: 10px; /* Adjust margin as needed */
   }
+  
   /* Kits.css */
 
 /* Styles for different action types */

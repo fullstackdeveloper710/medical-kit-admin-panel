@@ -52,15 +52,33 @@ function UserManagement() {
   const initialValues = {
     firstName: "",
     lastName: "",
+    businessEmail: "",
+    officeLocation: "",
     countryCode: "",
+    employeeId: "",
+    jobTitle: "",
+    assignRole: "",
   };
+  const phonenumberRegex =
+  /^[+]?[0-9]{1,3}?[-.\\s]?[(]?[0-9]{1,4}[)]?[-.\\s]?[0-9]{1,4}[-.\\s]?[0-9]{1,9}$/;
 
-  // Define validation schema
   const validationSchema = Yup.object().shape({
     firstName: Yup.string().required("First Name is required"),
     lastName: Yup.string().required("Last Name is required"),
-    countryCode: Yup.string().required("Country Code is required"),
+    businessEmail: Yup.string()
+      .email("Invalid email format")
+      .required("Business Email is required"),
+    officeLocation: Yup.string().required("Office Location is required"),
+    country_code: Yup.string().required("Country Code is required"),
+    phone: Yup.string()
+      .matches(phonenumberRegex, "*Enter a valid Phone Number")
+      .required("*Enter a valid Phone Number"),
+
+    employeeId: Yup.string().required("Employee ID is required"),
+    jobTitle: Yup.string().required("Job Title is required"),
+    assignRole: Yup.string().required("Role is required"),
   });
+
   return (
     <div className="create-user">
       <Container>
@@ -77,14 +95,16 @@ function UserManagement() {
       </Container>
       <Container>
         <Row>
-          <Col md={4}>
-            <img src={profilepic} alt="Profile Picture" className="img-fluid" />
-            {/* <Button variant="primary">Edit Profile</Button> */}
-            <Row>
-              <Col>
-                <span>Edit</span>
-              </Col>
-            </Row>
+        <Col md={4}> 
+          {/* <div className="divider" /> */}
+
+          <div className="recommended_logo box d-flex justify-content-center align-items-center flex-column">
+            <p>Recommended logo</p>
+            <p>Specifications</p>
+            <p>500px X 300px</p>
+            <p>transparent PNG</p>
+          </div>
+          <p className="text-center edit_btn">Edit</p>
           </Col>
 
           <Col md={8}>
@@ -98,7 +118,15 @@ function UserManagement() {
                 }, 400);
               }}
             >
-              {({ isSubmitting, setFieldValue }) => (
+              {({
+              setFieldValue,
+              values,
+              isSubmitting,
+              errors,
+              touched,
+              handleChange,
+              handleSubmit,
+              handleBlur, }) => (
                 <Form className="form_style">
                   <Row>
                     <Col>
@@ -108,7 +136,11 @@ function UserManagement() {
                           name="firstName"
                           placeholder="First Name"
                         />
-                        <ErrorMessage name="firstName" component="div" />
+                        <span style={{ color: "red", fontSize: "small" }}>
+                          {errors.firstName &&
+                            touched.firstName &&
+                            errors.firstName}
+                        </span>
                       </div>
                     </Col>
 
@@ -119,7 +151,11 @@ function UserManagement() {
                           name="lastName"
                           placeholder="Last Name"
                         />
-                        <ErrorMessage name="lastName" component="div" />
+                        <span style={{ color: "red", fontSize: "small" }}>
+                          {errors.lastName &&
+                            touched.lastName &&
+                            errors.lastName}
+                        </span>{" "}
                       </div>
                     </Col>
                   </Row>
@@ -131,7 +167,11 @@ function UserManagement() {
                           name="businessEmail"
                           placeholder=" Business Email"
                         />
-                        <ErrorMessage name="businessEmail" component="div" />
+                        <span style={{ color: "red", fontSize: "small" }}>
+                          {errors.businessEmail &&
+                            touched.businessEmail &&
+                            errors.businessEmail}
+                        </span>{" "}
                       </div>
                     </Col>
 
@@ -142,21 +182,47 @@ function UserManagement() {
                           name="officeLocation"
                           placeholder=" Office Location"
                         />
-                        <ErrorMessage name="officeLocation" component="div" />
+                        <span style={{ color: "red", fontSize: "small" }}>
+                          {errors.officeLocation &&
+                            touched.officeLocation &&
+                            errors.officeLocation}
+                        </span>{" "}
                       </div>
                     </Col>
                   </Row>
                   <Row>
                     <Col>
                       <div className="form-group">
-                        <PhoneInput
-                          country={"us"}
-                          onChange={(value) =>
-                            setFieldValue("countryCode", value)
+                      <PhoneInput
+                        placeholder="Phone Number"
+                        value={values.phone}
+                        country={values.country_code}
+                        onChange={(value, country) => {
+                          handleChange({ target: { name: "phone", value } });
+
+                          // Check if country is available before accessing its properties
+                          if (country && country.countryCallingCode) {
+                            const updatedCountryCode = `+${country.countryCallingCode}`;
+                            handleChange({
+                              target: {
+                                name: "country_code",
+                                value: updatedCountryCode,
+                              },
+                            });
+                          } else {
+                            handleChange({
+                              target: {
+                                name: "country_code",
+                                value: values.country_code,
+                              },
+                            });
                           }
-                          placeholder="Number"
-                        />
-                        <ErrorMessage name="countryCode" component="div" />
+                        }}
+                      />
+
+                      <span style={{ color: "red" }}>
+                        {errors.phone && touched.phone && errors.phone}
+                      </span>
                       </div>
                     </Col>
                     <Col>
@@ -166,7 +232,11 @@ function UserManagement() {
                           name="employeeId"
                           placeholder=" Employee ID"
                         />
-                        <ErrorMessage name="employeeId" component="div" />
+                        <span style={{ color: "red", fontSize: "small" }}>
+                          {errors.employeeId &&
+                            touched.employeeId &&
+                            errors.employeeId}
+                        </span>{" "}
                       </div>
                     </Col>
                   </Row>
@@ -178,7 +248,11 @@ function UserManagement() {
                           name="jobTitle"
                           placeholder="Job Title"
                         />
-                        <ErrorMessage name="jobTitle" component="div" />
+                        <span style={{ color: "red", fontSize: "small" }}>
+                          {errors.jobTitle &&
+                            touched.jobTitle &&
+                            errors.jobTitle}
+                        </span>{" "}
                       </div>
                     </Col>
                     <Col>
@@ -195,11 +269,11 @@ function UserManagement() {
                             </option>
                           ))}
                         </Field>
-                        <ErrorMessage
-                          name="assignRole"
-                          component="div"
-                          className="error"
-                        />
+                        <span style={{ color: "red", fontSize: "small" }}>
+                          {errors.assignRole &&
+                            touched.assignRole &&
+                            errors.assignRole}
+                        </span>
                       </div>
                     </Col>
                   </Row>
@@ -299,7 +373,8 @@ function UserManagement() {
                 Disable
               </button>
               <button className="btn btn-outline-none  usermgmt-button">
-                <FaTrash/>Delete
+                <FaTrash />
+                Delete
               </button>
             </div>
           </Col>

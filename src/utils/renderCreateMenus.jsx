@@ -1,6 +1,7 @@
 import { Button, Card, Col, Container, Row } from "react-bootstrap";
 import { FaPlus } from "react-icons/fa";
 import { Link } from "react-router-dom";
+
 export const createMenus = {
   "/": null,
   "/businessprofile": null,
@@ -8,17 +9,20 @@ export const createMenus = {
     { title: "Create Products", link: "" },
     { title: "Import Products", link: "" },
     { title: "Export Products", link: "" },
-  ],
+  ], 
+
   "/kit": [
     { title: "Create Kits", link: "" },
     { title: "Import Kits", link: "" },
     { title: "Export Kits", link: "" },
   ],
-  "/users": [
-    { title: "Invite Admin", link: "/notifications" },
-    { title: "Create Users", link: "" },
+
+    "/users": [
+    { title: "Invite Admin", link: "/user-management" },
+    { title: "Create Users", link: "/create-users" },
     { title: "Import Users", link: "" },
     { title: "Export Users", link: "" },
+
   ],
   "/distributors": [
     { title: "Create Distributors", link: "/distributorinfo" },
@@ -28,7 +32,8 @@ export const createMenus = {
   "/reports": [
     { title: "Create Report", link: "/reporteditor" },
     { title: "Create Group", link: "" },
-  ],
+  ],  
+
   "/resource": [{ title: "Upload Files", link: "" }],
   "/messaging": [
     { title: "Create article", link: "/editarticle" },

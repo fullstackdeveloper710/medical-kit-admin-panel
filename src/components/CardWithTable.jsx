@@ -3,6 +3,7 @@ import DataTable from "react-data-table-component";
 import { FaArrowRightLong } from "react-icons/fa6";
 import { FaArrowLeftLong } from "react-icons/fa6";
 import CustomPagination from "./Pagination";
+import { useState } from "react";
 
 const CardWithTable = () => {
   let columnStyle = {
@@ -135,6 +136,31 @@ const CardWithTable = () => {
     },
   ];
 
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 5; // Number of items per page
+
+  const totalItems = data.length;
+  const totalPages = Math.ceil(totalItems / itemsPerPage);
+
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentItems = data.slice(indexOfFirstItem, indexOfLastItem);
+
+  const onPageChange = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
+
+  const onNextPage = () => {
+    if (currentPage < totalPages) {
+      setCurrentPage(currentPage + 1);
+    }
+  };
+
+  const onPreviousPage = () => {
+    if (currentPage > 1) {
+      setCurrentPage(currentPage - 1);
+    }
+  };
   return (
     <Card style={{border:'none'}}>
       <div style={{ padding: 15 }}>
@@ -143,11 +169,17 @@ const CardWithTable = () => {
         </h3>
 
         <DataTable
-          className="mt-3"
+          className="mt-3 registered_table"
           columns={columns}
           pagination={true}
           paginationComponent={() => (
-            <CustomPagination />
+            <CustomPagination
+            pages={totalPages}
+            currentPage={currentPage}
+            onPageChange={onPageChange}
+            onNextPage={onNextPage}
+            onPreviousPage={onPreviousPage}
+          />
           )}
           //   noHeader={true}
           customStyles={{

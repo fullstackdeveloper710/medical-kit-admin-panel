@@ -16,60 +16,31 @@ import CustomPagination from "../../components/Common/Pagination";
 import DataTableComponent from "../../components/DataTable";
 import { columns } from "../Products/Products";
 
-export const  Messagecolumns = [
+export const Messagecolumns = [
   {
     name: "Subject",
     selector: (row) => row.subject,
-    
   },
   {
     name: "Category",
     selector: (row) => row.category,
-    
   },
   {
     name: "Type",
     selector: (row) => row.type,
-    
   },
 
   {
     name: "Scheduled",
     selector: (row) => row.scheduled,
-    
   },
   {
     name: "Status",
     selector: (row) => row.status,
-    
   },
-  
 ];
 
 function MessageCentre() {
-  const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 5; // Number of items per page
-
-  const totalPages = Math.ceil(tableData.length / itemsPerPage);
-
-  const indexOfLastItem = currentPage * itemsPerPage;
-  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentItems = tableData.slice(indexOfFirstItem, indexOfLastItem);
-
-  const onPageChange = (pageNumber) => {
-    setCurrentPage(pageNumber);
-  };
-  const onNextPage = () => {
-    if (currentPage < totalPages) {
-      setCurrentPage(currentPage + 1);
-    }
-  };
-
-  const onPreviousPage = () => {
-    if (currentPage > 1) {
-      setCurrentPage(currentPage - 1);
-    }
-  };
   return (
     <div className="kit-management">
       <DataTableComponent
