@@ -20,7 +20,20 @@
     color: #A8A8BD;
     padding-bottom: 5px;
 }
-
+.active-image{
+    position: relative;
+}
+.active-image img{
+    border: 5px solid #006AFF;
+  }
+  .active-image::after{
+    position: absolute;
+    content: '';
+    width: 40px;
+    height: 40px;
+    background-image: url(../../Assets/images/Frame\ 180.png);
+    right: 25px;
+  }
 .img_details span.delete {
     font-family: Inter;
     font-size: 16px;

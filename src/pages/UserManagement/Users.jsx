@@ -12,12 +12,23 @@ import { FaFileExport, FaFileImport, FaPlus } from "react-icons/fa";
 import "./Users.css";
 import tableData from "../../data";
 import DataTableComponent from "../../components/DataTable";
+import icon from "../../Assets/Profile/profileicon/Icon.png"
 
 export const usercolumns = [
   {
     name: "Last Name",
-    selector: (row) => row.lastName,
+        selector: (row) => (
+      <div className="products-wrapper">
+        <img
+          src={icon}
+          alt={row.lastName}
+          className="products-image"
+        />
+        <span>{row.lastName}</span>
+      </div>
+    )
   },
+
   {
     name: "First Name",
     selector: (row) => row.firstName,
