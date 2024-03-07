@@ -46,7 +46,7 @@ const CreateActions = ({ title, link }) => {
   return (
     <Col xs={12} md={4}>
       <Card style={{ borderRadius: 16, border: "none" }}>
-        <Link to={link}>
+        <Link to={link} style={{ textDecoration: "none", color: "inherit" }}> {/* Apply inline style */}
           <Button variant="primary" className="icon-button">
             <FaPlus className="icon" />
             <h3 className="button-text m-1">{title}</h3>
@@ -56,6 +56,7 @@ const CreateActions = ({ title, link }) => {
     </Col>
   );
 };
+
 
 const RenderCreateMenus = ({ pathname }) => {
   return (
