@@ -122,7 +122,7 @@ function Resource() {
                 <img
                   src={imageUrl}
                   alt={`Image ${index + 1}`}
-                  className="img-fluid"
+                  className="w-100"
                   onClick={() => handleImageClick(imageUrl)}
                 />
               </div>
