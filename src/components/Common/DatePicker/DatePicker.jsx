@@ -5,6 +5,7 @@ import './DatePicker.css';
 
 function DateTimePicker() {
   const [startDate, setStartDate] = useState(new Date());
+
   return (
     <div className="date-picker-container">
       <DatePicker

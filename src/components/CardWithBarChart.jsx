@@ -95,7 +95,7 @@ const CardWithBarChart = () => {
     <Card style={{border:'none'}}>
       <div style={{ padding: 15 }}>
         <div>
-          <h3 style={{ fontWeight: "700px", fontSize: "24px" }}>
+          <h3 style={{ fontWeight: "700", fontSize: "24px" }}>
             Number of Incidents
           </h3>
         </div>

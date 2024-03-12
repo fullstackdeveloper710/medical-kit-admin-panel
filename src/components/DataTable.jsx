@@ -37,6 +37,7 @@ const DataTableComponent = ({ title, data, columns, selectedRows }) => {
         <h3  className="px-2 card_title">
           {title}
         </h3>
+
         <DataTable
           className="mt-3"
           columns={columns}

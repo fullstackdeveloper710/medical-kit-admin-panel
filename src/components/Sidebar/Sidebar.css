@@ -94,12 +94,15 @@ text-align: left;
 
 
 .sidebar .logo {
-  padding-bottom: 55px;
+  padding-bottom: 20px;
+  margin-bottom: 30px;
+  border-bottom: 1px solid #F1F1F4;
 }
 
 .wrapper .sidebar .navigation {
   height: calc(100vh - 200px);
   overflow: auto;
+  padding-bottom: 35px;
 }
 .sidebar .navigation ul.nav-links li a {
   gap: 10px;
@@ -150,4 +153,14 @@ text-align: left;
   color:#006AFF !important;
   border-radius: 10px;
   margin-right: 5px;
+}
+
+.logout.d-flex.align-items-center {
+  position: fixed;
+  bottom: 0px;
+  left: 0px;
+  padding: 10px 35px 25px 35px;
+  background: #fff;
+  z-index: 999999999999;
+  width: 250px;
 }

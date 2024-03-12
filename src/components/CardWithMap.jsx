@@ -4,28 +4,22 @@ import "./CardWithMapStyles.css";
 
 const CardWithMap = () => {
   return (
-    <Card style={{border:'none'}}>
-      <Card.Body>
-        <h4 style={{ fontSize: 20, color: "black", fontWeight: "700px" }}>
+    <Card className="reported_incidents border-0 overflow-hidden" >
+      <Card.Body className="pb-0">
+        <h4 >
           Reported Incidents
         </h4>
       </Card.Body>
-      <span
-        className="px-3"
-        style={{ fontSize: 16, color: "#A8A8BD", fontWeight: 400 }}
-      >
-        Past 7 Days
-      </span>
-
+      <span className="px-3">Past 7 Days</span>
       <div className="map-container">
         <ComposableMap
           projectionConfig={{
             scale: 400,
             rotation: [-11, 0, 0],
           }}
-          width={800}
+          width={100}
         
-          style={{ width: "100%", height: "91vh" }}
+          style={{ width: "100%", height: "100%" }}
         >
           <Geographies  geography="/features.json">
             {({ geographies }) =>

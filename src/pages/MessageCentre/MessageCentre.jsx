@@ -42,7 +42,7 @@ export const Messagecolumns = [
 
 function MessageCentre() {
   return (
-    <div className="kit-management">
+    <div className="product-management">
       <DataTableComponent
         title={"Message Center"}
         columns={Messagecolumns}

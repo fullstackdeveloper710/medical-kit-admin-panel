@@ -90,46 +90,51 @@ function Resource() {
   return (
     <div className="resources">
       <div>
-        
         <Row className="justify-content-between gap-2 resources_block flex-nowrap">
           <Col md={8} className="card p-3 border-0 box-shadow">
-          <Row className="align-items-center border-bottom justify-content-between pb-3 mb-3">
-          <Col md={2}>
-            <div className=" mb-3">
-              <h3 className="listing pb-0 mb-0">Media</h3>
-            </div>
-          </Col>
-          <Col className="col-md-7 select_wrapper">
-            <select>
-              <option disabled selected value="">
-                All dates
-              </option>
-              <option>27/02/2024</option>
-              <option>27/02/2024</option>
-              <option>27/02/2024</option>
-              <option>27/02/2024</option>
-              <option>27/02/2024</option>
-            </select>
-          </Col>
-        </Row>
+            <Row className="align-items-center border-bottom justify-content-between pb-3 mb-3">
+              <Col md={2}>
+                <div className=" mb-3">
+                  <h3 className="listing pb-0 mb-0">Media</h3>
+                </div>
+              </Col>
+              <Col className="col-md-7 select_wrapper">
+                <select>
+                  <option disabled selected value="">
+                    All dates
+                  </option>
+                  <option>27/02/2024</option>
+                  <option>27/02/2024</option>
+                  <option>27/02/2024</option>
+                  <option>27/02/2024</option>
+                  <option>27/02/2024</option>
+                </select>
+              </Col>
+            </Row>
             <div className="row">
               {imageUrls.map((imageUrl, index) => (
-                <div key={index} className="col-md-3 p-2">
-                  <img
-                    src={imageUrl}
-                    alt={`Image ${index + 1}`}
-                    className="img-fluid"
-                    onClick={() => handleImageClick(imageUrl)}
-                  />
-                </div>
+                <div
+                key={index}
+                className={`col-md-3 p-2 ${
+                  imageUrl === selectedImage ? "active-image" : ""
+                }`}
+              >
+                <img
+                  src={imageUrl}
+                  alt={`Image ${index + 1}`}
+                  className="w-100"
+                  onClick={() => handleImageClick(imageUrl)}
+                />
+              </div>
+              
               ))}
             </div>
             <CustomPagination
               pages={totalPages}
               currentPage={currentPage}
               onPageChange={onPageChange}
-              onNextPage={onNextPage} // Pass onNextPage function
-              onPreviousPage={onPreviousPage} // Pass onPreviousPage function
+              onNextPage={onNextPage} 
+              onPreviousPage={onPreviousPage} 
             />
           </Col>
           {selectedImage && (
@@ -154,34 +159,34 @@ function Resource() {
                 </div>
               </div>
               <Form onSubmit={handleSubmit}>
-                <Form.Group className="mb-3" controlId="name">
+                <Form.Group className="mb-3" controlId="altText">
                   <Form.Label>Alt Text</Form.Label>
                   <Form.Control
                     type="text"
-                    name="name"
+                    name="altText"
                     placeholder="Alt Text"
-                    value={formData.name}
+                    value={formData.altText}
                     onChange={handleChange}
                   />
                 </Form.Group>
-                <Form.Group className="mb-3" controlId="name">
+                <Form.Group className="mb-3" controlId="title">
                   <Form.Label>Title</Form.Label>
                   <Form.Control
                     type="text"
-                    name="name"
+                    name="title"
                     placeholder="Title"
-                    value={formData.name}
+                    value={formData.title}
                     onChange={handleChange}
                   />
                 </Form.Group>
 
-                <Form.Group className="mb-3" controlId="name">
-                  <Form.Label>Name</Form.Label>
+                <Form.Group className="mb-3" controlId="caption">
+                  <Form.Label>Caption</Form.Label>
                   <Form.Control
                     type="text"
-                    name="name"
-                    placeholder="Name"
-                    value={formData.name}
+                    name="caption"
+                    placeholder="Caption"
+                    value={formData.caption}
                     onChange={handleChange}
                   />
                 </Form.Group>
@@ -198,9 +203,9 @@ function Resource() {
                   />
                 </Form.Group>
 
-                {/* <Button variant="primary" type="submit">
-          Submit
-        </Button> */}
+                <Button variant="primary" type="submit">
+                  Submit
+                </Button>
               </Form>
             </Col>
           )}

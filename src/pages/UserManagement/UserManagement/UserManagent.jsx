@@ -15,7 +15,7 @@ import * as Yup from "yup";
 import PhoneInput from "react-phone-number-input";
 import "react-phone-number-input/style.css";
 import CustomButton from "../../../components/Common/Button/Button";
-import { FaStopCircle, FaTrash } from "react-icons/fa";
+import { FaBan, FaDiaspora, FaStopCircle, FaTrash } from "react-icons/fa";
 import { FaCircleStop } from "react-icons/fa6";
 import "./UserManagement.css";
 
@@ -256,12 +256,12 @@ function UserManagement() {
                       </div>
                     </Col>
                     <Col>
-                      <div className="form-group">
+                      <div className="">
                         <Field
                           type="dropdown"
                           name="assignRole"
                           as="select"
-                          className="form-control"
+                          className=""
                         >
                           {roleOptions.map((option) => (
                             <option key={option.value} value={option.value}>
@@ -289,8 +289,6 @@ function UserManagement() {
           <Col>
             <h3
               style={{
-                styleName: "Category Head",
-                fontFamily: "Open Sans",
                 fontSize: "20px",
                 fontWeight: "700",
                 lineHeight: "15px",
@@ -368,11 +366,11 @@ function UserManagement() {
       <Container>
         <Row className="justify-content-end py-5">
           <Col md={6}>
-            <div className="btn_groups ms-md-5 ps-md-5">
-              <button className="btn btn-outline-none usermgmt-button" disabled>
-                Disable
+            <div className="disable_delete_action">
+              <button className=" usermgmt-button" disabled>
+               <FaBan/> Disable
               </button>
-              <button className="btn btn-outline-none  usermgmt-button">
+              <button className="  usermgmt-button">
                 <FaTrash />
                 Delete
               </button>

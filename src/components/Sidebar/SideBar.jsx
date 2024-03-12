@@ -6,13 +6,15 @@ import logo from "../../Assets/Logo/logo.png";
 import "./Sidebar.css";
 import { menus } from "../../utils/menu.routes";
 import { FaSignOutAlt } from "react-icons/fa";
-function Sidebar() {
+function Sidebar({isActive,removeSideBarActive}) {
   const location = useLocation();
   const activeClass = (link) => {
     return link === location.pathname ? "active-menu" : "";
   };
+
+  
   return (
-    <div className="sidebar">
+    <div className={isActive ? 'sidebar active' : 'sidebar'}>
       <div className="logo">
         <img src={logo} alt="Logo" />
       </div>
@@ -22,8 +24,8 @@ function Sidebar() {
             .filter((x, i) => i === 0)
             .map((menu, i) => {
               return (
-                <li key={i}>
-                  <Link className={activeClass(menu.link)} to={menu.link}>
+                <li>
+                  <Link className={activeClass(menu.link)} to={menu.link} onClick={removeSideBarActive}>
                     {menu.icon}
                     {menu.title}
                   </Link>
@@ -40,7 +42,7 @@ function Sidebar() {
               .map((menu, i) => {
                 return (
                   <li key={i}>
-                    <Link className={activeClass(menu.link)} to={menu.link}>
+                    <Link className={`${activeClass(menu.link)}`} to={menu.link} onClick={removeSideBarActive}>
                       {menu.icon}
                       {menu.title}
                     </Link>
@@ -50,7 +52,7 @@ function Sidebar() {
           </ul>
         </div>
 
-        <div className="custom-div">
+        <div className="custom-div border-top pt-3 mt-3">
           <p className="sub-heading">UTILITIES</p>
           <ul className="nav-links">
             {menus
@@ -58,7 +60,7 @@ function Sidebar() {
               .map((menu, i) => {
                 return (
                   <li key={i}>
-                    <Link className={activeClass(menu.link)} to={menu.link}>
+                    <Link className={activeClass(menu.link)} to={menu.link} onClick={removeSideBarActive}>
                       {menu.icon}
                       {menu.title}
                     </Link>
