@@ -4,19 +4,44 @@ import Form from "react-bootstrap/Form";
 import loginlogo from "../../Assets/Logo/logo.png";
 import "./index.css";
 import { useNavigate } from "react-router-dom";
-import { Formik, Field, ErrorMessage } from "formik";
+import { useFormik } from "formik";
 import * as Yup from "yup";
+import { useDispatch, useSelector } from "react-redux";
+import { loginuser } from "../../redux/slice/LoginSlice";
+import { setAuthUser } from "../../redux/slice/AuthSlice";
+import { StatusCode } from "../../services/helper";
+import ButtonLoader from "../../components/Common/ButtonLoader";
 
 const Login = () => {
-  const navigate = useNavigate();
+  const { status } = useSelector((state) => state.LOGIN);
+  const initialValues = {
+    email: "",
+    password: "",
+  };
 
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   // Define validation schema using Yup
   const validationSchema = Yup.object().shape({
-    email: Yup.string().email("Invalid email"),
-    // .required("*Email is required"),
-    password: Yup.string()
-    // .required("*Password is required"),
+    email: Yup.string().email().required("*Email is required"),
+    password: Yup.string().required("*Password is required"),
   });
+
+  const { values, errors, handleBlur, handleChange, touched, handleSubmit } =
+    useFormik({
+      initialValues: initialValues,
+      validationSchema: validationSchema,
+      onSubmit: async (values, action) => {
+        const response = await dispatch(loginuser(values));
+        if (response.payload?.status === 200) {
+          dispatch(setAuthUser(response.payload?.data));
+          if (response.payload?.data?.role === "superadmin") {
+            navigate("/");
+            action.resetForm();
+          }
+        }
+      },
+    });
 
   return (
     <div className="container">
@@ -27,68 +52,39 @@ const Login = () => {
               <img src={loginlogo} alt="loginlogo" />
             </figure>
             <h4 className="authheading">LOGIN FORM</h4>
-
-            {/* Wrap form inside Formik and provide validation schema */}
-            <Formik
-              initialValues={{ email: "", password: "" }}
-              validationSchema={validationSchema}
-              onSubmit={(values, { setSubmitting }) => {
-                setTimeout(() => {
-                  // Submit your form data
-                  console.log(values);
-                  setSubmitting(false);
-                  navigate("/"); // Redirect to home page after successful login
-                }, 400);
-              }}
-            >
-              {/* Render form */}
-              {({ isSubmitting }) => (
-                <Form>
-                  <Form.Group className="mb-3" controlId="formBasicEmail">
-                    <Form.Label>
-                      <span className="required-label">Email</span>
-                    </Form.Label>
-                    <Field
-                      type="email"
-                      name="email"
-                      placeholder="Enter email"
-                      as={Form.Control}
-                    />
-                    <ErrorMessage
-                      name="email"
-                      component="div"
-                      className="error-message"
-                    />
-                  </Form.Group>
-
-                  <Form.Group className="mb-3" controlId="formBasicPassword">
-                    <Form.Label>
-                      <span className="required-label">Password</span>
-                    </Form.Label>
-                    <Field
-                      type="password"
-                      name="password"
-                      placeholder="Password"
-                      as={Form.Control}
-                    />
-                    <ErrorMessage
-                      name="password"
-                      component="div"
-                      className="error-message"
-                    />
-                  </Form.Group>
-
-                  <div className="d-flex align-items-center justify-content-between">
-                <Button variant="primary" type="submit" onClick={(e) =>{
-                  e.preventDefault();
-                  navigate('/');     
-                }}>
-                  Login
-                </Button>
-              </div>
-                </Form>
-              )}
-            </Formik>
+            <Form onSubmit={handleSubmit}>
+              <Form.Group className="mb-3" controlId="formBasicEmail">
+                <Form.Label>Email</Form.Label>
+                <Form.Control
+                  type="email"
+                  name="email"
+                  value={values.email}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  placeholder="Enter email"
+                />
+              </Form.Group>
+              {errors.email && touched.email ? (
+                <p className="text-danger">{errors.email} </p>
+              ) : null}
+              <Form.Group className="mb-3" controlId="formBasicPassword">
+                <Form.Label>Password</Form.Label>
+                <Form.Control
+                  type="password"
+                  name="password"
+                  value={values.password}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  placeholder="Password"
+                />
+              </Form.Group>
+              {errors.password && touched.password ? (
+                <p className="text-danger">{errors.password} </p>
+              ) : null}
+              <Button variant="primary" type="submit">
+                {status === StatusCode.LOADING ? <ButtonLoader /> : "Submit"}
+              </Button>
+            </Form>
           </div>
         </div>
       </div>
