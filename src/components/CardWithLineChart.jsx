@@ -155,7 +155,7 @@ const CardWithLineChart = () => {
 
   return (
     <Card className="p-3" style={{border:'none'}} >
-      <Card.Title style={{ fontSize: 24, fontWeight: "700px" }}>
+      <Card.Title style={{ fontSize: 24, fontWeight: "700" }}>
         Registered Kits
         <div id="chart">
           <ReactApexChart

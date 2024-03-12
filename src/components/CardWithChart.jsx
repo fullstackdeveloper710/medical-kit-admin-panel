@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { Card } from "react-bootstrap";
 import ReactApexChart from "react-apexcharts";
+import { FaUserAlt } from "react-icons/fa";
+import { FaUserGroup } from "react-icons/fa6";
 
 const CardWithChart = ({ title, count }) => {
   const [chartState] = useState({
@@ -105,22 +107,22 @@ const CardWithChart = ({ title, count }) => {
     },
   });
   return (
-    <Card style={{border:'none'}}>
+    <Card className="dashboard_cards" style={{border:'none'}}>
       <Card.Body>
         <Card.Title
           style={{ fontSize: 20, color: "#A8A8BD", fontWeight: "500px" }}
         >
-          {title}
+       <FaUserGroup/> {title}
         </Card.Title>
-        <div className="d-flex justify-content-between align-items-center">
-          <h2 style={{ fontSize: 32, fontWeight: "700px" }}>{count}</h2>
+        <div className="d-flex justify-content-between align-items-end">
+          <h2 style={{ fontSize: 32, fontWeight: "700" }}>{count}</h2>
 
           <div id="chart">
             <ReactApexChart
               options={chartState.options}
               series={chartState.series}
               type="bar"
-              height={200}
+              height={150}
               width={200}
             />
           </div>

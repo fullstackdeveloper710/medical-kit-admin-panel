@@ -26,9 +26,9 @@ function App() {
                 <RenderCreateMenus pathname={location.pathname} />
               )}
               <Card
+              className="content_block card"
                 style={{
                   padding: 10,
-                  marginLeft: 20,
                   border: "none",
                   backgroundColor:
                     location.pathname === "/" ||

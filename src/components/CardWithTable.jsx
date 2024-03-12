@@ -164,7 +164,7 @@ const CardWithTable = () => {
   return (
     <Card style={{border:'none'}}>
       <div style={{ padding: 15 }}>
-        <h3 style={{ fontWeight: "700px", fontSize: "24px" }} className="px-2">
+        <h3 style={{ fontWeight: "700", fontSize: "24px" }} className="px-2">
           Registered Company Details
         </h3>
 

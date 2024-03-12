@@ -22,7 +22,7 @@ function Dashboard() {
             </div>
           </div>
         </div>
-        <div className="col-md-4 h-100">
+        <div className="col-md-4 h-100 overflow-hidden">
           <CardWithMap />
         </div>
       </div>
