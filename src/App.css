@@ -191,7 +191,7 @@ img.products-image {
   color: #A8A8BD;
 }
 
-.registered_table .rdt_TableCell,.registered_table .rdt_TableCol{
+.rdt_TableCell,.rdt_TableCol{
   justify-content: center;
 }
 .rdt_TableCell:first-child,.rdt_TableCol:first-child{
