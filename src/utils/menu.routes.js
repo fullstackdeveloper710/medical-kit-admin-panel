@@ -46,12 +46,12 @@ export const menus = [
   {
     title: "Distributors",
     icon: <FaUser className="icon" />,
-    link :"/distributors"
+    link: "/distributors",
   },
   {
     title: "Reports",
     icon: <FaChartBar className="icon" />,
-    link:"/reports"
+    link: "/reports",
   },
   {
     title: "Resources",

@@ -1,13 +1,9 @@
-
-export const ApiUrl= process.env.REACTAPP_APIURL
-
-export const StatusCode={
-    IDLE:"idle",
-    LOADING:"loading",
-    ERROR:"error"
-}
-
-export const ApiEndPoint={
-    LOGIN:"/login",
-}
-
+export const ApiUrl = process.env.REACT_APP_BASEURL;
+export const StatusCode = {
+  IDLE: "idle",
+  LOADING: "loading",
+  ERROR: "error",
+};
+export const ApiEndPoint = {
+  LOGIN: "/user/login",
+};

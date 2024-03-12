@@ -25,29 +25,36 @@ import DataTableComponent from "../../components/DataTable";
 import { columns } from "../Products/Products";
 
 // import DateTimePicker from "../../../components/DatePicker/DatePicker";
-export const reportscolumns = [
+export const  reportscolumns = [
   {
     name: "Report Name",
     selector: (row) => row.reportName,
+    
   },
   {
     name: "Frequency",
     selector: (row) => row.frequency,
+    
   },
   {
     name: "Recipients",
     selector: (row) => row.recipients,
+    
   },
 
   {
     name: "Last Sent",
     selector: (row) => row.lastSent,
+    
   },
   {
     name: "Status",
     selector: (row) => row.status,
+    
   },
+  
 ];
+
 
 function Reports() {
   const [content, setContent] = useState(``);
@@ -118,8 +125,9 @@ function Reports() {
             />
           </Col>
           <Col md={4}>
-            <Card style={{ border: "none" }}>
+            <Card style={{ border: "none", }}>
               <h3 className="listing text-center">Report Groups</h3>
+             
 
               <div className="title-box mb-2">
                 <div className="d-flex justify-content-between px-3 pb-2">
@@ -128,11 +136,8 @@ function Reports() {
                 <div className="person-box">
                   <b>Directors</b>
                   <p className="mt-3 border-top border-bottom py-3">
-                    <span> person 1</span> ,<span> person 2</span> ,{" "}
-                    <span>person 3</span> ,<span> person 4 </span>
-                    <span> person 5</span> ,<span> person 6</span> ,
-                    <span> person 7</span>{" "}
-                  </p>
+                  <span> person 1</span> ,<span> person 2</span> , <span>person 3</span> ,<span> person 4{" "}</span>
+                  <span> person 5</span> ,<span> person 6</span> ,<span> person 7</span> </p>
 
                   <div className="d-flex mt-2 edit_delete">
                     <span>
@@ -146,6 +151,7 @@ function Reports() {
                 </div>
 
                 <p className="mt-4 px-3">Sales Reps</p>
+
               </div>
             </Card>
           </Col>
