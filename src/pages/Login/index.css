@@ -30,6 +30,7 @@
 .loginWrapper .authfigure img{
     height: 100% !important;
 
+
 }
 
   .error-message {
@@ -38,3 +39,7 @@
     margin-top: 0.25rem; /* Add some margin above the error message */
   }
   
+
+}
+}
+
