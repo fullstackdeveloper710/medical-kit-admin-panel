@@ -9,7 +9,10 @@ import { FaSignOutAlt } from "react-icons/fa";
 import { useDispatch } from "react-redux";
 import { clearAuthUser } from "../../redux/slice/AuthSlice";
 import Signout from "../../Assets/icons/SignOut.png"
-function Sidebar() {
+
+
+
+function Sidebar({isActive,removeSideBarActive}) {
   const location = useLocation();
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -24,7 +27,7 @@ function Sidebar() {
     }
   };
   return (
-    <div className="sidebar">
+    <div className={isActive ? 'sidebar active' : 'sidebar'}>
       <div className="logo">
         <img src={logo} alt="Logo" />
       </div>
@@ -35,7 +38,7 @@ function Sidebar() {
             .map((menu, i) => {
               return (
                 <li key={i}>
-                  <Link className={activeClass(menu.link)} to={menu.link}>
+                  <Link className={activeClass(menu.link)} to={menu.link} onClick={removeSideBarActive}>
                     {menu.icon}
                     {menu.title}
                   </Link>
@@ -52,7 +55,7 @@ function Sidebar() {
               .map((menu, i) => {
                 return (
                   <li key={i}>
-                    <Link className={activeClass(menu.link)} to={menu.link}>
+                    <Link className={`${activeClass(menu.link)}`} to={menu.link} onClick={removeSideBarActive}>
                       {menu.icon}
                       {menu.title}
                     </Link>
@@ -70,7 +73,7 @@ function Sidebar() {
               .map((menu, i) => {
                 return (
                   <li key={i}>
-                    <Link className={activeClass(menu.link)} to={menu.link}>
+                    <Link className={`${activeClass(menu.link)}`} to={menu.link} onClick={removeSideBarActive}>
                       {menu.icon}
                       {menu.title}
                     </Link>
