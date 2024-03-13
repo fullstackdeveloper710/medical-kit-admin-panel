@@ -6,6 +6,7 @@ import CardWithBarChart from "../../components/CardWithBarChart";
 import CardWithTable from "../../components/CardWithTable";
 import ReactApexChart from "react-apexcharts";
 
+
 function Dashboard() {
   const [radial] = useState({
     series: [64.87],
@@ -42,12 +43,13 @@ function Dashboard() {
             </div>
           </div>
         </div>
-        <div className="col-md-4 h-100">
+        <div className="col-md-4 h-100 overflow-hidden">
           <CardWithMap />
         </div>
       </div>
       <div className="row mt-4">
-        <div className="col-md-4 bg-light">
+
+      <div className="col-md-4 bg-light">
           <ReactApexChart
             options={radial.options}
             series={radial.series}
@@ -55,7 +57,9 @@ function Dashboard() {
             height={350}
           />
         </div>
+
         <div className="col-md-8">
+
           <CardWithBarChart />
         </div>
         <div className="col-md-12 mt-4">
