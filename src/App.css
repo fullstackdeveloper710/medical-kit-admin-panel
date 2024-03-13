@@ -230,9 +230,15 @@ body .button-text,
   font-weight: 400;
   padding-bottom: 10px;
 }
+.rdt_TableHeadRow .rdt_TableCol:nth-child(2) .lnOUep {
+  text-decoration: underline;
+}
+text#SvgjsText1312{
+  fill: rgba(168, 168, 189, 1) !important;
+}
 @media (max-width:1366px) {
   body .button-text{
-    font-size: 18px;
+    font-size: 15px;
     line-height: auto !important;
   }
   body .kits_row .icon-button svg {

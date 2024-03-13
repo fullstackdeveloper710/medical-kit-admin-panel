@@ -36,7 +36,7 @@ function EditArticle() {
           <div className="card p-3 border-0">
           <h3 className="listing">Edit Article</h3>
 
-          <div>
+          <div className="title_article">
             Title of Article
           </div>
           <div className="text-editor">

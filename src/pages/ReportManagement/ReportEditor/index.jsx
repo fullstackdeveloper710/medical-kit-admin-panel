@@ -8,6 +8,7 @@ import CustomPagination from "../../../components/Common/Pagination";
 import { PiUsersFill } from "react-icons/pi";
 import CardWithChart from "../../../components/CardWithChart";
 import { FaMedkit } from "react-icons/fa";
+import { FaBan, FaTrash } from "react-icons/fa6";
 const ReportEditor = () => {
   return (
     <div className="reporteditor">
@@ -122,16 +123,15 @@ const ReportEditor = () => {
       <hr />
       <div className="row">
         <div className="col-md-6">
-          <div className="d-flex">
-            <div className="me-5">
-              <MdLocationDisabled size={20} />
-              <span className="ms-1">Disable</span>
-            </div>
-            <div>
-              <GoTrash size={20} />
-              <span> Delete</span>
-            </div>
-          </div>
+        <div className="d-flex">
+                    <button className=" usermgmt-button" disabled>
+                      <FaBan /> Disable
+                    </button>
+                    <button className="  usermgmt-button">
+                      <FaTrash />
+                      Delete
+                    </button>
+                  </div>
         </div>
         <div className="col-md-6 text-end">
           <button className="btn btn-dark"> Cancel</button>

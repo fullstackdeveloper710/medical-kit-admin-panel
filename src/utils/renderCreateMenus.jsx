@@ -46,7 +46,7 @@ export const createMenus = {
 
 const CreateActions = ({ title, icon, link }) => {
   return (
-    <Col>
+    <Col md={3}>
       <Card style={{ borderRadius: 16, border: "none" }}>
         <Link to={link} style={{ textDecoration: "none", color: "inherit" }}>
           <Button variant="primary" className="icon-button">
@@ -61,8 +61,7 @@ const CreateActions = ({ title, icon, link }) => {
 
 const RenderCreateMenus = ({ pathname }) => {
   return (
-    <Container>
-      <Row className="align-items-center text-row kits_row px-4">
+      <Row className="kits_row px-4">
         {createMenus[pathname].map((menuItem, i) => {
           return (
             <CreateActions
@@ -74,7 +73,6 @@ const RenderCreateMenus = ({ pathname }) => {
           );
         })}
       </Row>
-    </Container>
   );
 };
 

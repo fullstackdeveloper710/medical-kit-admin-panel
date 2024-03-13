@@ -227,7 +227,7 @@ const BusinessProfile = () => {
             </div>
             <div className="divider"></div>
 
-            <div className="d-flex justify-content-between align-items-center">
+            <div className="d-flex justify-content-between align-items-center border-top border-dark pt-2">
               <div className="d-flex">
                 <div>
                   <b className="smallText">
@@ -318,7 +318,7 @@ const BusinessProfile = () => {
             </div>
             <div className="divider"></div>
 
-            <div className="d-flex justify-content-between align-items-center">
+            <div className="d-flex justify-content-between align-items-center border-top border-dark pt-2">
               <div className="d-flex">
                 <div>
                   <b className="smallText">
@@ -409,7 +409,7 @@ const BusinessProfile = () => {
             </div>
             <div className="divider"></div>
 
-            <div className="d-flex justify-content-between align-items-center">
+            <div className="d-flex justify-content-between align-items-center border-top border-dark pt-2">
               <div className="d-flex">
                 <div>
                   <b className="smallText">

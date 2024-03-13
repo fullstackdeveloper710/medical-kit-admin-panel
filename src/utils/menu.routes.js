@@ -19,7 +19,7 @@ import { RxDashboard } from "react-icons/rx";
 import dashboardIcon from "../Assets/icons/SquaresFour.png";
 import UserIcon from "../Assets/icons/Users.png";
 import Products from "../Assets/icons/products.png";
-import Kits from "../Assets/icons/kits.png";
+import Kits from "../Assets/icons/Group.png";
 import Business from "../Assets/icons/businessprofile.png";
 import Distributors from "../Assets/icons/distributor.png";
 import Reports from "../Assets/icons/reports.png";
