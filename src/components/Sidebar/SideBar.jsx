@@ -8,6 +8,7 @@ import { menus } from "../../utils/menu.routes";
 import { FaSignOutAlt } from "react-icons/fa";
 import { useDispatch } from "react-redux";
 import { clearAuthUser } from "../../redux/slice/AuthSlice";
+import Signout from "../../Assets/icons/SignOut.png"
 function Sidebar() {
   const location = useLocation();
   const navigate = useNavigate();
@@ -82,7 +83,7 @@ function Sidebar() {
           className="logout d-flex align-items-center"
           onClick={() => logoutHandler()}
         >
-          <FaSignOutAlt className="icon" />
+         <img src={Signout}></img>
           Logout
         </div>
       </div>

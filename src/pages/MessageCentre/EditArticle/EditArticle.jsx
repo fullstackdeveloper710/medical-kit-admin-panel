@@ -35,6 +35,10 @@ function EditArticle() {
         <Col md={8}>
           <div className="card p-3 border-0">
           <h3 className="listing">Edit Article</h3>
+
+          <div>
+            Title of Article
+          </div>
           <div className="text-editor">
             <CmsEditor
               content={content}
