@@ -6,6 +6,7 @@ import { GoTrash } from "react-icons/go";
 import PhoneInput from "react-phone-input-2";
 import "./index.css";
 import { Col, Row, Form } from "react-bootstrap";
+import { FaBan, FaTrash } from "react-icons/fa";
 const DistributorInformation = () => {
   const validationSchema = Yup.object().shape({
     distributorName: Yup.string().required("Distributor Name is required"),
@@ -219,14 +220,13 @@ const DistributorInformation = () => {
               <div className="row">
                 <div className="col-md-6">
                   <div className="d-flex">
-                    <div className="me-5">
-                      <MdLocationDisabled size={20} />
-                      <span className="ms-1">Disable</span>
-                    </div>
-                    <div>
-                      <GoTrash size={20} />
-                      <span> Delete</span>
-                    </div>
+                    <button className=" usermgmt-button" disabled>
+                      <FaBan /> Disable
+                    </button>
+                    <button className="  usermgmt-button">
+                      <FaTrash />
+                      Delete
+                    </button>
                   </div>
                 </div>
                 <div className="col-md-6 text-end">
@@ -245,4 +245,3 @@ const DistributorInformation = () => {
 };
 
 export default DistributorInformation;
-
