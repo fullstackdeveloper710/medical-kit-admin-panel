@@ -28,7 +28,6 @@ export const loginSlice = createSlice({
 
 export const {} = loginSlice.actions;
 export default loginSlice.reducer;
-
 export const loginuser = createAsyncThunk("user/login", async (data) => {
   try {
     const res = await API.post(`${LOGIN}`, data);

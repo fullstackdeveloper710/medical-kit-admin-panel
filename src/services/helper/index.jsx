@@ -6,4 +6,6 @@ export const StatusCode = {
 };
 export const ApiEndPoint = {
   LOGIN: "/user/login",
+  DISTRIBUTORREGISTER: "/distributor/signup",
+  AUTHUSER: "/user/my_account",
 };

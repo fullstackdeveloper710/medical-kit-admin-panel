@@ -1,13 +1,15 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import CardWithMap from "../../components/CardWithMap";
 import CardWithChart from "../../components/CardWithChart";
 import CardWithLineChart from "../../components/CardWithLineChart";
 import CardWithBarChart from "../../components/CardWithBarChart";
 import CardWithTable from "../../components/CardWithTable";
 import ReactApexChart from "react-apexcharts";
-
+import { useDispatch } from "react-redux";
+import { authUser } from "../../redux/slice/AuthSlice";
 
 function Dashboard() {
+  const dispatch = useDispatch();
   const [radial] = useState({
     series: [64.87],
     options: {
@@ -27,9 +29,12 @@ function Dashboard() {
       labels: ["Us vs Competitors"],
     },
   });
+  useEffect(() => {
+    dispatch(authUser());
+  }, []);
   return (
     <div className="">
-      <div className="row dashboard_row">
+      <div className="row">
         <div className="col-md-8">
           <div className="row">
             <div className="col-md-6">
@@ -43,13 +48,12 @@ function Dashboard() {
             </div>
           </div>
         </div>
-        <div className="col-md-4 h-100 overflow-hidden">
+        <div className="col-md-4">
           <CardWithMap />
         </div>
       </div>
       <div className="row mt-4">
-
-      <div className="col-md-4 bg-light">
+        <div className="col-md-4 bg-light">
           <ReactApexChart
             options={radial.options}
             series={radial.series}
@@ -57,11 +61,11 @@ function Dashboard() {
             height={350}
           />
         </div>
-
         <div className="col-md-8">
-
           <CardWithBarChart />
         </div>
+      </div>
+      <div className="row">
         <div className="col-md-12 mt-4">
           <CardWithTable />
         </div>
