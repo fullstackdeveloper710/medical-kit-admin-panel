@@ -7,6 +7,7 @@ const loginSchema = Yup.object().shape({
 
 // Define validation schema for distributorinformation using Yup
 const distributorInfoSchema = Yup.object().shape({
+  first_name: Yup.string().required("First name is required"),
   distributor_name: Yup.string().required("Distribution name is required"),
   street: Yup.string().required("Street is required"),
   county: Yup.string().required("county is required"),

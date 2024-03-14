@@ -34,7 +34,7 @@ function Dashboard() {
   }, []);
   return (
     <div className="">
-      <div className="row">
+      <div className="row" style={{height:586}}>
         <div className="col-md-8">
           <div className="row">
             <div className="col-md-6">
@@ -48,7 +48,7 @@ function Dashboard() {
             </div>
           </div>
         </div>
-        <div className="col-md-4">
+        <div className="col-md-4 overflow-hidden">
           <CardWithMap />
         </div>
       </div>

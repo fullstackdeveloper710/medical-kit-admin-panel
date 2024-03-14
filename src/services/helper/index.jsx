@@ -8,4 +8,6 @@ export const ApiEndPoint = {
   LOGIN: "/user/login",
   DISTRIBUTORREGISTER: "/distributor/signup",
   AUTHUSER: "/user/my_account",
+  USERMANAGEMENT: "/admin/get_users",
+  USERREGISTRATION:"/admin/register_user"
 };
