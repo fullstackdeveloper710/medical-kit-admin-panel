@@ -78,3 +78,31 @@ export const menus = [
     link: "/notifications",
   },
 ];
+
+export const distributormenus = [
+  {
+    title: "Dashboard",
+    icon: <img src={dashboardIcon} />,
+    link: "/",
+  },
+  {
+    title: "User Management",
+    icon: <img src={Products} />,
+    link: "/usermanagement",
+  },
+  {
+    title: "Business Profile",
+    icon: <img src={Kits} />,
+    link: "businessprofile",
+  },
+  {
+    title: "Clients",
+    icon: <img src={UserIcon} />,
+    link: "/clients",
+  },
+  {
+    title: "Notification",
+    icon: <img src={Business} />,
+    link: "/notification",
+  },
+];

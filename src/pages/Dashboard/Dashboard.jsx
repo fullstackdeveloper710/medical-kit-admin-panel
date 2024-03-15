@@ -1,15 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import CardWithMap from "../../components/CardWithMap";
 import CardWithChart from "../../components/CardWithChart";
 import CardWithLineChart from "../../components/CardWithLineChart";
 import CardWithBarChart from "../../components/CardWithBarChart";
 import CardWithTable from "../../components/CardWithTable";
 import ReactApexChart from "react-apexcharts";
-import { useDispatch } from "react-redux";
-import { authUser } from "../../redux/slice/AuthSlice";
-
 function Dashboard() {
-  const dispatch = useDispatch();
   const [radial] = useState({
     series: [64.87],
     options: {
@@ -29,9 +25,7 @@ function Dashboard() {
       labels: ["Us vs Competitors"],
     },
   });
-  useEffect(() => {
-    dispatch(authUser());
-  }, []);
+
   return (
     <div className="">
       <div className="row">

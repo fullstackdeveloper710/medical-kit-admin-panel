@@ -95,7 +95,7 @@ const CardWithTable = () => {
       riskAssessment: "Complete",
     },
     {
-      id: 1,
+      id: 2,
       distributer: "Beetlejuice",
       clientBussinessName: "1988",
       kitStatus: "6",
@@ -105,7 +105,7 @@ const CardWithTable = () => {
       riskAssessment: "Complete",
     },
     {
-      id: 1,
+      id: 3,
       distributer: "Beetlejuice",
       clientBussinessName: "1988",
       kitStatus: "6",
@@ -115,7 +115,7 @@ const CardWithTable = () => {
       riskAssessment: "Pending",
     },
     {
-      id: 1,
+      id: 4,
       distributer: "Beetlejuice",
       clientBussinessName: "1988",
       kitStatus: "6",
@@ -125,7 +125,7 @@ const CardWithTable = () => {
       riskAssessment: "Pending",
     },
     {
-      id: 1,
+      id: 5,
       distributer: "Beetlejuice",
       clientBussinessName: "1988",
       kitStatus: "6",
@@ -135,10 +135,8 @@ const CardWithTable = () => {
       riskAssessment: "Complete",
     },
   ];
-
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 5; // Number of items per page
-
   const totalItems = data.length;
   const totalPages = Math.ceil(totalItems / itemsPerPage);
 
@@ -162,7 +160,7 @@ const CardWithTable = () => {
     }
   };
   return (
-    <Card style={{border:'none'}}>
+    <Card style={{ border: "none" }}>
       <div style={{ padding: 8 }}>
         <h3 style={{ fontWeight: "700", fontSize: "24px" }} className="px-2">
           Registered Company Details
@@ -174,12 +172,12 @@ const CardWithTable = () => {
           pagination={true}
           paginationComponent={() => (
             <CustomPagination
-            pages={totalPages}
-            currentPage={currentPage}
-            onPageChange={onPageChange}
-            onNextPage={onNextPage}
-            onPreviousPage={onPreviousPage}
-          />
+              pages={totalPages}
+              currentPage={currentPage}
+              onPageChange={onPageChange}
+              onNextPage={onNextPage}
+              onPreviousPage={onPreviousPage}
+            />
           )}
           //   noHeader={true}
           customStyles={{
