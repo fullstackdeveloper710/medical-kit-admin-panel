@@ -7,20 +7,17 @@ import CreateUserReducer from "../slice/UserManagementSlice";
 import ProductManagementReducer from "../slice/ProductManagementSlice";
 import KitManagementReducer from "../slice/KitManagementSlice";
 
-
-
-
 const store = configureStore({
   reducer: {
     LOGIN: LoginReducer,
     AUTH: AuthReducer,
     DISTRIBUTORREGISTRATION: DistributorReducer,
-   USERMANAGEMENT:UserManagementReducer,
-   CREATEUSERANDLOCATION: CreateUserReducer,
-   PRODUCTMANAGEMENT:ProductManagementReducer,
-   KITMANAGEMENT:KitManagementReducer
-
-    },
+    USERMANAGEMENT: UserManagementReducer,
+    CREATEUSERANDLOCATION: CreateUserReducer,
+    PRODUCTMANAGEMENT: ProductManagementReducer,
+    KITMANAGEMENT: KitManagementReducer,
+    CREATEUSERANDLOCATION: CreateUserReducer,
+  },
 });
 
 export default store;

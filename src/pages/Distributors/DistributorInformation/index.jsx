@@ -10,6 +10,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { StatusCode } from "../../../services/helper";
 import ButtonLoader from "../../../components/Common/ButtonLoader";
 import ValidationSchema from "../../../components/Common/ValidationScema";
+import { NavLink } from "react-router-dom";
 const DistributorInformation = () => {
   const initialValues = {
     distributor_name: "",
@@ -279,7 +280,22 @@ const DistributorInformation = () => {
                 <Col>
                   <Form.Group className="mb-3" controlId="formBasicNumber">
                     <Form.Control
-                      type="number"
+                      onKeyPress={(e) => {
+                        if (
+                          e.key === "e" ||
+                          e.key === "E" ||
+                          isNaN(Number(e.key))
+                        ) {
+                          e.preventDefault();
+                        }
+                      }}
+                      onKeyDown={(e) => {
+                        if (e.key === " ") {
+                          e.preventDefault();
+                        }
+                      }}
+                      type="text"
+                      pattern="[0-9]*"
                       name="contact_number"
                       value={values.contact_number}
                       onChange={handleChange}
@@ -330,9 +346,11 @@ const DistributorInformation = () => {
               </div>
             </div>
             <div className="col-md-6 text-end">
-              <button className="btn btn-dark" type="button">
-                Cancel
-              </button>
+              <NavLink className={"nav-link d-inline"} to="/distributors">
+                <button className="btn btn-dark" type="button">
+                  Cancel
+                </button>
+              </NavLink>
               <button className="btn btn-primary ms-4 w-50" type="submit">
                 {status === StatusCode.LOADING ? (
                   <ButtonLoader />

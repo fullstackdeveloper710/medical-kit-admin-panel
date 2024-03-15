@@ -1,66 +1,48 @@
-import {
-  Container,
-  Row,
-  Col,
-  Table,
-  Button,
-  DropdownButton,
-  Dropdown,
-  Form,
-} from "react-bootstrap";
-import profilepic from "../../../Assets/Profile/profile.png";
-import { Formik, Field, ErrorMessage, useFormik } from "formik";
-import * as Yup from "yup";
-import PhoneInput from "react-phone-number-input";
+import { Container, Row, Col, Form } from "react-bootstrap";
+import { useFormik } from "formik";
+import PhoneInput from "react-phone-input-2";
 import "react-phone-number-input/style.css";
 import CustomButton from "../../../components/Common/Button/Button";
-import { FaBan, FaStopCircle, FaTrash } from "react-icons/fa";
-import { FaCircleStop } from "react-icons/fa6";
+import { FaBan, FaTrash } from "react-icons/fa";
 import "./CreateUser.css";
-import { useRef, useState } from "react";
-import { StatusCode } from "../../../services/helper";
-
+import { useEffect, useRef, useState } from "react";
+import {
+  StatusCode,
+  asignRoles,
+  userPermissions,
+} from "../../../services/helper";
+import {
+  createNewUser,
+  fetchLocation,
+} from "../../../redux/slice/CreateNewUserSlice";
 import { useDispatch, useSelector } from "react-redux";
-import ValidationSchema from "../../../components/Common/ValidationScema";
-import { registeruser } from "../../../redux/slice/UserManagementSlice";
 import ButtonLoader from "../../../components/Common/ButtonLoader";
-import { MdLocationDisabled } from "react-icons/md";
-import { GoTrash } from "react-icons/go";
+import ValidationSchema from "../../../components/Common/ValidationScema";
+import { NavLink, useNavigate } from "react-router-dom";
 
 function CreateUser() {
   const initialValues = {
-    assigned_role:"",
     first_name: "",
-    street: "",
-    county: "",
-    country: "",
-    email: "",
-    postal_code: "",
-    country_code: "",
+    last_name: "",
+    location_id: "",
     contact_number: "",
-    company_logo: null,
-    company_white_logo: null,
-    alternate_distributor_name: "",
-    role: "",
+    country_code: "",
+    employee_id: "",
+    job_title: "",
+    assigned_role: "",
+    permissions: null,
+    email: "",
+    // profile_pic: null,
   };
-  const [content, setContent] = useState();
-  const [checkboxStates, setCheckboxStates] = useState({
-    text1: false,
-    text2: false,
-    text3: false,
-  });
-  const handleCheckboxChange = (fieldName) => {
-    setCheckboxStates({
-      ...checkboxStates,
-      [fieldName]: !checkboxStates[fieldName],
-    });
-  };
-  const [companyLogoPreview, setCompanyLogoPreview] = useState(null);
-  const [whiteCompanyLogoPreview, setWhiteCompanyLogoPreview] = useState(null);
-  const dispatch = useDispatch();
-  const { status } = useSelector((state) => state.USEREGISTRATION);
   const whitelogoref = useRef();
-  const secwhitelogoref = useRef();
+  const [companyLogoPreview, setCompanyLogoPreview] = useState(null);
+  const [checkedPermissions, setCheckedPermissions] = useState([]);
+  const { status } = useSelector((state) => state.CREATEUSERANDLOCATION);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { FetchLocationData } = useSelector(
+    (state) => state.CREATEUSERANDLOCATION
+  );
   const {
     values,
     errors,
@@ -71,43 +53,66 @@ function CreateUser() {
     setValues,
   } = useFormik({
     initialValues: initialValues,
-    validationSchema: ValidationSchema.userinformation,
+    validationSchema: ValidationSchema.createnewuser,
     onSubmit: async (values) => {
-      const res = await dispatch(registeruser(values));
+      const res = await dispatch(createNewUser(values));
+      if (res.payload?.status) {
+        navigate("/users");
+      }
     },
   });
 
   const handleLogoChange = (e) => {
     const file = e.target.files[0];
-    if (e.target.name === "company_logo") {
-      setCompanyLogoPreview(URL.createObjectURL(file));
-      setValues({ ...values, company_logo: file });
+    setCompanyLogoPreview(URL.createObjectURL(file));
+    // setValues({ ...values, profile_pic: file });
+  };
+
+  const handlePermissionChange = (event) => {
+    const permissionId = event.target.id;
+    const isChecked = event.target.checked;
+    if (isChecked) {
+      setCheckedPermissions([...checkedPermissions, permissionId]);
+      setValues({ ...values, permissions: checkedPermissions });
     } else {
-      setWhiteCompanyLogoPreview(URL.createObjectURL(file));
-      setValues({ ...values, company_white_logo: file });
+      setCheckedPermissions(
+        checkedPermissions.filter((id) => id !== permissionId)
+      );
     }
   };
+
+  useEffect(() => {
+    dispatch(fetchLocation());
+  }, []);
+
   return (
-    <div className="distributorinfo">
-      <h3 className="text-center border-bottom pb-4 pt-2">Create New User</h3>
-      <div className="infoformdata pt-4 pb-2">
-        <Form onSubmit={handleSubmit}>
-          <div className="row">
-            <div className="col-md-5 ">
-              <div className="companylogodata">
-                {/* <h6>Company Logo</h6> */}
-                <div className="companylogo">
-                  <Form.Group
-                    className="mb-3"
-                    controlId="formBasiccompany_logo"
-                  >
+    <div className="create-user">
+      <Form onSubmit={handleSubmit}>
+        <Container>
+          <Row className="align-items-c">
+            <Col>
+              <h3
+                className="listing"
+                style={{ textAlign: "center", paddingBottom: "20px" }}
+              >
+                Create New User
+              </h3>
+            </Col>
+          </Row>
+        </Container>
+        <Container>
+          <Row>
+            <Col md={4}>
+              {/* <div className="divider" /> */}
+              <div className="logodata">
+                <div className="logo">
+                  <Form.Group className="mb-3" controlId="formBasicProfile_pic">
                     <Form.Control
                       ref={whitelogoref}
                       type="file"
-                      name="company_logo"
+                      name="profile_pic"
                       className="d-none"
                       onChange={handleLogoChange}
-                      onBlur={handleBlur}
                     />
                   </Form.Group>
                   <img
@@ -116,7 +121,7 @@ function CreateUser() {
                         ? companyLogoPreview
                         : "https://img.freepik.com/free-vector/ampersand-3d-icon_23-2147501139.jpg?t=st=1710323642~exp=1710327242~hmac=bf70d869f6175d92ffc60310956a301dca1a3bc45f3ed2da6ffcaa9af100f8f9&w=740"
                     }
-                    alt="company logo"
+                    alt="profile_pic logo"
                     className="custom_image"
                   />
                 </div>
@@ -128,53 +133,49 @@ function CreateUser() {
                   >
                     Edit
                   </button>
-
-                  {errors.company_logo && touched.company_logo ? (
-                    <p className="text-danger">{errors.company_logo} </p>
-                  ) : null}
                 </div>
               </div>
-            </div>
-
-            <div className="col-md-7">
+            </Col>
+            <Col md={8}>
               <Row>
-                <Row>
-                  <Col>
-                    <Form.Group className="mb-3" controlId="formname">
-                      <Form.Control
-                        type="text"
-                        name="first_name"
-                        value={values.first_name}
-                        onChange={handleChange}
-                        onBlur={handleBlur}
-                        placeholder="First Name"
-                      />
-                    </Form.Group>
-                    {errors.first_name && touched.first_name ? (
-                      <p className="text-danger">{errors.first_name} </p>
-                    ) : null}
-                  </Col>
+                <Col>
+                  <Form.Group className="mb-3" controlId="formBasicFirstName">
+                    <Form.Control
+                      type="text"
+                      name="first_name"
+                      value={values.first_name}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      placeholder="First Name"
+                    />
+                  </Form.Group>
+                  {errors.first_name && touched.first_name ? (
+                    <p className="text-danger">{errors.first_name} </p>
+                  ) : null}
+                </Col>
 
-                  <Col>
-                    <Form.Group className="mb-3" controlId="formLastName">
-                      <Form.Control
-                        type="text"
-                        name="last_name"
-                        value={values.last_name}
-                        onChange={handleChange}
-                        onBlur={handleBlur}
-                        placeholder="Last Name"
-                      />
-                    </Form.Group>
-                    {errors.last_name && touched.last_name ? (
-                      <p className="text-danger">{errors.last_name} </p>
-                    ) : null}
-                  </Col>
-                </Row>
+                <Col>
+                  <Form.Group className="mb-3" controlId="formBasicLastName">
+                    <Form.Control
+                      type="text"
+                      name="last_name"
+                      value={values.last_name}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      placeholder="Last Name"
+                    />
+                  </Form.Group>
+                  {errors.last_name && touched.last_name ? (
+                    <p className="text-danger">{errors.last_name} </p>
+                  ) : null}
+                </Col>
               </Row>
               <Row>
                 <Col>
-                  <Form.Group className="mb-3" controlId="formBusinessEmail">
+                  <Form.Group
+                    className="mb-3"
+                    controlId="formBasicBusinessEmail"
+                  >
                     <Form.Control
                       type="email"
                       name="email"
@@ -190,41 +191,71 @@ function CreateUser() {
                 </Col>
 
                 <Col>
-                  <Form.Group className="mb-3" controlId="formOfficeLocation">
-                    <Form.Control
-                      type="text"
-                      name="street"
-                      value={values.location}
+                  <Form.Group className="mb-3" controlId="formBasicLocation_id">
+                    <Form.Select
+                      aria-label="Default select example"
+                      name="location_id"
                       onChange={handleChange}
-                      onBlur={handleBlur}
-                      placeholder="Office Location"
-                    />
+                      value={values.location_id}
+                    >
+                      <option>Office Location</option>
+                      {FetchLocationData &&
+                        FetchLocationData?.locations?.map((curElm) => (
+                          <option value={curElm._id} key={curElm._id}>
+                            {curElm.location_name}
+                          </option>
+                        ))}
+                    </Form.Select>
                   </Form.Group>
-                  {errors.street && touched.street ? (
-                    <p className="text-danger">{errors.street} </p>
+                  {errors.location_id && touched.location_id ? (
+                    <p className="text-danger">{errors.location_id} </p>
                   ) : null}
                 </Col>
               </Row>
+
               <Row>
-              <Col xs lg="2">
-                  <div className="phoneinput">
-                    <PhoneInput
-                      name="country_code"
-                      country={"us"}
-                      placeholder="Phone Number"
-                      value={values.country_code}
-                      onChange={(value) =>
-                        handleChange({
-                          target: { name: "country_code", value },
-                        })
-                      }
-                    />
-                  </div>
+                <Col>
+                  <Form.Group
+                    className="mb-3"
+                    controlId="formBasicCountry_code"
+                  >
+                    <div className="phoneinput">
+                      <PhoneInput
+                        name="country_code"
+                        country={"us"}
+                        placeholder="Phone Number"
+                        value={values.country_code}
+                        onChange={(value) =>
+                          handleChange({
+                            target: { name: "country_code", value },
+                          })
+                        }
+                      />
+                    </div>
+                  </Form.Group>
+                  {errors.country_code && touched.country_code ? (
+                    <p className="text-danger">{errors.country_code} </p>
+                  ) : null}
                 </Col>
                 <Col>
                   <Form.Group className="mb-3" controlId="formBasicNumber">
                     <Form.Control
-                      type="number"
+                      onKeyPress={(e) => {
+                        if (
+                          e.key === "e" ||
+                          e.key === "E" ||
+                          isNaN(Number(e.key))
+                        ) {
+                          e.preventDefault();
+                        }
+                      }}
+                      onKeyDown={(e) => {
+                        if (e.key === " ") {
+                          e.preventDefault();
+                        }
+                      }}
+                      type="text"
+                      pattern="[0-9]*"
                       name="contact_number"
                       value={values.contact_number}
                       onChange={handleChange}
@@ -236,157 +267,133 @@ function CreateUser() {
                     <p className="text-danger">{errors.contact_number} </p>
                   ) : null}
                 </Col>
+              </Row>
+              <Row>
                 <Col>
-                  <Form.Group className="mb-3" controlId="formEmployeeId">
+                  <Form.Group className="mb-3" controlId="formBasicEmployee_id">
                     <Form.Control
                       type="text"
-                      name="emp_id"
-                      value={values.emp_id}
+                      name="employee_id"
+                      value={values.employee_id}
                       onChange={handleChange}
                       onBlur={handleBlur}
-                      placeholder="Employee ID(optional) "
+                      placeholder="Employee ID"
                     />
                   </Form.Group>
-                  {errors.email && touched.email ? (
-                    <p className="text-danger">{errors.email} </p>
+                  {errors.employee_id && touched.employee_id ? (
+                    <p className="text-danger">{errors.employee_id} </p>
                   ) : null}
                 </Col>
               </Row>
               <Row>
                 <Col>
-                  <Form.Group className="mb-3" controlId="formJobTitle">
+                  <Form.Group className="mb-3" controlId="formBasicJob_title">
                     <Form.Control
                       type="text"
-                      name="assigned_role"
-                      value={values.assigned_role}
+                      name="job_title"
+                      value={values.job_title}
                       onChange={handleChange}
                       onBlur={handleBlur}
                       placeholder="Job Title"
                     />
                   </Form.Group>
+                  {errors.job_title && touched.job_title ? (
+                    <p className="text-danger">{errors.job_title} </p>
+                  ) : null}
+                </Col>
+                <Col>
+                  <Form.Group
+                    className="mb-3"
+                    controlId="formBasicAssigned_role"
+                  >
+                    <Form.Select
+                      aria-label="Default select example"
+                      name="assigned_role"
+                      onChange={handleChange}
+                      value={values.assigned_role}
+                    >
+                      <option>Assign Role</option>
+                      {asignRoles.map((curElm, index) => (
+                        <option value={curElm.value} key={index}>
+                          {curElm.label}
+                        </option>
+                      ))}
+                    </Form.Select>
+                  </Form.Group>
                   {errors.assigned_role && touched.assigned_role ? (
                     <p className="text-danger">{errors.assigned_role} </p>
                   ) : null}
                 </Col>
-
-                <Col>
-                  <Form.Group className="mb-3" controlId="formAssignRole">
-                    <Form.Control
-                      type="text"
-                      name="street"
-                      value={values.location}
-                      onChange={handleChange}
-                      onBlur={handleBlur}
-                      placeholder="Office Location"
-                    />
-                  </Form.Group>
-                  {errors.street && touched.street ? (
-                    <p className="text-danger">{errors.street} </p>
-                  ) : null}
-                </Col>
               </Row>
-            </div>
-          </div>
-          <hr />
-          <Container>
+            </Col>
+          </Row>
+        </Container>
+
+        <Container>
+          <Row>
+            <Col>
+              <h3
+                style={{
+                  styleName: "Category Head",
+                  fontFamily: "Open Sans",
+                  fontSize: "20px",
+                  fontWeight: "700",
+                  lineHeight: "15px",
+                  letterSpacing: "-0.011em",
+                  textAlign: "left",
+                }}
+                className="listing"
+              >
+                Permissions
+              </h3>
+            </Col>
+          </Row>
+
+          <div className="permisioncard">
             <Row>
-              <Col>
-                <h3
-                  style={{
-                    styleName: "Category Head",
-                    fontFamily: "Open Sans",
-                    fontSize: "20px",
-                    fontWeight: "700",
-                    lineHeight: "15px",
-                    letterSpacing: "-0.011em",
-                    textAlign: "left",
-                  }}
-                  className="listing"
-                >
-                  Permissions
-                </h3>
-              </Col>
+              {userPermissions &&
+                userPermissions.map((curElm) => (
+                  <Col key={curElm.id} className={curElm.column}>
+                    <Form.Group name="permissions">
+                      <Form.Check
+                        type={curElm.type}
+                        id={curElm.id}
+                        label={curElm.label}
+                        onChange={handlePermissionChange}
+                      />
+                    </Form.Group>
+                  </Col>
+                ))}
+              {errors.permissions && touched.permissions ? (
+                <p className="text-danger">{errors.permissions} </p>
+              ) : null}
             </Row>
-
-            <Form>
-              <Row>
-                <Col>
-                  <Form.Check
-                    type="switch"
-                    id="ManageProducts"
-                    label="Manage Products"
-                    checked={checkboxStates.text3}
-                    onChange={() => handleCheckboxChange("text3")}
-                  />
-                </Col>
-                <Col>
-                  <Form.Check
-                    type="switch"
-                    id="checkbox3"
-                    label="Manage Company Users "
-                    checked={checkboxStates.text3}
-                    onChange={() => handleCheckboxChange("text3")}
-                  />
-                </Col>
-                <Col>
-                  <Form.Check
-                    type="switch"
-                    id="checkbox3"
-                    label="Manage Business Profile"
-                    checked={checkboxStates.text3}
-                    onChange={() => handleCheckboxChange("text3")}
-                  />
-                </Col>
-              </Row>
-              <Row>
-                <Col>
-                  <Form.Check
-                    type="switch"
-                    id="ManageProducts"
-                    label="Manage Products"
-                    checked={checkboxStates.text3}
-                    onChange={() => handleCheckboxChange("text3")}
-                  />
-                </Col>
-                <Col>
-                  <Form.Check
-                    type="switch"
-                    id="checkbox3"
-                    label="Manage Company Users "
-                    checked={checkboxStates.text3}
-                    onChange={() => handleCheckboxChange("text3")}
-                  />
-                </Col>
-                <Col>
-                  <Form.Check
-                    type="switch"
-                    id="checkbox3"
-                    label="Manage Business Profile"
-                    checked={checkboxStates.text3}
-                    onChange={() => handleCheckboxChange("text3")}
-                  />
-                </Col>
-              </Row>
-            </Form>
-          </Container>
-          <Container>
-            <Row className="justify-content-end py-5">
-              <Col md={6}>
-                <div className="disable_delete_action">
-                  <button className=" usermgmt-button" disabled>
-                    <FaBan /> Disable
-                  </button>
-                  <button className="  usermgmt-button">
-                    <FaTrash />
-                    Delete
-                  </button>
-                </div>
-              </Col>
-              <div className="col-md-6 text-end">
-                <button className="btn btn-dark" type="button">
-                  Cancel
+          </div>
+        </Container>
+        <Container>
+          <Row className="justify-content-end py-5">
+            <Col md={6}>
+              <div className="disable_delete_action">
+                <button className=" usermgmt-button" disabled>
+                  <FaBan /> Disable
                 </button>
-                <button className="btn btn-primary ms-4 w-50" type="submit">
+                <button className="  usermgmt-button">
+                  <FaTrash />
+                  Delete
+                </button>
+              </div>
+            </Col>
+            <Col md={6}>
+              <div className="btn_groups ms-md-5 ps-md-5">
+                <NavLink className="nav-link" to="/users">
+                  <CustomButton
+                    // variant="danger"
+                    className="btn-dark"
+                  >
+                    Cancel
+                  </CustomButton>
+                </NavLink>
+                <button type="submit" className="btn btn-primary">
                   {status === StatusCode.LOADING ? (
                     <ButtonLoader />
                   ) : (
@@ -394,10 +401,10 @@ function CreateUser() {
                   )}
                 </button>
               </div>
-            </Row>
-          </Container>
-        </Form>
-      </div>
+            </Col>
+          </Row>
+        </Container>
+      </Form>
     </div>
   );
 }
