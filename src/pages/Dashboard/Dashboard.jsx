@@ -9,7 +9,6 @@ import { useDispatch } from "react-redux";
 import { authUser } from "../../redux/slice/AuthSlice";
 
 function Dashboard() {
-  const dispatch = useDispatch();
   const [radial] = useState({
     series: [64.87],
     options: {
@@ -29,12 +28,10 @@ function Dashboard() {
       labels: ["Us vs Competitors"],
     },
   });
-  useEffect(() => {
-    dispatch(authUser());
-  }, []);
+
   return (
     <div className="">
-      <div className="row" style={{height:586}}>
+      <div className="row">
         <div className="col-md-8">
           <div className="row">
             <div className="col-md-6">
@@ -48,7 +45,7 @@ function Dashboard() {
             </div>
           </div>
         </div>
-        <div className="col-md-4 overflow-hidden">
+        <div className="col-md-4 h-100 overflow-hidden">
           <CardWithMap />
         </div>
       </div>

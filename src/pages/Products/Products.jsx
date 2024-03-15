@@ -1,94 +1,74 @@
-import React, { useState } from "react";
-import {
-  Container,
-  Row,
-  Col,
-  Table,
-  Button,
-  DropdownButton,
-  Dropdown,
-} from "react-bootstrap";
-import { FaFileExport, FaFileImport, FaPlus } from "react-icons/fa";
+import React, { useEffect, useState } from "react";
 import "./Products.css";
-import tableData from "../../data";
 import products from "../../Assets/images/product.png";
-import CustomPagination from "../../components/Common/Pagination/index";
 import DataTableComponent from "../../components/DataTable";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchProductsManagementData } from "../../redux/slice/ProductManagementSlice";
+import Loader from "../../components/Common/Loader";
 
-export const  columns = [
-  {
-    name: "Product",
-    selector: (row) => (
-      <div className="products-wrapper">
-        <img
-          src={products}
-          alt={row.product}
-          className="products-image"
-        />
-        <span>{row.product}</span>
-      </div>
-    )
-  },
-  {
-    name: "Brand",
-    selector: (row) => row.brand,
-    
-  },
-  {
-    name: "Contents",
-    selector: (row) => row.contents,
-    
-  },
-
-  {
-    name: "LOT no.",
-    selector: (row) => row.lotNumber,
-    
-  },
-  {
-    name: "Batch",
-    selector: (row) => row.batch,
-    
-  },
-  {
-    name: "Expiry Date",
-    selector: (row) => row.expiry,
-    
-  },
-];
 function Products() {
-  const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 5; // Number of items per page
+  const dispatch = useDispatch();
+  const { status, ProductManagementData } = useSelector(
+    (state) => state.PRODUCTMANAGEMENT
+  );
 
-  const totalPages = Math.ceil(tableData.length / itemsPerPage);
+  useEffect(() => {
+    dispatch(fetchProductsManagementData());
+  }, [dispatch]);
+  const columns = [
+    {
+      name: "Product",
+      selector: (row) => (
+        <div className="products-wrapper">
+          <img
+            src={products}
+            alt={row.description}
+            className="products-image"
+          />
+          <span>{row.description}</span>
+        </div>
+      ),
+    },
+    {
+      name: "Brand",
+      selector: (row) => row.brand,
+    },
+    {
+      name: "Contents",
+      selector: (row) => row.quantity,
+    },
 
-  const indexOfLastItem = currentPage * itemsPerPage;
-  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentItems = tableData.slice(indexOfFirstItem, indexOfLastItem);
+    {
+      name: "LOT no.",
+      selector: (row) => row.lot_number,
+    },
+    {
+      name: "Batch",
+      selector: (row) => row.batch,
+    },
+    {
+      name: "Expiry Date",
+      selector: (row) => row.expiry_date,
+    },
+  ];
+  if (status === "loading") {
+    return (
+      <div>
+        <Loader />
+      </div>
+    );
+  }
 
-  const onPageChange = (pageNumber) => {
-    setCurrentPage(pageNumber);
-  };
-  const onNextPage = () => {
-    if (currentPage < totalPages) {
-      setCurrentPage(currentPage + 1);
-    }
-  };
-
-  const onPreviousPage = () => {
-    if (currentPage > 1) {
-      setCurrentPage(currentPage - 1);
-    }
-  };
+  const userData = ProductManagementData?.data?.products || [];
 
   return (
     <div className="product-management">
-            <DataTableComponent
-              title={"Product Management"}
-              columns={columns}
-              data={tableData}
-              selectedRows
-            />
+      <DataTableComponent
+        title={"Product Management"}
+        columns={columns}
+        data={userData}
+        selectedRows
+      />
     </div>
   );
 }

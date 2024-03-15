@@ -1,6 +1,6 @@
 // Kits.js
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Container,
   Row,
@@ -16,58 +16,87 @@ import tableData from "../../data";
 import products from "../../Assets/images/product.png";
 import CustomPagination from "../../components/Common/Pagination";
 import DataTableComponent from "../../components/DataTable";
+import { fetchKitssManagementData } from "../../redux/slice/KitManagementSlice";
+import { useDispatch, useSelector } from "react-redux";
+import Loader from "../../components/Common/Loader";
 
-export const KitColumns = [
-  {
-    name: "Product",
-    selector: (row) => (
-      <div className="products-wrapper">
-        <img
-          src={products}
-          alt={row.product}
-          className="products-image"
-        />
-        <span>{row.product}</span>
-      </div>
-    )
-  },
-  {
-    name: "Registered To",
-    selector: (row) => row.registeredTo,
-  },
-  {
-    name: "Industry",
-    selector: (row) => row.industry,
-  },
-
-  {
-    name: "Location",
-    selector: (row) => row.location,
-  },
-
-  {
-    name: "Area ",
-    selector: (row) => row.area,
-  },
-  {
-    name: "Status ",
-    selector: (row) =>
-      row.actions.map((action, index) => (
-        <span key={index} className={`action ${action.type}`}>
-          {action.name}
-        </span>
-      )),
-  },
-];
 
 function Kits() {
+  const dispatch = useDispatch();
+  const { status, KitManagementData } = useSelector(
+    (state) => state.KITMANAGEMENT
+  );
+
+  useEffect(() => {
+    dispatch(fetchKitssManagementData());
+  }, [dispatch]);
+
+
+  const KitColumns = [
+    {
+      name: "Product",
+      selector: (row) => (
+        <div className="products-wrapper">
+          <img
+            src={products}
+            alt={row.product_name}
+            className="products-image"
+          />
+          <span>{row.product_name}</span>
+        </div>
+      )
+    },
+    {
+      name: "Registered To",
+      selector: (row) => row.company_name,
+    },
+    {
+      name: "Industry",
+      selector: (row) => row.industry,
+    },
+  
+    {
+      name: "Location",
+      selector: (row) => row.location_name,
+    },
+  
+    {
+      name: "Area ",
+      selector: (row) => row.area,
+    },
+    // {
+    //   name: "Status ",
+    //   selector: (row) =>
+    //     row.actions.map((action, index) => (
+    //       <span key={index} className={`action ${action.type}`}>
+    //         {action.name}
+    //       </span>
+    //     )),
+    // },
+    // actions: [{ name: "Complaint", type: "primary" }],
+
+    {
+      name: "Status",
+      selector: (row) =><span className={row.status==="Compliant"?"tertiary":"primary"}> {row.status}</span>
+   
+    },
+  ];
+  if (status === "loading") {
+    return (
+      <div>
+        <Loader/>
+      </div>
+    );
+  }
+
+  const userData = KitManagementData?.data?.kits || [];
   
   return (
     <div className="kit-management">
       <DataTableComponent
         title={"Registered Kit Management"}
         columns={KitColumns}
-        data={tableData}
+        data={userData}
         selectedRows
       />
     </div>

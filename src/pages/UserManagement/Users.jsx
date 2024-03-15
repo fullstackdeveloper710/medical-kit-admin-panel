@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import DataTableComponent from "../../components/DataTable";
 import { fetchUserManagementData } from "../../redux/slice/UserManagementSlice";
 import icon from "../../Assets/Profile/profileicon/Icon.png"
+import Loader from "../../components/Common/Loader";
 
 
 function Users() {
@@ -49,9 +50,8 @@ function Users() {
     },
   ];
 
-  // Check if data is being fetched
   if (status === "loading") {
-    return <div>Loading...</div>;
+    return <div><Loader/></div>;
   }
 
   const userData = UserManagementData?.data?.Users || [];

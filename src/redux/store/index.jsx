@@ -3,7 +3,11 @@ import LoginReducer from "../slice/LoginSlice";
 import AuthReducer from "../slice/AuthSlice";
 import DistributorReducer from "../slice/DistributionRegistrationSlice";
 import UserManagementReducer from "../slice/UserManagementSlice";
-import UserRegistrationReducer from "../slice/UserManagementSlice";
+import CreateUserReducer from "../slice/UserManagementSlice";
+import ProductManagementReducer from "../slice/ProductManagementSlice";
+import KitManagementReducer from "../slice/KitManagementSlice";
+
+
 
 
 const store = configureStore({
@@ -12,8 +16,11 @@ const store = configureStore({
     AUTH: AuthReducer,
     DISTRIBUTORREGISTRATION: DistributorReducer,
    USERMANAGEMENT:UserManagementReducer,
-   USEREGISTRATION:UserRegistrationReducer,
-  },
+   CREATEUSERANDLOCATION: CreateUserReducer,
+   PRODUCTMANAGEMENT:ProductManagementReducer,
+   KITMANAGEMENT:KitManagementReducer
+
+    },
 });
 
 export default store;
