@@ -5,14 +5,13 @@ import Header from ".././components/Header/Header";
 import { Card } from "react-bootstrap";
 import Sidebar from ".././components/Sidebar/SideBar";
 import "../layout/style.css";
-import { authUser } from "../redux/slice/AuthSlice";
+import { authUser, refreshtoken } from "../redux/slice/AuthSlice";
 import { useDispatch } from "react-redux";
 
 const Layout = ({ children }) => {
   const location = useLocation();
   const [isActive, setIsActive] = useState(false);
   const dispatch = useDispatch();
-
   const toggleClass = () => {
     setIsActive(!isActive);
   };
@@ -24,6 +23,12 @@ const Layout = ({ children }) => {
     dispatch(authUser());
   }, []);
 
+  useEffect(() => {
+    const interval = setInterval(() => {
+      dispatch(refreshtoken());
+    }, 25000000);
+    return () => clearInterval(interval);
+  }, []);
   return (
     <div className="wrapper">
       <Sidebar isActive={isActive} removeSideBarActive={removeSideBarActive} />
@@ -40,9 +45,9 @@ const Layout = ({ children }) => {
               border: "none",
               backgroundColor:
                 location.pathname === "/" ||
-                location.pathname == "/reports" ||
-                location.pathname == "/resource" ||
-                location.pathname == "/edit-notification"
+                location.pathname === "/reports" ||
+                location.pathname === "/resource" ||
+                location.pathname === "/edit-notification"
                   ? "transparent"
                   : "white",
             }}

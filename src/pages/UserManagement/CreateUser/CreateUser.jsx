@@ -240,13 +240,27 @@ function CreateUser() {
                 <Col>
                   <Form.Group className="mb-3" controlId="formBasicNumber">
                     <Form.Control
-                      type="number"
+                      onKeyPress={(e) => {
+                        if (
+                          e.key === "e" ||
+                          e.key === "E" ||
+                          isNaN(Number(e.key))
+                        ) {
+                          e.preventDefault();
+                        }
+                      }}
+                      onKeyDown={(e) => {
+                        if (e.key === " ") {
+                          e.preventDefault();
+                        }
+                      }}
+                      type="text"
+                      pattern="[0-9]*"
                       name="contact_number"
                       value={values.contact_number}
                       onChange={handleChange}
                       onBlur={handleBlur}
                       placeholder="Number"
-                      onTouchMoveCapture={(e) => e.stopPropagation()}
                     />
                   </Form.Group>
                   {errors.contact_number && touched.contact_number ? (

@@ -68,4 +68,5 @@ export const ApiEndPoint = {
   AUTHUSER: "/user/my_account",
   ADMINFETCHLOCATION: "/admin/fetch_location",
   CREATENEWUSER: "/admin/register_user",
+  REFRESHTOKEN: "/user/refresh_token",
 };
