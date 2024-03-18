@@ -2,10 +2,13 @@ import { configureStore } from "@reduxjs/toolkit";
 import LoginReducer from "../slice/LoginSlice";
 import AuthReducer from "../slice/AuthSlice";
 import DistributorReducer from "../slice/DistributionRegistrationSlice";
-import UserManagementReducer from "../slice/UserManagementSlice";
 import CreateUserReducer from "../slice/UserManagementSlice";
 import ProductManagementReducer from "../slice/ProductManagementSlice";
 import KitManagementReducer from "../slice/KitManagementSlice";
+import DistributorManagementReducer from "../slice/DistributionRegistrationSlice";
+import BusinessProfileReducer from "../slice/BusinessProfileSlice";
+
+
 
 
 
@@ -15,10 +18,12 @@ const store = configureStore({
     LOGIN: LoginReducer,
     AUTH: AuthReducer,
     DISTRIBUTORREGISTRATION: DistributorReducer,
-   USERMANAGEMENT:UserManagementReducer,
+  //  USERMANAGEMENT:UserManagementReducer,
    CREATEUSERANDLOCATION: CreateUserReducer,
    PRODUCTMANAGEMENT:ProductManagementReducer,
-   KITMANAGEMENT:KitManagementReducer
+   KITMANAGEMENT:KitManagementReducer,
+   DISTRIBUTORMANAGEMENT:DistributorManagementReducer,
+   BUSINESSPROFILE:BusinessProfileReducer,
 
     },
 });

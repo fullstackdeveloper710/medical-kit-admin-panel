@@ -26,6 +26,7 @@ function Kits() {
   const { status, KitManagementData } = useSelector(
     (state) => state.KITMANAGEMENT
   );
+  console.log(KitManagementData,"KITMANAGEMENT")
 
   useEffect(() => {
     dispatch(fetchKitssManagementData());

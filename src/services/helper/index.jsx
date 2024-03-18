@@ -12,4 +12,6 @@ export const ApiEndPoint = {
   USERREGISTRATION:"/admin/register_user",
   PRODUCTMANAGEMENT:"/admin/fetch_products",
   KITMANAGEMENT:"/admin/fetch_kits",
+  DISTRIBUTORMANAGEMENT:"/admin/fetch_distributor",
+  BUSINESSPROFILE:"/admin/fetch_location"
 };

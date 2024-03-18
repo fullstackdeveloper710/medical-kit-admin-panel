@@ -8,8 +8,8 @@ import Loader from "../../components/Common/Loader";
 
 function Users() {
   const dispatch = useDispatch();
-  const { status, UserManagementData } = useSelector((state) => state.USERMANAGEMENT);
-
+  const { status, UserManagementData } = useSelector((state) => state.CREATEUSERANDLOCATION);
+console.log(UserManagementData,"UserManagementDatasadsadasdfds")
   useEffect(() => {
     dispatch(fetchUserManagementData());
   }, [dispatch]);
