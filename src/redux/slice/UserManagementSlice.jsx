@@ -6,7 +6,7 @@ const initialState = {
   UserManagementData: {},
   status: StatusCode.IDLE,
 };
-const { USERMANAGEMENT ,USERREGISTRATION } = ApiEndPoint;
+const { USERMANAGEMENT, USERREGISTRATION } = ApiEndPoint;
 export const UserManagementSlice = createSlice({
   name: "usermanagement",
   initialState,
@@ -23,7 +23,7 @@ export const UserManagementSlice = createSlice({
       .addCase(fetchUserManagementData.rejected, (state, action) => {
         state.status = StatusCode.ERROR;
       })
-// add user
+      // add user
       .addCase(registeruser.pending, (state, action) => {
         state.status = StatusCode.LOADING;
       })
@@ -41,37 +41,33 @@ export const {} = UserManagementSlice.actions;
 export default UserManagementSlice.reducer;
 
 export const fetchUserManagementData = createAsyncThunk(
-    'admin/get/users',
-    async () => {
-      try {
-        const res = await API.get(USERMANAGEMENT); 
-         console.log(res, 'res from slice');
-        if (res.data?.status === 200) {
-          
-          return res.data;
-        }
-      } catch (error) {
-        console.error('Failed to fetch User management data:', error);
-        throw error; 
-      }
-    }
-  );
-
-  export const registeruser = createAsyncThunk(
-    "/user/register",
-    async (data) => {
-      try {
-        const res = await API.post(`${USERREGISTRATION}`, data, {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        });
-        if (res.data?.status === 200) {
-          toast.success(res.data?.data?.message);
-        }
+  "admin/get/users",
+  async () => {
+    try {
+      const res = await API.get(USERMANAGEMENT);
+      console.log(res, "res from slice");
+      if (res.data?.status === 200) {
         return res.data;
-      } catch (error) {
-        toast.error(error.response?.data?.message);
       }
+    } catch (error) {
+      console.error("Failed to fetch User management data:", error);
+      throw error;
     }
-  );
+  }
+);
+
+export const registeruser = createAsyncThunk("/user/register", async (data) => {
+  try {
+    const res = await API.post(`${USERREGISTRATION}`, data, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    });
+    if (res.data?.status === 200) {
+      toast.success(res.data?.data?.message);
+    }
+    return res.data;
+  } catch (error) {
+    toast.error(error.response?.data?.message);
+  }
+});

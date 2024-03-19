@@ -3,7 +3,7 @@ import LoginReducer from "../slice/LoginSlice";
 import AuthReducer from "../slice/AuthSlice";
 import DistributorReducer from "../slice/DistributionRegistrationSlice";
 import UserManagementReducer from "../slice/UserManagementSlice";
-import CreateUserReducer from "../slice/UserManagementSlice";
+import CreateUserReducer from "../slice/CreateNewUserSlice";
 import ProductManagementReducer from "../slice/ProductManagementSlice";
 import KitManagementReducer from "../slice/KitManagementSlice";
 
