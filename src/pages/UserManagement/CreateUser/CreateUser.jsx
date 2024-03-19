@@ -43,6 +43,7 @@ function CreateUser() {
   const { FetchLocationData } = useSelector(
     (state) => state.CREATEUSERANDLOCATION
   );
+  console.log(FetchLocationData, "dskj");
   const {
     values,
     errors,

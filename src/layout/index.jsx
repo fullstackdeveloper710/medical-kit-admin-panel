@@ -5,12 +5,11 @@ import Header from ".././components/Header/Header";
 import { Card } from "react-bootstrap";
 import Sidebar from ".././components/Sidebar/SideBar";
 import "../layout/style.css";
-import { authUser, refreshtoken } from "../redux/slice/AuthSlice";
+import { authUser } from "../redux/slice/AuthSlice";
 import { useDispatch } from "react-redux";
 
 const Layout = ({ children }) => {
   const location = useLocation();
-
   const [isActive, setIsActive] = useState(false);
   const dispatch = useDispatch();
   const toggleClass = () => {
@@ -24,12 +23,6 @@ const Layout = ({ children }) => {
     dispatch(authUser());
   }, []);
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      dispatch(refreshtoken());
-    }, 25000000);
-    return () => clearInterval(interval);
-  }, []);
   return (
     <div className="wrapper">
       <Sidebar isActive={isActive} removeSideBarActive={removeSideBarActive} />

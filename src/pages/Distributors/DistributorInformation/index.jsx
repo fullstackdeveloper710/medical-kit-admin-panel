@@ -5,12 +5,12 @@ import { GoTrash } from "react-icons/go";
 import PhoneInput from "react-phone-input-2";
 import "./index.css";
 import { Col, Row, Form } from "react-bootstrap";
-import { distributorregisteruser } from "../../../redux/slice/DistributionRegistrationSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { StatusCode } from "../../../services/helper";
 import ButtonLoader from "../../../components/Common/ButtonLoader";
 import ValidationSchema from "../../../components/Common/ValidationScema";
 import { NavLink } from "react-router-dom";
+import { distributorregisteruser } from "../../../redux/slice/DistributionRegistrationSlice";
 const DistributorInformation = () => {
   const initialValues = {
     distributor_name: "",
@@ -280,22 +280,7 @@ const DistributorInformation = () => {
                 <Col>
                   <Form.Group className="mb-3" controlId="formBasicNumber">
                     <Form.Control
-                      onKeyPress={(e) => {
-                        if (
-                          e.key === "e" ||
-                          e.key === "E" ||
-                          isNaN(Number(e.key))
-                        ) {
-                          e.preventDefault();
-                        }
-                      }}
-                      onKeyDown={(e) => {
-                        if (e.key === " ") {
-                          e.preventDefault();
-                        }
-                      }}
-                      type="text"
-                      pattern="[0-9]*"
+                      type="number"
                       name="contact_number"
                       value={values.contact_number}
                       onChange={handleChange}
