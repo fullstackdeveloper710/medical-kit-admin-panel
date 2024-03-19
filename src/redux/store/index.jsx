@@ -8,7 +8,6 @@ import ProductManagementReducer from "../slice/ProductManagementSlice";
 import KitManagementReducer from "../slice/KitManagementSlice";
 import DistributorManagementReducer from "../slice/DistributionRegistrationSlice";
 import BusinessProfileReducer from "../slice/BusinessProfileSlice";
-import UserManagementReducer from "../slice/UserManagementSlice"
 
 
 

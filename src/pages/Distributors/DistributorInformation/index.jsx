@@ -9,7 +9,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { StatusCode } from "../../../services/helper";
 import ButtonLoader from "../../../components/Common/ButtonLoader";
 import ValidationSchema from "../../../components/Common/ValidationScema";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { distributorregisteruser } from "../../../redux/slice/DistributionRegistrationSlice";
 const DistributorInformation = () => {
   const initialValues = {
@@ -29,6 +29,8 @@ const DistributorInformation = () => {
   const [companyLogoPreview, setCompanyLogoPreview] = useState(null);
   const [whiteCompanyLogoPreview, setWhiteCompanyLogoPreview] = useState(null);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const { status } = useSelector((state) => state.DISTRIBUTORREGISTRATION);
   const whitelogoref = useRef();
   const secwhitelogoref = useRef();
@@ -45,7 +47,12 @@ const DistributorInformation = () => {
     validationSchema: ValidationSchema.distributorinformation,
     onSubmit: async (values) => {
       const res = await dispatch(distributorregisteruser(values));
+      if (res.payload?.status) {
+        navigate("/distributors");
+      }
+      
     },
+    
   });
 
   const handleLogoChange = (e) => {
