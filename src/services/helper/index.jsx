@@ -73,4 +73,6 @@ export const ApiEndPoint = {
   ADMINFETCHLOCATION: "/admin/fetch_location",
   CREATENEWUSER: "/admin/register_user",
   REFRESHTOKEN: "/user/refresh_token",
+  DISTRIBUTORMANAGEMENT:"/admin/fetch_distributor",
+  BUSINESSPROFILE:"/admin/fetch_location"
 };
