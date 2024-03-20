@@ -18,6 +18,8 @@ import Users from "../pages/UserManagement/Users";
 import Login from "../pages/Login";
 import Layout from "../layout";
 import PublicRoute from "../components/Common/PublicRoute";
+import CreateGroupReport from "../pages/ReportManagement/CreateGroupReport";
+import CreateLocation from "../pages/BusinessProfile/CreateLocation";
 const RouterData = [
   {
     path: "/",
@@ -159,6 +161,16 @@ const RouterData = [
     ),
   },
   {
+    path: "/creategroupreport",
+    element: (
+      <ProtectedRoute>
+        <Layout>
+          <CreateGroupReport />
+        </Layout>
+      </ProtectedRoute>
+    ),
+  },
+  {
     path: "/notifications",
     element: (
       <ProtectedRoute>
@@ -184,6 +196,16 @@ const RouterData = [
       <ProtectedRoute>
         <Layout>
           <CreateUser />
+        </Layout>
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/createlocation",
+    element: (
+      <ProtectedRoute>
+        <Layout>
+          <CreateLocation />
         </Layout>
       </ProtectedRoute>
     ),

@@ -8,6 +8,7 @@ import MapImage from "../../Assets/images/mapImage.png";
 import "../BusinessProfile/style.css";
 import PhoneInput from "react-phone-number-input";
 import "react-phone-number-input/style.css";
+import { NavLink } from "react-router-dom";
 
 const BusinessProfile = () => {
   const validationSchema = Yup.object().shape({
@@ -17,7 +18,9 @@ const BusinessProfile = () => {
     businessEmail: Yup.string()
       .email("Invalid email")
       .required("Business Email is required"),
-    superAdmin: Yup.string().email("Invalid email").required("Email is required"),
+    superAdmin: Yup.string()
+      .email("Invalid email")
+      .required("Email is required"),
     approver: Yup.string().email("Invalid email").required("Email is required"),
   });
 
@@ -79,7 +82,6 @@ const BusinessProfile = () => {
                   </Form.Group>
 
                   <div className="row">
-                    
                     <div className="col-sm-6">
                       <Form.Group
                         className="mb-3"
@@ -88,9 +90,9 @@ const BusinessProfile = () => {
                         <PhoneInput
                           international
                           defaultCountry="US"
-                          value={values.number} 
-                          onChange={(value) => setFieldValue("number", value)} 
-                          className="form-control business_input" 
+                          value={values.number}
+                          onChange={(value) => setFieldValue("number", value)}
+                          className="form-control business_input"
                           placeholder="Phone Number"
                         />
                         <ErrorMessage
@@ -451,9 +453,13 @@ const BusinessProfile = () => {
 
       <div className="d-flex justify-content-between align-items-center mt-4">
         <div className="d-flex align-items-center gap-2">
-          <Button size="sm" className=" text-center rounded-circle">
+          <NavLink
+            to="/createlocation"
+            size="sm"
+            className=" text-center rounded-circle"
+          >
             <FaPlus />
-          </Button>
+          </NavLink>
           <span className="button-text">Create Location</span>
         </div>
         <div className="d-flex gap-3">

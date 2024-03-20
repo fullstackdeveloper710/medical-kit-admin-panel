@@ -6,7 +6,7 @@ import UserManagementReducer from "../slice/UserManagementSlice";
 import CreateUserReducer from "../slice/CreateNewUserSlice";
 import ProductManagementReducer from "../slice/ProductManagementSlice";
 import KitManagementReducer from "../slice/KitManagementSlice";
-
+import SuperAdminApproverDataReducer from "../slice/CreateLocationSlice";
 const store = configureStore({
   reducer: {
     LOGIN: LoginReducer,
@@ -17,6 +17,7 @@ const store = configureStore({
     PRODUCTMANAGEMENT: ProductManagementReducer,
     KITMANAGEMENT: KitManagementReducer,
     CREATEUSERANDLOCATION: CreateUserReducer,
+    SUPERADMINAPPROVER: SuperAdminApproverDataReducer,
   },
 });
 
