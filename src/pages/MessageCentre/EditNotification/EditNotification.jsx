@@ -7,15 +7,85 @@ import {
   Form,
   FormControl,
 } from "react-bootstrap";
+import { useSelector, useDispatch } from "react-redux";
 import notificationImage from "../../../Assets/images/Background.png";
 import CustomButton from "../../../components/Common/Button/Button";
 import DateTimePicker from "../../../components/Common/DatePicker/DatePicker";
 import "./EditNotification.css";
+import { RegisterEditNotification } from "../../../redux/slice/MessageCentreSlice";
 
 function EditNotification() {
   const [content, setContent] = useState();
   const [locations, setLocations] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
+  const dispatch = useDispatch();
+  const { status } = useSelector((state) => state.MESSAGECENTRE);
+
+  const [notificationData, setNotificationData] = useState({
+    title: "",
+    message: "",
+    send_message_to:[],
+    location:"",
+    industry:"",
+  });
+
+  const [publishDetails, setPublishDetails] = useState({
+    status: "",
+    revisions: 1,
+    publish_on: new Date(), 
+    category: "",
+   
+  });
+
+  const handleSave = () => {
+    console.log("Saving article...");
+
+    dispatch(RegisterEditNotification({ ...notificationData, ...publishDetails }))
+      .then((response) => {
+        if (response.status === 200) {
+          console.log("Article updated successfully:", response.data.message);
+          console.log("Article ID:", response.data.article_id);
+        } else {
+          console.error("Failed to update article:", response.data.message);
+        }
+      })
+      .catch((error) => {
+        console.error("Error updating article:", error);
+      });
+  };
+  
+
+  const onCancelHandler = () => {
+  };
+
+  const handleChange = (newContent) => {
+    setNotificationData((prevData) => ({
+      ...prevData,
+      content: newContent,
+    }));
+  };
+
+  const handlePublishDetailsChange = (fieldName, value, format) => {
+    // Format the date if format is provided
+    const formattedValue = format ? formatDate(value, format) : value;
+    
+    setPublishDetails((prevDetails) => ({
+      ...prevDetails,
+      [fieldName]: formattedValue,
+    }));
+  };
+  
+  // Function to format the date
+  const formatDate = (date, format) => {
+    return new Intl.DateTimeFormat('en-US', format).format(date);
+  };
+  
+  const handleTitleChange = (e) => {
+    setNotificationData((prevData) => ({
+      ...prevData,
+      title: e.target.value,
+    }));
+  };
 
   const handleSearchChange = (event) => {
     setSearchTerm(event.target.value);
@@ -50,15 +120,16 @@ function EditNotification() {
     "Private households",
   ];
   const checkboxes = [
-    "General Users",
-    "User Admin",
-    "User Super Admin",
-    "General Distributors",
-    "Distributor Admin",
-    "Distributor Super Admin",
-    "Reliance Medical Admin",
-    "Reliance Medical Super Admin",
+    { value: "general_users", label: "General Users" },
+    { value: "user_admin", label: "User Admin" },
+    { value: "user_super_admin", label: "User Super Admin" },
+    { value: "general_distributors", label: "General Distributors" },
+    { value: "distributor_admin", label: "Distributor Admin" },
+    { value: "distributor_super_admin", label: "Distributor Super Admin" },
+    { value: "rm_admin", label: "Reliance Medical Admin" },
+    { value: "rm_super_admin", label: "Reliance Medical Super Admin" },
   ];
+  
 
   useEffect(() => {
     // Simulated data source with location mappings
@@ -69,19 +140,38 @@ function EditNotification() {
     ];
     setLocations(locationData);
   }, []);
-
-  const handleSave = () => {
-    // Logic to save the content
-    console.log("Content saved:", content);
+  const handleMessageChange = (e) => {
+    setNotificationData((prevData) => ({
+      ...prevData,
+      message: e.target.value,
+    }));
+  };
+  const handleCheckboxChange = (label) => {
+    // Toggle checkbox state
+    const updatedCheckboxState = [...notificationData.send_message_to];
+    if (updatedCheckboxState.includes(label)) {
+      updatedCheckboxState.splice(updatedCheckboxState.indexOf(label), 1);
+    } else {
+      updatedCheckboxState.push(label);
+    }
+    // Update notificationData state
+    setNotificationData((prevData) => ({
+      ...prevData,
+      send_message_to: updatedCheckboxState,
+    }));
+  };
+    const handleLocationChange = (e) => {
+    setNotificationData((prevData) => ({
+      ...prevData,
+      location: e.target.value,
+    }));
   };
 
-  const onCancelHandler = () => {
-    // Logic to handle cancel action
-    console.log("Edit cancelled");
-  };
-
-  const handleChange = (newContent) => {
-    setContent(newContent);
+  const handleIndustryChange = (e) => {
+    setNotificationData((prevData) => ({
+      ...prevData,
+      industry: e.target.value,
+    }));
   };
   return (
     <div>
@@ -98,49 +188,68 @@ function EditNotification() {
      
       </div>
     </Col>
-        <Col md={5}>
-          <div className="notification-card card border-0  p-3">
+    <Col md={5}>
+          <div className="notification-card card border-0 p-3">
             <h3 className="listing">Edit Notification</h3>
             <div className="title-box mb-2">
-             <div className="d-flex justify-content-between pb-2">
-              <p className="mb-0">Title</p>  
-              <span>100</span>
+              <div className="d-flex justify-content-between pb-2">
+                <p className="mb-0">Title</p>
+                <span>100</span>
               </div>
-              <input className="input_style" type="text" placeholder="Title" />
-            </div>{" "}
+              <input
+                className="input_style"
+                type="text"
+                placeholder="Title"
+                value={notificationData.title}
+                onChange={handleTitleChange}
+              />
+            </div>
             <div className="message-box mb-2">
-            <div className="d-flex justify-content-between pb-2">
-              <p className="mb-0">Message</p>
-              <span>100</span>
+              <div className="d-flex justify-content-between pb-2">
+                <p className="mb-0">Message</p>
+                <span>100</span>
               </div>
-              <textarea className="textarea_style" cols={3} placeholder="Message"></textarea>
+              <textarea
+                className="textarea_style"
+                cols={3}
+                placeholder="Message"
+                value={notificationData.message}
+                onChange={handleMessageChange}
+              ></textarea>
             </div>
             <div className="checkboxes border-top border-bottom py-3 my-3">
-              <Form.Group as={Row}>
-                <h4>Send Message To:</h4>
-                {checkboxes.map((label, index) => (
-                  <Col md={4} key={index}>
-                    <Form.Check type="checkbox" label={label} />
-                  </Col>
-                ))}
-              </Form.Group>
-            </div>
+  <Form.Group as={Row}>
+    <h4>Send Message To:</h4>
+    {checkboxes.map((checkbox, index) => (
+      <Col md={4} key={index}>
+        <Form.Check
+          type="checkbox"
+          label={checkbox.label}
+          checked={notificationData.send_message_to.includes(checkbox.value)}
+          onChange={() => handleCheckboxChange(checkbox.value)}
+        />
+      </Col>
+    ))}
+  </Form.Group>
+</div>
+
             <div className="select_wrapper mb-3">
+              {/* Location select */}
               <label htmlFor="">Location(s)</label>
-              <select>
+              <select value={notificationData.location} onChange={handleLocationChange}>
                 <option>All</option>
                 {locations.map((location) => (
-                  <option key={location.id}>{location.name}</option>
+                  <option key={location.id} value={location.name}>{location.name}</option>
                 ))}
               </select>
             </div>
             <div className="select_wrapper mb-3">
+              {/* Industry select */}
               <label htmlFor="">Industry(s)</label>
-              <select>
+              <select value={notificationData.industry} onChange={handleIndustryChange}>
                 <option>All</option>
-
                 {industries.map((industry, index) => (
-                  <option key={index}>{industry}</option>
+                  <option key={index} value={industry}>{industry}</option>
                 ))}
               </select>
             </div>
@@ -151,36 +260,49 @@ function EditNotification() {
           <div className="notification-card card border-0  p-3">
             <h3 className="listing">Publish Details</h3>
             <div className="select_wrapper mb-3">
-              <label htmlFor="">Status:</label>
-              <select>
-                <option>Draft</option>
-                <option>Draft</option>
-                <option>Draft</option>
-                <option>Draft</option>
-                <option>Draft</option>
-              </select>
-            </div>
-
-            <div className="revision mb-3">
-              <p>Revisions: 0</p>
-            </div>
-            <div className="date_wrapper mb-3">
-              <label htmlFor="">Publish on: </label>
-              <DateTimePicker />
-            </div>
-            <div className="select_wrapper mb-3">
-              <label htmlFor="">Categories:</label>
-
-              <select>
-                <option>How To Video</option>
-                <option>Product Update</option>
-                <option>Legislation and Compliance</option>
-                <option>News Update</option>
-                <option>Product Launches</option>
-                <option>Training</option>
-                <option>user Defined</option>
-              </select>
-            </div>
+      <label>Status:</label>
+      <select
+        value={publishDetails.status}
+        onChange={(e) =>
+          handlePublishDetailsChange("status", e.target.value)
+        }
+      >
+        <option>Draft</option>
+        <option>Sent for Approval</option>
+        <option>Approved</option>
+        <option>Scheduled</option>
+      </select>
+    </div>
+    <div className="revision mb-3">
+      <p>Revisions: {publishDetails.revisions}</p>
+    </div>
+    <div className="date_wrapper mb-3">
+      <label htmlFor="">Publish on: </label>
+      <DateTimePicker
+        value={publishDetails.publish_on}
+        onChange={(date) =>
+          handlePublishDetailsChange('publish_on', date)
+        }
+        format="yyyy-MM-dd HH:mm:ss" // Set your desired time format
+      />
+    </div>
+    <div className="select_wrapper mb-3">
+      <label htmlFor="">Categories:</label>
+      <select
+        value={publishDetails.category}
+        onChange={(e) =>
+          handlePublishDetailsChange("category", e.target.value)
+        }
+      >
+        <option>How To Video</option>
+        <option>Product Update</option>
+        <option>Legislation and Compliance</option>
+        <option>News Update</option>
+        <option>Product Launches</option>
+        <option>Training</option>
+        <option>user Defined</option>
+      </select>
+    </div>
             <div className="select_wrapper my-3">
               <b>Restrict notifications to users who have registered the following products</b>
             </div>
