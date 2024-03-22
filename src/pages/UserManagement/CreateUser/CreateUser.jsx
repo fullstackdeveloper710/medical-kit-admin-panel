@@ -83,7 +83,6 @@ function CreateUser() {
       );
     }
   };
-
   useEffect(() => {
     dispatch(fetchLocation());
   }, []);

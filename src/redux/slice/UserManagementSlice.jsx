@@ -22,7 +22,10 @@ export const UserManagementSlice = createSlice({
       })
       .addCase(fetchUserManagementData.rejected, (state, action) => {
         state.status = StatusCode.ERROR;
-      });
+      })
+      // add user
+     
+      // });
   },
 });
 
@@ -44,3 +47,5 @@ export const fetchUserManagementData = createAsyncThunk(
     }
   }
 );
+
+

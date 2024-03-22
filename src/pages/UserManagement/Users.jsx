@@ -10,9 +10,11 @@ import { FaRegTrashAlt } from "react-icons/fa";
 
 function Users() {
   const dispatch = useDispatch();
-  const { status, UserManagementData } = useSelector(
-    (state) => state.USERMANAGEMENT
-  );
+  const { status, UserManagementData } = useSelector((state) => state.USERMANAGEMENT);
+console.log(UserManagementData,"UserManagementDatasadsadasdfds")
+  // const { status, UserManagementData } = useSelector(
+  //   (state) => state.USERMANAGEMENT
+  // );
 
   useEffect(() => {
     dispatch(fetchUserManagementData());

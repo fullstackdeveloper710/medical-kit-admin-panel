@@ -2,7 +2,6 @@ import ProtectedRoute from "../components/Common/ProtectedRoute";
 import BusinessProfile from "../pages/BusinessProfile";
 import Dashboard from "../pages/Dashboard/Dashboard";
 import Distributor from "../pages/Distributors/Distributor";
-import DistributorInformation from "../pages/Distributors/DistributorInformation";
 import Kits from "../pages/KitManagement/Kits";
 import EditArticle from "../pages/MessageCentre/EditArticle/EditArticle";
 import EditNotification from "../pages/MessageCentre/EditNotification/EditNotification";
@@ -18,6 +17,7 @@ import Users from "../pages/UserManagement/Users";
 import Login from "../pages/Login";
 import Layout from "../layout";
 import PublicRoute from "../components/Common/PublicRoute";
+import DistributorInformation from "../pages/Distributors/DistributorInformation";
 import CreateGroupReport from "../pages/ReportManagement/CreateGroupReport";
 import CreateLocation from "../pages/BusinessProfile/CreateLocation";
 import UpdateUser from "../pages/UserManagement/UpdateUser";
@@ -136,7 +136,7 @@ const RouterData = [
     element: (
       <ProtectedRoute>
         <Layout>
-          <DistributorInformation />
+          <DistributorInformation/>
         </Layout>
       </ProtectedRoute>
     ),
