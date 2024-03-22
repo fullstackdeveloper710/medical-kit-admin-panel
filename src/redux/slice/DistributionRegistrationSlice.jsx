@@ -6,7 +6,7 @@ const initialState = {
   DistributorRegisaterData: {},
   status: StatusCode.IDLE,
 };
-const { DISTRIBUTORREGISTER,DISTRIBUTORMANAGEMENT } = ApiEndPoint;
+const { DISTRIBUTORREGISTER, DISTRIBUTORMANAGEMENT } = ApiEndPoint;
 export const distributionRegistrationSlice = createSlice({
   name: "distributorregistration",
   initialState,
@@ -33,7 +33,7 @@ export const distributionRegistrationSlice = createSlice({
       })
       .addCase(fetchDistributorManagementData.rejected, (state, action) => {
         state.status = StatusCode.ERROR;
-      })
+      });
   },
 });
 
@@ -61,18 +61,16 @@ export const distributorregisteruser = createAsyncThunk(
 
 // Fetch distributor listing
 export const fetchDistributorManagementData = createAsyncThunk(
-  'admin/get/distributor',
+  "admin/get/distributor",
   async () => {
     try {
-      const res = await API.get(DISTRIBUTORMANAGEMENT); 
-       console.log(res, 'res from slice');
+      const res = await API.get(DISTRIBUTORMANAGEMENT);
       if (res.data?.status === 200) {
-        
         return res.data;
       }
     } catch (error) {
-      console.error('Failed to fetch distributor management data:', error);
-      throw error; 
+      console.error("Failed to fetch distributor management data:", error);
+      throw error;
     }
   }
 );

@@ -22,8 +22,7 @@ export const KitManagementSlice = createSlice({
       })
       .addCase(fetchKitssManagementData.rejected, (state, action) => {
         state.status = StatusCode.ERROR;
-      })
-
+      });
   },
 });
 
@@ -31,20 +30,16 @@ export const {} = KitManagementSlice.actions;
 export default KitManagementSlice.reducer;
 
 export const fetchKitssManagementData = createAsyncThunk(
-    'admin/get/kit',
-    async () => {
-      try {
-        const res = await API.get(KITMANAGEMENT); 
-         console.log(res, 'res from slice');
-        if (res.data?.status === 200) {
-          
-          return res.data;
-        }
-      } catch (error) {
-        console.error('Failed to fetch product management data:', error);
-        throw error; 
+  "admin/get/kit",
+  async () => {
+    try {
+      const res = await API.get(KITMANAGEMENT);
+      if (res.data?.status === 200) {
+        return res.data;
       }
+    } catch (error) {
+      console.error("Failed to fetch product management data:", error);
+      throw error;
     }
-  );
-
-
+  }
+);

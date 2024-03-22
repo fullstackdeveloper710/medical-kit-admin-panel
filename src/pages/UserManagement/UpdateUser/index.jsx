@@ -46,7 +46,7 @@ function UpdateUser() {
     employee_id: existinguser ? existinguser.employee_id : "",
     job_title: existinguser ? existinguser.job_title : "",
     assigned_role: existinguser ? existinguser.assigned_role : "",
-    permissions: [],
+    permissions: null,
     email: existinguser ? existinguser.email : "",
     // profile_pic: null,
   };
@@ -68,7 +68,7 @@ function UpdateUser() {
     setValues,
   } = useFormik({
     initialValues: initialValues,
-    // validationSchema: ValidationSchema.createnewuser,
+    validationSchema: ValidationSchema.createnewuser,
     onSubmit: async (values) => {
       console.log(values, "values");
     },
@@ -80,19 +80,21 @@ function UpdateUser() {
     // setValues({ ...values, profile_pic: file });
   };
 
-  // const handlePermissionChange = (event) => {
-  //   console.log(event.target.id);
-  //   const permissionId = event.target.id;
-  //   const isChecked = event.target.checked;
-  //   if (isChecked) {
-  //     setCheckedPermissions([...checkedPermissions, permissionId]);
-  //     setValues({ ...values, permissions: checkedPermissions });
-  //   } else {
-  //     setCheckedPermissions(
-  //       checkedPermissions.filter((id) => id !== permissionId)
-  //     );
-  //   }
-  // };
+  const handlePermissionChange = (event) => {
+    const permissionId = event.target.id;
+    const isChecked = event.target.checked;
+    if (isChecked) {
+      setCheckedPermissions([...checkedPermissions, permissionId]);
+      setValues({
+        ...values,
+        permissions: [...checkedPermissions, permissionId],
+      });
+    } else {
+      setCheckedPermissions(
+        checkedPermissions.filter((id) => id !== permissionId)
+      );
+    }
+  };
 
   useEffect(() => {
     dispatch(fetchLocation());
@@ -367,14 +369,12 @@ function UpdateUser() {
               {userPermissions &&
                 userPermissions.map((curElm) => (
                   <Col key={curElm.id} className={curElm.column}>
-                    <Form.Group>
+                    <Form.Group name="permissions">
                       <Form.Check
-                        name="permissions"
                         type={curElm.type}
-                        value={values.label}
                         id={curElm.id}
                         label={curElm.label}
-                        onChange={handleChange}
+                        onChange={handlePermissionChange}
                       />
                     </Form.Group>
                   </Col>

@@ -67,4 +67,3 @@ export const createLocation = createAsyncThunk(
     }
   }
 );
-
