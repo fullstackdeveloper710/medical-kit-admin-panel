@@ -63,20 +63,20 @@ function UserManagement() {
     /^[+]?[0-9]{1,3}?[-.\\s]?[(]?[0-9]{1,4}[)]?[-.\\s]?[0-9]{1,4}[-.\\s]?[0-9]{1,9}$/;
 
   const validationSchema = Yup.object().shape({
-    firstName: Yup.string().required("First Name is required"),
-    lastName: Yup.string().required("Last Name is required"),
+    firstName: Yup.string().required("*First Name is required"),
+    lastName: Yup.string().required("*Last Name is required"),
     businessEmail: Yup.string()
-      .email("Invalid email format")
-      .required("Business Email is required"),
-    officeLocation: Yup.string().required("Office Location is required"),
-    country_code: Yup.string().required("Country Code is required"),
+      .email("*Invalid email format")
+      .required("*Business Email is required"),
+    officeLocation: Yup.string().required("*Office Location is required"),
+    country_code: Yup.string().required("*Country Code is required"),
     phone: Yup.string()
       .matches(phonenumberRegex, "*Enter a valid Phone Number")
       .required("*Enter a valid Phone Number"),
 
-    employeeId: Yup.string().required("Employee ID is required"),
-    jobTitle: Yup.string().required("Job Title is required"),
-    assignRole: Yup.string().required("Role is required"),
+    employeeId: Yup.string().required("*Employee ID is required"),
+    jobTitle: Yup.string().required("*Job Title is required"),
+    assignRole: Yup.string().required("*Role is required"),
   });
 
   return (

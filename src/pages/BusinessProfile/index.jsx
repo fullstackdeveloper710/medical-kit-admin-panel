@@ -19,25 +19,22 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-
 const BusinessProfile = () => {
   const dispatch = useDispatch();
-  const { status, BusinessProfileData  } = useSelector(
+  const { status, BusinessProfileData } = useSelector(
     (state) => state.BUSINESSPROFILE
   );
-  const {  BusinessprofileForm } = useSelector(
+  const { BusinessprofileForm } = useSelector(
     (state) => state.BUSINESSPROFILEFORM
   );
 
-  const {  ApproversSuperAdminsData } = useSelector(
+  const { ApproversSuperAdminsData } = useSelector(
     (state) => state.SUPERADMINAPPROVER
   );
 
   useEffect(() => {
     dispatch(fetchBusinessProfileData());
   }, [dispatch]);
-
-
 
   useEffect(() => {
     dispatch(fetchUserProfileData());
@@ -69,12 +66,9 @@ const BusinessProfile = () => {
   const companyEmail = company.distributor_email || "";
   const compNumber = company.distributor_email || "";
   // console.log(userDataApprover, "userDataApprover");
-  
+
   const userInfo = BusinessprofileForm?.business_profile || [];
-  console.log(userInfo,"userinformation")
-
-
-
+  console.log(userInfo, "userinformation");
 
   return (
     <div className="p-3 business_block">
@@ -102,7 +96,7 @@ const BusinessProfile = () => {
               country_code: userInfo.country_code || "",
               contact_number: userInfo.contact_number || "",
               email: userInfo.email || "",
-              assigned_role:userInfo.assigned_role || "",
+              assigned_role: userInfo.assigned_role || "",
               number: "",
               businessEmail: "",
               superAdmin: "",
@@ -112,25 +106,26 @@ const BusinessProfile = () => {
             onSubmit={(
               values,
 
-              
-              
-              { setSubmitting }) => {
+              { setSubmitting }
+            ) => {
               setTimeout(() => {
                 alert(JSON.stringify(values, null, 2));
                 setSubmitting(false);
               }, 400);
             }}
           >
-            {({ isSubmitting, values,
-            
+            {({
+              isSubmitting,
+              values,
 
-            errors,
-            handleBlur,
-            handleChange,
-            touched,
-            handleSubmit,
-            setValues,
-             setFieldValue }) => (
+              errors,
+              handleBlur,
+              handleChange,
+              touched,
+              handleSubmit,
+              setValues,
+              setFieldValue,
+            }) => (
               <Form>
                 <div className="">
                   <Form.Group
@@ -152,38 +147,43 @@ const BusinessProfile = () => {
 
                   <div className="row">
                     <div className="col-sm-6">
-                    <Row>
-                <Col xs lg="3">
-                  <div className="phoneinput">
-                    <PhoneInput
-                      name="country_code"
-                      country={"us"}
-                      placeholder="Phone Number"
-                      value={values.country_code}
-                      onChange={(value) =>
-                        handleChange({
-                          target: { name: "country_code", value },
-                        })
-                      }
-                    />
-                  </div>
-                </Col>
-                <Col>
-                  <Form.Group className="mb-3" controlId="formBasicNumber">
-                    <Form.Control
-                      type="number"
-                      name="contact_number"
-                      value={values.contact_number}
-                      onChange={handleChange}
-                      onBlur={handleBlur}
-                      placeholder="Number"
-                    />
-                  </Form.Group>
-                  {errors.contact_number && touched.contact_number ? (
-                    <p className="text-danger">{errors.contact_number} </p>
-                  ) : null}
-                </Col>
-              </Row>
+                      <Row>
+                        <Col xs lg="3">
+                          <div className="phoneinput">
+                            <PhoneInput
+                              name="country_code"
+                              country={"us"}
+                              placeholder="Phone Number"
+                              value={values.country_code}
+                              onChange={(value) =>
+                                handleChange({
+                                  target: { name: "country_code", value },
+                                })
+                              }
+                            />
+                          </div>
+                        </Col>
+                        <Col>
+                          <Form.Group
+                            className="mb-3"
+                            controlId="formBasicNumber"
+                          >
+                            <Form.Control
+                              type="number"
+                              name="contact_number"
+                              value={values.contact_number}
+                              onChange={handleChange}
+                              onBlur={handleBlur}
+                              placeholder="Number"
+                            />
+                          </Form.Group>
+                          {errors.contact_number && touched.contact_number ? (
+                            <p className="text-danger">
+                              {errors.contact_number}{" "}
+                            </p>
+                          ) : null}
+                        </Col>
+                      </Row>
                     </div>
                     <div className="col-sm-6">
                       <Form.Group
@@ -207,25 +207,23 @@ const BusinessProfile = () => {
                   <div className="divider"></div>
                   <div className="row">
                     <div className="col-sm-6">
-                    <Form.Group
-                    className="mb-3"
-                    controlId="exampleForm.ControlInput12"
-                  >
-                    <Field
-                      type="text"
-                      name="assigned_role"
-                      className="form-control"
-                      // placeholder="Business Name"
-                    />
-                    <ErrorMessage
-                      name="superAdmin"
-                      component="div"
-                      className="text-danger"
-                    />
-                  </Form.Group>
+                      <Form.Group
+                        className="mb-3"
+                        controlId="exampleForm.ControlInput12"
+                      >
+                        <Field
+                          type="text"
+                          name="assigned_role"
+                          className="form-control"
+                          // placeholder="Business Name"
+                        />
+                        <ErrorMessage
+                          name="superAdmin"
+                          component="div"
+                          className="text-danger"
+                        />
+                      </Form.Group>
                     </div>
-
-                    
                   </div>
                 </div>
               </Form>
@@ -241,99 +239,103 @@ const BusinessProfile = () => {
       </h4>
 
       <div className="row gx-5 mt-3">
-
-      <Slider horizontal={true} dots={true} infinite={true} slidesToShow={3} slidesToScroll={1}>
-
-        {userData.map((location, company) => (
-          <div key={location._id} className="col-md-4 p-2">
-            <div className="d-flex justify-content-between">
-              <div>
-                <div className="d-flex">
-                  <div>
-                    <b className="smallText">
-                      <small>Location Name</small>
-                    </b>
-                    <p>{location.location_name}</p>
+        <Slider
+          horizontal={true}
+          dots={true}
+          infinite={true}
+          slidesToShow={3}
+          slidesToScroll={1}
+        >
+          {userData.map((location, company) => (
+            <div key={location._id} className="col-md-4 p-2">
+              <div className="d-flex justify-content-between">
+                <div>
+                  <div className="d-flex">
+                    <div>
+                      <b className="smallText">
+                        <small>Location Name</small>
+                      </b>
+                      <p>{location.location_name}</p>
+                    </div>
+                  </div>
+                  <div className="d-flex">
+                    <div>
+                      <b className="smallText">
+                        <small>House Number and Street Name</small>
+                      </b>
+                      <p>{location.street}</p>
+                    </div>
+                  </div>
+                  <div className="d-flex">
+                    <div>
+                      <b className="smallText">
+                        <small>City/Town</small>
+                      </b>
+                      <p>{location.city}</p>
+                    </div>
+                  </div>
+                  <div className="d-flex">
+                    <div>
+                      <b className="smallText">
+                        <small>Country</small>
+                      </b>
+                      <p>{location.country}</p>
+                    </div>
                   </div>
                 </div>
-                <div className="d-flex">
-                  <div>
-                    <b className="smallText">
-                      <small>House Number and Street Name</small>
-                    </b>
-                    <p>{location.street}</p>
-                  </div>
-                </div>
-                <div className="d-flex">
-                  <div>
-                    <b className="smallText">
-                      <small>City/Town</small>
-                    </b>
-                    <p>{location.city}</p>
-                  </div>
-                </div>
-                <div className="d-flex">
-                  <div>
-                    <b className="smallText">
-                      <small>Country</small>
-                    </b>
-                    <p>{location.country}</p>
+                <div>
+                  {/* Render map or any other location-related component */}
+                  <img src={MapImage} style={{ width: 100, height: 90 }} />
+                  <div className="d-flex">
+                    <div>
+                      <b className="smallText">
+                        <small>Post Code</small>
+                      </b>
+                      <p>{location.zip_code}</p>
+                    </div>
                   </div>
                 </div>
               </div>
-              <div>
-                {/* Render map or any other location-related component */}
-                <img src={MapImage} style={{ width: 100, height: 90 }} />
+              <div className="divider"></div>
+
+              <div className="d-flex justify-content-between align-items-center border-top border-dark pt-2">
                 <div className="d-flex">
                   <div>
                     <b className="smallText">
-                      <small>Post Code</small>
+                      <small>Email</small>
                     </b>
-                    <p>{location.zip_code}</p>
+                    <p>{companyEmail}</p>
+                  </div>
+                </div>
+                <div>
+                  <div>
+                    <b className="smallText">
+                      <small>Contact</small>
+                    </b>
+                    <p>{location.telephone}</p>
+                  </div>
+                </div>
+              </div>
+              <div className="d-flex justify-content-between align-items-center">
+                <div className="d-flex">
+                  <div>
+                    <b className="smallText">
+                      <small>Assigned Super Admin</small>
+                    </b>
+                    <p>Harold Dickenson Jr</p>
+                  </div>
+                </div>
+                <div className="d-flex">
+                  <div>
+                    <b className="smallText">
+                      <small>Assigned Approver</small>
+                    </b>
+                    <p>Jugal Rupela</p>
                   </div>
                 </div>
               </div>
             </div>
-            <div className="divider"></div>
-
-            <div className="d-flex justify-content-between align-items-center border-top border-dark pt-2">
-              <div className="d-flex">
-                <div>
-                  <b className="smallText">
-                    <small>Email</small>
-                  </b>
-                  <p>{companyEmail}</p>
-                </div>
-              </div>
-              <div>
-                <div>
-                  <b className="smallText">
-                    <small>Contact</small>
-                  </b>
-                  <p>{location.telephone}</p>
-                </div>
-              </div>
-            </div>
-            <div className="d-flex justify-content-between align-items-center">
-              <div className="d-flex">
-                <div>
-                  <b className="smallText">
-                    <small>Assigned Super Admin</small>
-                  </b>
-                  <p>Harold Dickenson Jr</p>
-                </div>
-              </div>
-              <div className="d-flex">
-                <div>
-                  <b className="smallText">
-                    <small>Assigned Approver</small>
-                  </b>
-                  <p>Jugal Rupela</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        ))}
+          ))}
         </Slider>
       </div>
 
