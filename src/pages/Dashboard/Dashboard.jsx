@@ -28,14 +28,14 @@ function Dashboard() {
 
   return (
     <div className="">
-      <div className="row" style={{ height: "586px" }}>
+      <div className="row" style={{ height: "600px" }}>
         <div className="col-md-8">
           <div className="row">
             <div className="col-md-6">
-              <CardWithChart title={"Register Users"} count={"27,545"} />
+              <CardWithChart title={"Register Users"} count={"27,545"} count2={"34%"} />
             </div>
             <div className="col-md-6">
-              <CardWithChart title={"Register Companies"} count={"165"} />
+              <CardWithChart title={"Register Companies"} count={"165"} count2={"34%"}  />
             </div>
             <div className="col-md-12 mt-4">
               <CardWithLineChart />
@@ -47,7 +47,8 @@ function Dashboard() {
         </div>
       </div>
       <div className="row mt-4">
-        <div className="col-md-4 bg-light">
+        <div className="col-md-4 bg-white rounded">
+          <h4 className="text-center bold pt-3">Safety Kits Installed</h4>
           <ReactApexChart
             options={radial.options}
             series={radial.series}

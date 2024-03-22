@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { Card } from "react-bootstrap";
 import ReactApexChart from "react-apexcharts";
-import { FaUserAlt } from "react-icons/fa";
+import { FaArrowUp, FaUserAlt } from "react-icons/fa";
 import { FaUserGroup } from "react-icons/fa6";
 
-const CardWithChart = ({ title, count }) => {
+const CardWithChart = ({ title, count, count2 }) => {
   const [chartState] = useState({
     series: [
       {
@@ -116,7 +116,7 @@ const CardWithChart = ({ title, count }) => {
         </Card.Title>
         <div className="d-flex justify-content-between align-items-end">
           <h2 style={{ fontSize: 32, fontWeight: "700" }}>{count}</h2>
-
+          <h5 className="percentage_number">{count2} <FaArrowUp/></h5>
           <div id="chart">
             <ReactApexChart
               options={chartState.options}
