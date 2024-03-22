@@ -2,15 +2,28 @@ import React, { useState } from "react";
 import { IoIosCloseCircleOutline } from "react-icons/io";
 import "./index.css";
 import { Form } from "react-bootstrap";
+import { NavLink } from "react-router-dom";
+import { useFormik } from "formik";
+import ValidationSchema from "../../../components/Common/ValidationScema";
 const CreateGroupReport = () => {
   const [managebutton, setManageButton] = useState(6);
+  const initialValues = {};
+  const { values, handleBlur, handleChange, errors, touched, handleSubmit } =
+    useFormik({
+      initialValues: initialValues,
+      // validationSchema:ValidationSchema.creategroupreport,
+      onSubmit: async (values) => {
+        console.log(values);
+      },
+    });
+
   return (
     <div className="container-fluid creategroupreport">
       <h3 className="text-center border-bottom pb-4 pt-2">
         Create A Report Group
       </h3>
       <div className="pt-4">
-        <Form onSubmit={""}>
+        <Form onSubmit={handleSubmit}>
           <Form.Group className="mb-3" controlId="formBasicGroupName">
             <Form.Control
               type="text"
@@ -171,8 +184,10 @@ const CreateGroupReport = () => {
           <hr />
 
           <div className="text-end">
-            <button className="btn btn-dark me-4">Cancel</button>
-            <button className=" btn-primary btn customsavebuttonwidth">
+            <NavLink className="btn btn-dark me-4" to="/reports">
+              Cancel
+            </NavLink>
+            <button className="btn-primary btn customsavebuttonwidth">
               Save Changes
             </button>
           </div>

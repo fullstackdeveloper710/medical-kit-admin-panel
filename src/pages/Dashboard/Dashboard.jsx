@@ -28,7 +28,7 @@ function Dashboard() {
 
   return (
     <div className="">
-      <div className="row"style={{height:"586px"}}>
+      <div className="row" style={{ height: "586px" }}>
         <div className="col-md-8">
           <div className="row">
             <div className="col-md-6">

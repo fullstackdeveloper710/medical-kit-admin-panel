@@ -1,5 +1,6 @@
 import * as Yup from "yup";
 
+// phone number regex
 const phonenumberRegex =
   /^[+]?[0-9]{1,3}?[-.\\s]?[(]?[0-9]{1,4}[)]?[-.\\s]?[0-9]{1,4}[-.\\s]?[0-9]{1,9}$/;
 
@@ -29,6 +30,7 @@ const distributorInfoSchema = Yup.object().shape({
   role: Yup.string().required("Role is required"),
 });
 
+// Define validation schema for create new user using Yup
 const createNewUserSchema = Yup.object().shape({
   first_name: Yup.string().required("First name is required"),
   last_name: Yup.string().required("Last name is required"),
@@ -46,6 +48,7 @@ const createNewUserSchema = Yup.object().shape({
     .required("Business email is required"),
 });
 
+// Define validation schema for create location using Yup
 const createLocationSchema = Yup.object().shape({
   location_name: Yup.string().required("Location name is required"),
   street: Yup.string().required("Street is required"),
@@ -65,11 +68,15 @@ const createLocationSchema = Yup.object().shape({
   assigned_approver_id: Yup.string().required("Asign approver is required"),
 });
 
+// Define validation schema for create report group using Yup
+const createGroupReportSchema = {};
+
 const ValidationSchema = {
   login: loginSchema,
   distributorinformation: distributorInfoSchema,
   createnewuser: createNewUserSchema,
   createlocation: createLocationSchema,
+  creategroupreport: createGroupReportSchema,
 };
 
 export default ValidationSchema;

@@ -20,6 +20,7 @@ import Layout from "../layout";
 import PublicRoute from "../components/Common/PublicRoute";
 import CreateGroupReport from "../pages/ReportManagement/CreateGroupReport";
 import CreateLocation from "../pages/BusinessProfile/CreateLocation";
+import UpdateUser from "../pages/UserManagement/UpdateUser";
 const RouterData = [
   {
     path: "/",
@@ -196,6 +197,17 @@ const RouterData = [
       <ProtectedRoute>
         <Layout>
           <CreateUser />
+        </Layout>
+      </ProtectedRoute>
+    ),
+  },
+
+  {
+    path: "/update-user/:id",
+    element: (
+      <ProtectedRoute>
+        <Layout>
+          <UpdateUser />
         </Layout>
       </ProtectedRoute>
     ),

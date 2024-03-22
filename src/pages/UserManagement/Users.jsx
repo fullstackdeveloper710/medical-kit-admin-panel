@@ -2,13 +2,17 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import DataTableComponent from "../../components/DataTable";
 import { fetchUserManagementData } from "../../redux/slice/UserManagementSlice";
-import icon from "../../Assets/Profile/profileicon/Icon.png"
+import icon from "../../Assets/Profile/profileicon/Icon.png";
 import Loader from "../../components/Common/Loader";
-
+import { NavLink } from "react-router-dom";
+import { FaEdit } from "react-icons/fa";
+import { FaRegTrashAlt } from "react-icons/fa";
 
 function Users() {
   const dispatch = useDispatch();
-  const { status, UserManagementData } = useSelector((state) => state.USERMANAGEMENT);
+  const { status, UserManagementData } = useSelector(
+    (state) => state.USERMANAGEMENT
+  );
 
   useEffect(() => {
     dispatch(fetchUserManagementData());
@@ -19,14 +23,10 @@ function Users() {
       name: "Last Name",
       selector: (row) => (
         <div className="products-wrapper">
-          <img
-            src={icon}
-            alt={row.lastName}
-            className="products-image"
-          />
+          <img src={icon} alt={row.lastName} className="products-image" />
           <span>{row.last_name}</span>
         </div>
-      )
+      ),
     },
     {
       name: "First Name",
@@ -48,10 +48,30 @@ function Users() {
       name: "Role",
       selector: (row) => row.role,
     },
+    {
+      name: "Action",
+      selector: (row) => (
+        <div className="d-flex">
+          <NavLink
+            className={"btn btn-sm btn-info me-2"}
+            to={`/update-user/${row._id}`}
+          >
+            <FaEdit />
+          </NavLink>
+          <NavLink className={"btn btn-sm btn-danger"}>
+            <FaRegTrashAlt />
+          </NavLink>
+        </div>
+      ),
+    },
   ];
 
   if (status === "loading") {
-    return <div><Loader/></div>;
+    return (
+      <div>
+        <Loader />
+      </div>
+    );
   }
 
   const userData = UserManagementData?.data?.Users || [];

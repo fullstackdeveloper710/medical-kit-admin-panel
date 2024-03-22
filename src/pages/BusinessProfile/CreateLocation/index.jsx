@@ -14,9 +14,11 @@ import { StatusCode } from "../../../services/helper";
 import ButtonLoader from "../../../components/Common/ButtonLoader";
 import ValidationSchema from "../../../components/Common/ValidationScema";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 const CreateLocation = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { ApproversSuperAdminsData, status } = useSelector(
     (state) => state.SUPERADMINAPPROVER
   );
@@ -48,6 +50,7 @@ const CreateLocation = () => {
         } else {
           const body = { ...values, longitude: data.lon, latitude: data.lat };
           dispatch(createLocation(body));
+          navigate("/businessprofile");
         }
       },
     });

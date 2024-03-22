@@ -67,7 +67,6 @@ export const ApiEndPoint = {
   DISTRIBUTORREGISTER: "/distributor/signup",
   AUTHUSER: "/user/my_account",
   USERMANAGEMENT: "/admin/get_users",
-  USERREGISTRATION: "/admin/register_user",
   PRODUCTMANAGEMENT: "/admin/fetch_products",
   KITMANAGEMENT: "/admin/fetch_kits",
   ADMINFETCHLOCATION: "/admin/fetch_location",
