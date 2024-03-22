@@ -73,14 +73,16 @@ function CreateUser() {
     const isChecked = event.target.checked;
     if (isChecked) {
       setCheckedPermissions([...checkedPermissions, permissionId]);
-      setValues({ ...values, permissions: checkedPermissions });
+      setValues({
+        ...values,
+        permissions: [...checkedPermissions, permissionId],
+      });
     } else {
       setCheckedPermissions(
         checkedPermissions.filter((id) => id !== permissionId)
       );
     }
   };
-
   useEffect(() => {
     dispatch(fetchLocation());
   }, []);

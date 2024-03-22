@@ -15,6 +15,10 @@ import Loader from "../../components/Common/Loader";
 import { fetchsuperadminapproverdata } from "../../redux/slice/CreateLocationSlice";
 import { fetchUserProfileData } from "../../redux/slice/UserProfileSlice";
 import { NavLink } from "react-router-dom";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+
 
 const BusinessProfile = () => {
   const dispatch = useDispatch();
@@ -237,6 +241,9 @@ const BusinessProfile = () => {
       </h4>
 
       <div className="row gx-5 mt-3">
+
+      <Slider horizontal={true} dots={true} infinite={true} slidesToShow={3} slidesToScroll={1}>
+
         {userData.map((location, company) => (
           <div key={location._id} className="col-md-4 p-2">
             <div className="d-flex justify-content-between">
@@ -327,6 +334,7 @@ const BusinessProfile = () => {
             </div>
           </div>
         ))}
+        </Slider>
       </div>
 
       <div className="d-flex justify-content-between align-items-center mt-4">
