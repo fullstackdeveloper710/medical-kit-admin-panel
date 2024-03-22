@@ -6,7 +6,7 @@ const initialState = {
   BusinessProfileData: {},
   status: StatusCode.IDLE,
 };
-const { BUSINESSPROFILE } = ApiEndPoint;
+const { BUSINESSPROFILE,BUSINESSPROFILEFORM } = ApiEndPoint;
 export const BusinessProfileSlice = createSlice({
   name: "Businessprofile",
   initialState,
@@ -23,6 +23,7 @@ export const BusinessProfileSlice = createSlice({
       .addCase(fetchBusinessProfileData.rejected, (state, action) => {
         state.status = StatusCode.ERROR;
       })
+     
 
   },
 });
@@ -46,5 +47,4 @@ export const fetchBusinessProfileData = createAsyncThunk(
       }
     }
   );
-
 

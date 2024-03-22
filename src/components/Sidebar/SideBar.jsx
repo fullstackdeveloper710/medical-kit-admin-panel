@@ -31,7 +31,7 @@ function Sidebar({ isActive, removeSideBarActive }) {
         <img src={logo} alt="Logo" />
       </div>
       <div className="navigation">
-        {userData && userData?.assigned_role ? (
+        {(userData && userData?.assigned_role==="superadmin" ) || !userData? (
           <div className="adminmenu">
             <ul className="nav-links">
               {menus

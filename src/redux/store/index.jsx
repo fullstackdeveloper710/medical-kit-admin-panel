@@ -9,6 +9,11 @@ import KitManagementReducer from "../slice/KitManagementSlice";
 import DistributorManagementReducer from "../slice/DistributionRegistrationSlice";
 import BusinessProfileReducer from "../slice/BusinessProfileSlice";
 import MessageCentreReducer from "../slice/MessageCentreSlice";
+import SuperAdminApproverDataReducer from "../slice/CreateLocationSlice";
+import UserProfileReducer from "../slice/UserProfileSlice";
+
+
+
 
 
 
@@ -26,6 +31,8 @@ const store = configureStore({
     DISTRIBUTORMANAGEMENT:DistributorManagementReducer,
     BUSINESSPROFILE:BusinessProfileReducer,
     MESSAGECENTRE:MessageCentreReducer,
+    SUPERADMINAPPROVER: SuperAdminApproverDataReducer,
+    BUSINESSPROFILEFORM:UserProfileReducer
 
 
   },

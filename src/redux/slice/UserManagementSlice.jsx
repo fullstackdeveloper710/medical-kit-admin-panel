@@ -24,16 +24,7 @@ export const UserManagementSlice = createSlice({
         state.status = StatusCode.ERROR;
       })
       // add user
-      .addCase(registeruser.pending, (state, action) => {
-        state.status = StatusCode.LOADING;
-      })
-      .addCase(registeruser.fulfilled, (state, action) => {
-        state.UserManagementData = action.payload;
-        state.status = StatusCode.IDLE;
-      })
-      .addCase(registeruser.rejected, (state, action) => {
-        state.status = StatusCode.ERROR;
-      });
+     
   },
 });
 
@@ -56,18 +47,4 @@ export const fetchUserManagementData = createAsyncThunk(
   }
 );
 
-export const registeruser = createAsyncThunk("/user/register", async (data) => {
-  try {
-    const res = await API.post(`${USERREGISTRATION}`, data, {
-      headers: {
-        "Content-Type": "multipart/form-data",
-      },
-    });
-    if (res.data?.status === 200) {
-      toast.success(res.data?.data?.message);
-    }
-    return res.data;
-  } catch (error) {
-    toast.error(error.response?.data?.message);
-  }
-});
+

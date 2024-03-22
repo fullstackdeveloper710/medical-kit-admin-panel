@@ -67,7 +67,6 @@ export const ApiEndPoint = {
   DISTRIBUTORREGISTER: "/distributor/signup",
   AUTHUSER: "/user/my_account",
   USERMANAGEMENT: "/admin/get_users",
-  USERREGISTRATION: "/admin/register_user",
   PRODUCTMANAGEMENT: "/admin/fetch_products",
   KITMANAGEMENT: "/admin/fetch_kits",
   ADMINFETCHLOCATION: "/admin/fetch_location",
@@ -77,5 +76,8 @@ export const ApiEndPoint = {
   BUSINESSPROFILE:"/admin/fetch_location",
   MESSAGECENTRE:"/admin/get_messages",
   ARTICLEREGISTRATION:"/admin/create_article",
-  NOTIFICATIONREGISTRATION:"/admin/create_notification"
+  NOTIFICATIONREGISTRATION:"/admin/create_notification",
+  SUPERADMINAPPROVERDATA:"/admin/get_approver",
+  BUSINESSPROFILEFORM:"/admin/fetch_business_details",
+  UPDATEBUSINESSPROFILE:"/admin/edit_business_details",
 };
