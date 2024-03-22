@@ -80,4 +80,6 @@ export const ApiEndPoint = {
   SUPERADMINAPPROVERDATA:"/admin/get_approver",
   BUSINESSPROFILEFORM:"/admin/fetch_business_details",
   UPDATEBUSINESSPROFILE:"/admin/edit_business_details",
+  SUPERADMINAPPROVERDATA: "/admin/get_approver",
+  ADDLOCATION: "/admin/add_location",
 };

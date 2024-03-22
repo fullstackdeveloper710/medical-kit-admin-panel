@@ -14,6 +14,7 @@ import { fetchBusinessProfileData } from "../../redux/slice/BusinessProfileSlice
 import Loader from "../../components/Common/Loader";
 import { fetchsuperadminapproverdata } from "../../redux/slice/CreateLocationSlice";
 import { fetchUserProfileData } from "../../redux/slice/UserProfileSlice";
+import { NavLink } from "react-router-dom";
 
 const BusinessProfile = () => {
   const dispatch = useDispatch();
@@ -330,9 +331,13 @@ const BusinessProfile = () => {
 
       <div className="d-flex justify-content-between align-items-center mt-4">
         <div className="d-flex align-items-center gap-2">
-          <Button size="sm" className=" text-center rounded-circle">
+          <NavLink
+            to="/createlocation"
+            size="sm"
+            className=" text-center rounded-circle"
+          >
             <FaPlus />
-          </Button>
+          </NavLink>
           <span className="button-text">Create Location</span>
         </div>
         <div className="d-flex gap-3">

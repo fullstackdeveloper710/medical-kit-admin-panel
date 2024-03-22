@@ -6,7 +6,7 @@ const initialState = {
   UserManagementData: {},
   status: StatusCode.IDLE,
 };
-const { USERMANAGEMENT, USERREGISTRATION } = ApiEndPoint;
+const { USERMANAGEMENT } = ApiEndPoint;
 export const UserManagementSlice = createSlice({
   name: "usermanagement",
   initialState,
@@ -25,6 +25,7 @@ export const UserManagementSlice = createSlice({
       })
       // add user
      
+      // });
   },
 });
 

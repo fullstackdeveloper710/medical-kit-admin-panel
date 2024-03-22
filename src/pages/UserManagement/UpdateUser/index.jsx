@@ -4,7 +4,7 @@ import PhoneInput from "react-phone-input-2";
 import "react-phone-number-input/style.css";
 import CustomButton from "../../../components/Common/Button/Button";
 import { FaBan, FaTrash } from "react-icons/fa";
-import "./CreateUser.css";
+import "./index.css";
 import { useEffect, useRef, useState } from "react";
 import {
   StatusCode,
@@ -20,24 +20,39 @@ import ButtonLoader from "../../../components/Common/ButtonLoader";
 import ValidationSchema from "../../../components/Common/ValidationScema";
 import { NavLink, useNavigate } from "react-router-dom";
 
-function CreateUser() {
+function UpdateUser() {
+  const existinguser = {
+    first_name: "sunny",
+    last_name: "dhiman",
+    location_id: "123f",
+    contact_number: "34234324",
+    employee_id: "inr123",
+    country_code: "380",
+    job_title: "developer",
+    assigned_role: "admin",
+    email: "sunny@gmail.com",
+    permissions: [
+      "Manage Products",
+      "Manage Distributors",
+      "Manage Company Users",
+    ],
+  };
   const initialValues = {
-    first_name: "",
-    last_name: "",
-    location_id: "",
-    contact_number: "",
-    country_code: "",
-    employee_id: "",
-    job_title: "",
-    assigned_role: "",
-    permissions: null,
-    email: "",
+    first_name: existinguser ? existinguser.first_name : "",
+    last_name: existinguser ? existinguser.last_name : "",
+    location_id: existinguser ? existinguser.location_id : "",
+    contact_number: existinguser ? existinguser.contact_number : "",
+    country_code: existinguser ? existinguser.country_code : "",
+    employee_id: existinguser ? existinguser.employee_id : "",
+    job_title: existinguser ? existinguser.job_title : "",
+    assigned_role: existinguser ? existinguser.assigned_role : "",
+    permissions: [],
+    email: existinguser ? existinguser.email : "",
     // profile_pic: null,
   };
   const whitelogoref = useRef();
   const [companyLogoPreview, setCompanyLogoPreview] = useState(null);
   const [checkedPermissions, setCheckedPermissions] = useState([]);
-  const { status } = useSelector((state) => state.CREATEUSERANDLOCATION);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { FetchLocationData } = useSelector(
@@ -53,12 +68,9 @@ function CreateUser() {
     setValues,
   } = useFormik({
     initialValues: initialValues,
-    validationSchema: ValidationSchema.createnewuser,
+    // validationSchema: ValidationSchema.createnewuser,
     onSubmit: async (values) => {
-      const res = await dispatch(createNewUser(values));
-      if (res.payload?.status) {
-        navigate("/users");
-      }
+      console.log(values, "values");
     },
   });
 
@@ -68,18 +80,19 @@ function CreateUser() {
     // setValues({ ...values, profile_pic: file });
   };
 
-  const handlePermissionChange = (event) => {
-    const permissionId = event.target.id;
-    const isChecked = event.target.checked;
-    if (isChecked) {
-      setCheckedPermissions([...checkedPermissions, permissionId]);
-      setValues({ ...values, permissions: checkedPermissions });
-    } else {
-      setCheckedPermissions(
-        checkedPermissions.filter((id) => id !== permissionId)
-      );
-    }
-  };
+  // const handlePermissionChange = (event) => {
+  //   console.log(event.target.id);
+  //   const permissionId = event.target.id;
+  //   const isChecked = event.target.checked;
+  //   if (isChecked) {
+  //     setCheckedPermissions([...checkedPermissions, permissionId]);
+  //     setValues({ ...values, permissions: checkedPermissions });
+  //   } else {
+  //     setCheckedPermissions(
+  //       checkedPermissions.filter((id) => id !== permissionId)
+  //     );
+  //   }
+  // };
 
   useEffect(() => {
     dispatch(fetchLocation());
@@ -95,7 +108,7 @@ function CreateUser() {
                 className="listing"
                 style={{ textAlign: "center", paddingBottom: "20px" }}
               >
-                Create New User
+                Update New User
               </h3>
             </Col>
           </Row>
@@ -354,12 +367,14 @@ function CreateUser() {
               {userPermissions &&
                 userPermissions.map((curElm) => (
                   <Col key={curElm.id} className={curElm.column}>
-                    <Form.Group name="permissions">
+                    <Form.Group>
                       <Form.Check
+                        name="permissions"
                         type={curElm.type}
+                        value={values.label}
                         id={curElm.id}
                         label={curElm.label}
-                        onChange={handlePermissionChange}
+                        onChange={handleChange}
                       />
                     </Form.Group>
                   </Col>
@@ -394,11 +409,7 @@ function CreateUser() {
                   </CustomButton>
                 </NavLink>
                 <button type="submit" className="btn btn-primary">
-                  {status === StatusCode.LOADING ? (
-                    <ButtonLoader />
-                  ) : (
-                    "Save Changes"
-                  )}
+                  Save Changes
                 </button>
               </div>
             </Col>
@@ -409,4 +420,4 @@ function CreateUser() {
   );
 }
 
-export default CreateUser;
+export default UpdateUser;

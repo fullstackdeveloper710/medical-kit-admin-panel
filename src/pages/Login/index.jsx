@@ -29,8 +29,8 @@ const Login = () => {
         const response = await dispatch(loginuser(values));
         if (response.payload?.status === 200) {
           dispatch(setAuthUser(response.payload?.data));
-            navigate("/");
-            action.resetForm();
+          navigate("/");
+          action.resetForm();
         }
       },
     });

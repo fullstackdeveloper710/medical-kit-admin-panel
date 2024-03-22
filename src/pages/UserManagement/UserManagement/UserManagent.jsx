@@ -60,7 +60,7 @@ function UserManagement() {
     assignRole: "",
   };
   const phonenumberRegex =
-  /^[+]?[0-9]{1,3}?[-.\\s]?[(]?[0-9]{1,4}[)]?[-.\\s]?[0-9]{1,4}[-.\\s]?[0-9]{1,9}$/;
+    /^[+]?[0-9]{1,3}?[-.\\s]?[(]?[0-9]{1,4}[)]?[-.\\s]?[0-9]{1,4}[-.\\s]?[0-9]{1,9}$/;
 
   const validationSchema = Yup.object().shape({
     firstName: Yup.string().required("First Name is required"),
@@ -95,16 +95,16 @@ function UserManagement() {
       </Container>
       <Container>
         <Row>
-        <Col md={4}> 
-          {/* <div className="divider" /> */}
+          <Col md={4}>
+            {/* <div className="divider" /> */}
 
-          <div className="recommended_logo box d-flex justify-content-center align-items-center flex-column">
-            <p>Recommended logo</p>
-            <p>Specifications</p>
-            <p>500px X 300px</p>
-            <p>transparent PNG</p>
-          </div>
-          <p className="text-center edit_btn">Edit</p>
+            <div className="recommended_logo box d-flex justify-content-center align-items-center flex-column">
+              <p>Recommended logo</p>
+              <p>Specifications</p>
+              <p>500px X 300px</p>
+              <p>transparent PNG</p>
+            </div>
+            <p className="text-center edit_btn">Edit</p>
           </Col>
 
           <Col md={8}>
@@ -119,14 +119,15 @@ function UserManagement() {
               }}
             >
               {({
-              setFieldValue,
-              values,
-              isSubmitting,
-              errors,
-              touched,
-              handleChange,
-              handleSubmit,
-              handleBlur, }) => (
+                setFieldValue,
+                values,
+                isSubmitting,
+                errors,
+                touched,
+                handleChange,
+                handleSubmit,
+                handleBlur,
+              }) => (
                 <Form className="form_style">
                   <Row>
                     <Col>
@@ -193,36 +194,36 @@ function UserManagement() {
                   <Row>
                     <Col>
                       <div className="form-group">
-                      <PhoneInput
-                        placeholder="Phone Number"
-                        value={values.phone}
-                        country={values.country_code}
-                        onChange={(value, country) => {
-                          handleChange({ target: { name: "phone", value } });
+                        <PhoneInput
+                          placeholder="Phone Number"
+                          value={values.phone}
+                          country={values.country_code}
+                          onChange={(value, country) => {
+                            handleChange({ target: { name: "phone", value } });
 
-                          // Check if country is available before accessing its properties
-                          if (country && country.countryCallingCode) {
-                            const updatedCountryCode = `+${country.countryCallingCode}`;
-                            handleChange({
-                              target: {
-                                name: "country_code",
-                                value: updatedCountryCode,
-                              },
-                            });
-                          } else {
-                            handleChange({
-                              target: {
-                                name: "country_code",
-                                value: values.country_code,
-                              },
-                            });
-                          }
-                        }}
-                      />
+                            // Check if country is available before accessing its properties
+                            if (country && country.countryCallingCode) {
+                              const updatedCountryCode = `+${country.countryCallingCode}`;
+                              handleChange({
+                                target: {
+                                  name: "country_code",
+                                  value: updatedCountryCode,
+                                },
+                              });
+                            } else {
+                              handleChange({
+                                target: {
+                                  name: "country_code",
+                                  value: values.country_code,
+                                },
+                              });
+                            }
+                          }}
+                        />
 
-                      <span style={{ color: "red" }}>
-                        {errors.phone && touched.phone && errors.phone}
-                      </span>
+                        <span style={{ color: "red" }}>
+                          {errors.phone && touched.phone && errors.phone}
+                        </span>
                       </div>
                     </Col>
                     <Col>
@@ -368,7 +369,7 @@ function UserManagement() {
           <Col md={6}>
             <div className="disable_delete_action">
               <button className=" usermgmt-button" disabled>
-               <FaBan/> Disable
+                <FaBan /> Disable
               </button>
               <button className="  usermgmt-button">
                 <FaTrash />

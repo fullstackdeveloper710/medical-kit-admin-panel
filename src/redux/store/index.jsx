@@ -18,6 +18,7 @@ import UserProfileReducer from "../slice/UserProfileSlice";
 
 
 
+import SuperAdminApproverDataReducer from "../slice/CreateLocationSlice";
 const store = configureStore({
   reducer: {
     LOGIN: LoginReducer,
@@ -35,6 +36,7 @@ const store = configureStore({
     BUSINESSPROFILEFORM:UserProfileReducer
 
 
+    // SUPERADMINAPPROVER: SuperAdminApproverDataReducer,
   },
 
 });

@@ -269,25 +269,45 @@ const DistributorInformation = () => {
               </Row>
 
               <Row>
-                <Col xs lg="2">
-                  <div className="phoneinput">
-                    <PhoneInput
-                      name="country_code"
-                      country={"us"}
-                      placeholder="Phone Number"
-                      value={values.country_code}
-                      onChange={(value) =>
-                        handleChange({
-                          target: { name: "country_code", value },
-                        })
-                      }
-                    />
-                  </div>
+                <Col>
+                  <Form.Group className="mb-3" controlId="formBasicCountryCode">
+                    <div className="phoneinput">
+                      <PhoneInput
+                        name="country_code"
+                        country={"us"}
+                        placeholder="Phone Number"
+                        value={values.country_code}
+                        onChange={(value) =>
+                          handleChange({
+                            target: { name: "country_code", value },
+                          })
+                        }
+                      />
+                    </div>
+                  </Form.Group>
+                  {errors.country_code && touched.country_code ? (
+                    <p className="text-danger">{errors.country_code} </p>
+                  ) : null}
                 </Col>
                 <Col>
                   <Form.Group className="mb-3" controlId="formBasicNumber">
                     <Form.Control
-                      type="number"
+                      onKeyPress={(e) => {
+                        if (
+                          e.key === "e" ||
+                          e.key === "E" ||
+                          isNaN(Number(e.key))
+                        ) {
+                          e.preventDefault();
+                        }
+                      }}
+                      onKeyDown={(e) => {
+                        if (e.key === " ") {
+                          e.preventDefault();
+                        }
+                      }}
+                      type="text"
+                      pattern="[0-9]*"
                       name="contact_number"
                       value={values.contact_number}
                       onChange={handleChange}
