@@ -22,8 +22,7 @@ export const ProductManagementSlice = createSlice({
       })
       .addCase(fetchProductsManagementData.rejected, (state, action) => {
         state.status = StatusCode.ERROR;
-      })
-
+      });
   },
 });
 
@@ -31,20 +30,16 @@ export const {} = ProductManagementSlice.actions;
 export default ProductManagementSlice.reducer;
 
 export const fetchProductsManagementData = createAsyncThunk(
-    'admin/get/products',
-    async () => {
-      try {
-        const res = await API.get(PRODUCTMANAGEMENT); 
-         console.log(res, 'res from slice');
-        if (res.data?.status === 200) {
-          
-          return res.data;
-        }
-      } catch (error) {
-        console.error('Failed to fetch product management data:', error);
-        throw error; 
+  "admin/get/products",
+  async () => {
+    try {
+      const res = await API.get(PRODUCTMANAGEMENT);
+      if (res.data?.status === 200) {
+        return res.data;
       }
+    } catch (error) {
+      console.error("Failed to fetch product management data:", error);
+      throw error;
     }
-  );
-
-
+  }
+);

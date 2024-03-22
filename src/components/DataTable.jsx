@@ -34,12 +34,11 @@ const DataTableComponent = ({ title, data, columns, selectedRows }) => {
   return (
     <Card style={{ border: "none" }}>
       <div style={{ padding: 10 }}>
-        <h3  className="px-2 card_title">
-          {title}
-        </h3>
+        <h3 className="px-2 card_title">{title}</h3>
 
         <DataTable
           className="mt-3"
+          onRowClicked={() => alert("row clicked")}
           columns={columns}
           pagination={true}
           paginationPerPage={itemsPerPage}

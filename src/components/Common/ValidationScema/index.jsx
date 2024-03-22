@@ -68,6 +68,16 @@ const createLocationSchema = Yup.object().shape({
   assigned_approver_id: Yup.string().required("Asign approver is required"),
 });
 
+const updateUserSchema = Yup.object().shape({
+  company_name: Yup.string().required("Company name is required"),
+  country_code: Yup.string().required("Country code is required"),
+  contact_number: Yup.string()
+    .matches(phonenumberRegex, "*Enter a valid phone pumber")
+    .required("*Phone number is required"),
+  email: Yup.string().email().required("*Email is required"),
+  assigned_role: Yup.string().required("*Assigned_role is required"),
+});
+
 // Define validation schema for create report group using Yup
 const createGroupReportSchema = {};
 
@@ -77,6 +87,7 @@ const ValidationSchema = {
   createnewuser: createNewUserSchema,
   createlocation: createLocationSchema,
   creategroupreport: createGroupReportSchema,
+  updateuser: updateUserSchema,
 };
 
 export default ValidationSchema;

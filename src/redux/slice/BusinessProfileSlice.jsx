@@ -6,7 +6,7 @@ const initialState = {
   BusinessProfileData: {},
   status: StatusCode.IDLE,
 };
-const { BUSINESSPROFILE,BUSINESSPROFILEFORM } = ApiEndPoint;
+const { BUSINESSPROFILE, BUSINESSPROFILEFORM } = ApiEndPoint;
 export const BusinessProfileSlice = createSlice({
   name: "Businessprofile",
   initialState,
@@ -22,9 +22,7 @@ export const BusinessProfileSlice = createSlice({
       })
       .addCase(fetchBusinessProfileData.rejected, (state, action) => {
         state.status = StatusCode.ERROR;
-      })
-     
-
+      });
   },
 });
 
@@ -32,19 +30,16 @@ export const {} = BusinessProfileSlice.actions;
 export default BusinessProfileSlice.reducer;
 
 export const fetchBusinessProfileData = createAsyncThunk(
-    'admin/get/businessprofile',
-    async () => {
-      try {
-        const res = await API.get(BUSINESSPROFILE); 
-         console.log(res, 'res from slice');
-        if (res.data?.status === 200) {
-          
-          return res.data;
-        }
-      } catch (error) {
-        console.error('Failed to fetch BUSINESSPROFILE data:', error);
-        throw error; 
+  "admin/get/businessprofile",
+  async () => {
+    try {
+      const res = await API.get(BUSINESSPROFILE);
+      if (res.data?.status === 200) {
+        return res.data;
       }
+    } catch (error) {
+      console.error("Failed to fetch BUSINESSPROFILE data:", error);
+      throw error;
     }
-  );
-
+  }
+);

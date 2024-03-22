@@ -22,10 +22,10 @@ export const UserManagementSlice = createSlice({
       })
       .addCase(fetchUserManagementData.rejected, (state, action) => {
         state.status = StatusCode.ERROR;
-      })
-      // add user
-     
-      // });
+      });
+    // add user
+
+    // });
   },
 });
 
@@ -37,7 +37,6 @@ export const fetchUserManagementData = createAsyncThunk(
   async () => {
     try {
       const res = await API.get(USERMANAGEMENT);
-      console.log(res, "res from slice");
       if (res.data?.status === 200) {
         return res.data;
       }
@@ -47,5 +46,3 @@ export const fetchUserManagementData = createAsyncThunk(
     }
   }
 );
-
-
