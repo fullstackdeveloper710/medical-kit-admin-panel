@@ -311,3 +311,20 @@ body .button-text,
     padding-top: 20px;
   }
 }
+
+
+/* ----- */
+h5.percentage_number {
+  left: 18px;
+  position: absolute;
+  bottom: 0px;
+  color: rgba(66, 189, 83, 1);
+  font-weight: 400;
+  font-size: 16px;
+}
+.dashboard_cards h2{
+  padding-bottom: 10px;
+}
+.rdt_TableHead .rdt_TableCol:nth-child(2) .lnOUep {
+  text-decoration: underline;
+}
