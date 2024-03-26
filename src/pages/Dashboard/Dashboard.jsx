@@ -46,15 +46,16 @@ function Dashboard() {
           <CardWithMap />
         </div>
       </div>
-      <div className="row mt-4">
-        <div className="col-md-4 bg-white rounded">
-          <h4 className="text-center bold pt-3">Safety Kits Installed</h4>
+      <div className="row mt-5">
+        <div className="col-md-4">
+        <div className="bg-white h-100 rounded">
           <ReactApexChart
             options={radial.options}
             series={radial.series}
             type="radialBar"
             height={350}
           />
+          </div>
         </div>
         <div className="col-md-8">
           <CardWithBarChart />

@@ -97,7 +97,7 @@ function EditNotification() {
     // You can implement your logic here to add the search term
     // For example, you can send it to an API endpoint or store it in state
   };
-  const industries = [
+  const industry = [
     "Agriculture, forestry & fishing",
     "Mining & quarrying",
     "Manufacturing",
