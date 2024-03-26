@@ -2,47 +2,53 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { ApiEndPoint, StatusCode } from "../../services/helper";
 import API from "../../services/api";
 import { toast } from "react-toastify";
+
+// Define initial state
 const initialState = {
-  ReportsListingData: {},
+  data: [],
   status: StatusCode.IDLE,
+  error: null,
 };
+
+// Extract API endpoints
 const { REPORTSLISTING } = ApiEndPoint;
-export const ReportsListingSlice = createSlice({
-  name: "reportslisting",
-  initialState,
-  reducers: {},
-  extraReducers: (builder) => {
-    builder
-      .addCase(fetchReportsListingData.pending, (state, action) => {
-        state.status = StatusCode.LOADING;
-      })
-      .addCase(fetchReportsListingData.fulfilled, (state, action) => {
-        state.ReportsListingData = action.payload;
-        state.status = StatusCode.IDLE;
-      })
-      .addCase(fetchReportsListingData.rejected, (state, action) => {
-        state.status = StatusCode.ERROR;
-      });
-    // add user
 
-    // });
-  },
-});
-
-export const {} = ReportsListingSlice.actions;
-export default ReportsListingSlice.reducer;
-
+// Create async thunk for fetching reports listing data
 export const fetchReportsListingData = createAsyncThunk(
-  "admin/get/reportsListing",
+  "reports/fetchReportsListingData",
   async () => {
     try {
-      const res = await API.get(REPORTSLISTING);
-      if (res.data?.status === 200) {
-        return res.data;
-      }
+      const response = await API.get(REPORTSLISTING);
+      return response.data;
     } catch (error) {
-      console.error("Failed to fetch repports listing data:", error);
+      console.error("Failed to fetch reports listing data:", error.message);
       throw error;
     }
   }
 );
+
+// Create reports listing slice
+export const reportsListingSlice = createSlice({
+  name: "reportsListing",
+  initialState,
+  reducers: {},
+  extraReducers: (builder) => {
+    builder
+      .addCase(fetchReportsListingData.pending, (state) => {
+        state.status = StatusCode.LOADING;
+        state.error = null;
+      })
+      .addCase(fetchReportsListingData.fulfilled, (state, action) => {
+        state.status = StatusCode.IDLE;
+        state.data = action.payload.data;
+      })
+      .addCase(fetchReportsListingData.rejected, (state, action) => {
+        state.status = StatusCode.ERROR;
+        state.error = action.error.message;
+      });
+  },
+});
+
+// Export reducer and actions
+export const { } = reportsListingSlice.actions;
+export default reportsListingSlice.reducer;

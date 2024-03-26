@@ -25,20 +25,23 @@ import DataTableComponent from "../../components/DataTable";
 import { columns } from "../Products/Products";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchReportsListingData } from "../../redux/slice/ReportsListingSlice";
+import Loader from "../../components/Common/Loader";
 
 
-// import DateTimePicker from "../../../components/DatePicker/DatePicker";
 
 
 function Reports() {
   const dispatch = useDispatch();
-  const { status, ReportsListingData } = useSelector((state) => state.REPORTSLISTING);
-console.log(ReportsListingData,"ReportsListingDataDatasadsadasdfds")
+  const { status, data: ReportsManagementData, error } = useSelector(
+    (state) => state.REPORTSLISTING
+  );
 
   useEffect(() => {
     dispatch(fetchReportsListingData());
   }, [dispatch]);
 
+  console.log("ReportsManagementData:", ReportsManagementData);
+  
   const  reportscolumns = [
     {
       name: "Report Name",
@@ -73,7 +76,7 @@ console.log(ReportsListingData,"ReportsListingDataDatasadsadasdfds")
   const [directorName, setDirectorName] = useState("");
   const [isEditing, setIsEditing] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 5; // Number of items per page
+  const itemsPerPage = 5; 
 
   const totalPages = Math.ceil(tableData.length / itemsPerPage);
 
@@ -81,47 +84,17 @@ console.log(ReportsListingData,"ReportsListingDataDatasadsadasdfds")
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentItems = tableData.slice(indexOfFirstItem, indexOfLastItem);
 
-  const onPageChange = (pageNumber) => {
-    setCurrentPage(pageNumber);
-  };
-  const onNextPage = () => {
-    if (currentPage < totalPages) {
-      setCurrentPage(currentPage + 1);
-    }
-  };
+ 
 
-  const onPreviousPage = () => {
-    if (currentPage > 1) {
-      setCurrentPage(currentPage - 1);
-    }
-  };
 
-  const handleEditClick = () => {
-    setIsEditing(true);
-  };
+  if (status === "loading") {
+    return (
+      <div>
+        <Loader/>
+      </div>
+    );
+  }
 
-  const handleDeleteClick = () => {
-    // Implement delete functionality here
-    // For demonstration, let's just clear the director name
-    setDirectorName("");
-  };
-
-  const handleSaveClick = () => {
-    setIsEditing(false);
-  };
-
-  const handleSave = () => {
-    console.log("Content saved:", content);
-  };
-
-  const onCancelHandler = () => {
-    // Logic to handle cancel action
-    console.log("Edit cancelled");
-  };
-
-  const handleChange = (newContent) => {
-    setContent(newContent);
-  };
   return (
     <div className="reports">
       <div>
@@ -139,30 +112,39 @@ console.log(ReportsListingData,"ReportsListingDataDatasadsadasdfds")
               <h3 className="listing text-center">Report Groups</h3>
              
 
-              <div className="title-box mb-2">
-                <div className="d-flex justify-content-between px-3 pb-2">
-                  <p className="mb-0">Admin Team</p>
-                </div>
-                <div className="person-box">
-                  <b>Directors</b>
-                  <p className="mt-3 border-top border-bottom py-3">
-                  <span> person 1</span> ,<span> person 2</span> , <span>person 3</span> ,<span> person 4{" "}</span>
-                  <span> person 5</span> ,<span> person 6</span> ,<span> person 7</span> </p>
-
-                  <div className="d-flex mt-2 edit_delete">
-                    <span>
-                      <FaEdit />
-                      Edit
-                    </span>
-                    <span variant="danger">
-                      <FaTrash /> Delete
-                    </span>
-                  </div>
-                </div>
-
-                <p className="mt-4 px-3">Sales Reps</p>
-
+              <div>
+      {status === "loading" && <p>Loading...</p>}
+      {status === "error" && <p>Error fetching data.</p>}
+      {status === "idle" && ReportsManagementData && ReportsManagementData.length > 0 && (
+        <div>
+          {ReportsManagementData.map((group) => (
+            <div className="title-box mb-2" key={group._id}>
+              <div className="d-flex justify-content-between px-3 pb-2">
+                <p className="mb-0">{group.group_name}</p>
               </div>
+              <div className="person-box">
+                <b>Directors</b>
+                <p className="mt-3 border-top border-bottom py-3">
+                  {group.group_member.map((member) => (
+                    <span key={member._id}>{member.full_name}, </span>
+                  ))}
+                </p>
+                <div className="d-flex mt-2 edit_delete">
+                  <span>
+                    <FaEdit />
+                    Edit
+                  </span>
+                  <span variant="danger">
+                    <FaTrash /> Delete
+                  </span>
+                </div>
+              </div>
+              <p className="mt-4 px-3">Sales Reps</p>
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
             </Card>
           </Col>
         </Row>

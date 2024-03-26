@@ -6,9 +6,9 @@ const CardWithMap = () => {
   return (
     <Card className="reported_incidents border-0 overflow-hidden">
       <Card.Body className="pb-0">
-        <h4 className="mb-0"> Reported Incidents</h4>
+        <h4>Reported Incidents</h4>
       </Card.Body>
-      <span className="px-3 grey-color mb-2">Past 7 Days</span>
+      <span className="px-3">Past 7 Days</span>
       <div className="map-container">
         <ComposableMap
           projectionConfig={{

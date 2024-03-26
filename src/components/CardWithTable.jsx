@@ -19,7 +19,6 @@ const CardWithTable = () => {
     },
     {
       name: "Client Business Name",
-      className: "table-underline",
       selector: (row) => row.clientBussinessName,
       style: columnStyle,
     },
@@ -73,7 +72,6 @@ const CardWithTable = () => {
       name: "Risk Assessment",
       selector: (row) => (
         <Badge
-          className="dashboard-badge"
           style={{ borderRadius: 20, padding: 10 }}
           bg={row.riskAssessment === "Pending" ? "warning" : "success"}
         >
@@ -163,8 +161,8 @@ const CardWithTable = () => {
   };
   return (
     <Card style={{ border: "none" }}>
-      <div style={{ padding: 20 }}>
-        <h3 style={{ fontWeight: "700", fontSize: "24px" }} className="">
+      <div style={{ padding: 8 }}>
+        <h3 style={{ fontWeight: "700", fontSize: "24px" }} className="px-2">
           Registered Company Details
         </h3>
 

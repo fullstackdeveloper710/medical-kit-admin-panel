@@ -249,15 +249,15 @@ const BusinessProfile = () => {
         </h4>
 
         <div className="row gx-5 mt-3">
-          <Slider
-            horizontal={true}
-            dots={true}
-            infinite={true}
-            slidesToShow={3}
-            slidesToScroll={1}
-          >
-            {userData.map((location, company) => (
-              <div key={location._id} className="col-md-4 p-2">
+        <Slider
+  horizontal={true}
+  dots={true}
+  infinite={userData.length > 3} // Set infinite to false if there are 3 or fewer entries
+  slidesToShow={3}
+  slidesToScroll={1}
+>
+  {userData.map((location, index) => (
+    <div key={index} className="col-md-4 p-2">
                 <div className="d-flex justify-content-between">
                   <div>
                     <div className="d-flex">
