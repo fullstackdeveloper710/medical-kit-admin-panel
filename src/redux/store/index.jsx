@@ -12,6 +12,8 @@ import MessageCentreReducer from "../slice/MessageCentreSlice";
 import SuperAdminApproverDataReducer from "../slice/CreateLocationSlice";
 import UserProfileReducer from "../slice/UserProfileSlice";
 import DashboardListingReducer from "../slice/DashboardListingSlice";
+import REportsListingReducer from "../slice/ReportsListingSlice";
+
 
 
 
@@ -36,6 +38,7 @@ const store = configureStore({
     SUPERADMINAPPROVER: SuperAdminApproverDataReducer,
     BUSINESSPROFILEFORM:UserProfileReducer,
     DASHBOARDLISTING: DashboardListingReducer,
+    REPORTSLISTING: REportsListingReducer,
 
 
   },

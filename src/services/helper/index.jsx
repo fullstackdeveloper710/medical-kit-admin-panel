@@ -83,4 +83,5 @@ export const ApiEndPoint = {
   SUPERADMINAPPROVERDATA: "/admin/get_approver",
   ADDLOCATION: "/admin/add_location",
   DASHBOARDLISTING:"",
+  REPORTSLISTING:"/admin/fetch_report_group",
 };

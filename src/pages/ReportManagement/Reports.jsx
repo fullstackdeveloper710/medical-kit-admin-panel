@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./Reports.css";
 import {
   Container,
@@ -23,40 +23,52 @@ import CustomPagination from "../../components/Common/Pagination";
 import { FaDeleteLeft } from "react-icons/fa6";
 import DataTableComponent from "../../components/DataTable";
 import { columns } from "../Products/Products";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchReportsListingData } from "../../redux/slice/ReportsListingSlice";
+
 
 // import DateTimePicker from "../../../components/DatePicker/DatePicker";
-export const  reportscolumns = [
-  {
-    name: "Report Name",
-    selector: (row) => row.reportName,
-    
-  },
-  {
-    name: "Frequency",
-    selector: (row) => row.frequency,
-    
-  },
-  {
-    name: "Recipients",
-    selector: (row) => row.recipients,
-    
-  },
-
-  {
-    name: "Last Sent",
-    selector: (row) => row.lastSent,
-    
-  },
-  {
-    name: "Status",
-    selector: (row) => row.status,
-    
-  },
-  
-];
 
 
 function Reports() {
+  const dispatch = useDispatch();
+  const { status, ReportsListingData } = useSelector((state) => state.REPORTSLISTING);
+console.log(ReportsListingData,"ReportsListingDataDatasadsadasdfds")
+
+  useEffect(() => {
+    dispatch(fetchReportsListingData());
+  }, [dispatch]);
+
+  const  reportscolumns = [
+    {
+      name: "Report Name",
+      selector: (row) => row.reportName,
+      
+    },
+    {
+      name: "Frequency",
+      selector: (row) => row.frequency,
+      
+    },
+    {
+      name: "Recipients",
+      selector: (row) => row.recipients,
+      
+    },
+  
+    {
+      name: "Last Sent",
+      selector: (row) => row.lastSent,
+      
+    },
+    {
+      name: "Status",
+      selector: (row) => row.status,
+      
+    },
+    
+  ];
+  
   const [content, setContent] = useState(``);
   const [directorName, setDirectorName] = useState("");
   const [isEditing, setIsEditing] = useState(false);
@@ -95,12 +107,10 @@ function Reports() {
   };
 
   const handleSaveClick = () => {
-    // Implement save functionality here
     setIsEditing(false);
   };
 
   const handleSave = () => {
-    // Logic to save the content
     console.log("Content saved:", content);
   };
 
