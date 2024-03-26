@@ -4,6 +4,78 @@ export const StatusCode = {
   LOADING: "loading",
   ERROR: "error",
 };
+
+export const asignRoles = [
+  {
+    label: "Super Admin",
+    value: "superadmin",
+  },
+  {
+    label: "Admin",
+    value: "admin",
+  },
+  {
+    label: "Approver",
+    value: "approver",
+  },
+  {
+    label: "User",
+    value: "user",
+  },
+];
+
+export const userPermissions = [
+  {
+    column: "col-4",
+    type: "switch",
+    id: "Manage Products",
+    label: "Manage Products",
+  },
+  {
+    column: "col-4",
+    type: "switch",
+    id: "Manage Company Users",
+    label: "Manage Company Users",
+  },
+  {
+    column: "col-4",
+    type: "switch",
+    id: "Manage Business Profile",
+    label: "Manage Business Profile",
+  },
+  {
+    column: "col-4",
+    type: "switch",
+    id: "Manage Distributors",
+    label: "Manage Distributors",
+  },
+  {
+    column: "col-4",
+    type: "switch",
+    id: "Manage Resource Center",
+    label: "Manage Resource Center",
+  },
+  {
+    column: "col-4",
+    type: "switch",
+    id: "Receive Update Notifications",
+    label: "Receive Update Notifications",
+  },
+];
 export const ApiEndPoint = {
   LOGIN: "/user/login",
+  DISTRIBUTORREGISTER: "/distributor/signup",
+  AUTHUSER: "/user/my_account",
+  USERMANAGEMENT: "/admin/get_users",
+  USERREGISTRATION: "/admin/register_user",
+  PRODUCTMANAGEMENT: "/admin/fetch_products",
+  KITMANAGEMENT: "/admin/fetch_kits",
+  ADMINFETCHLOCATION: "/admin/fetch_location",
+  CREATENEWUSER: "/admin/register_user",
+  REFRESHTOKEN: "/user/refresh_token",
+  DISTRIBUTORMANAGEMENT:"/admin/fetch_distributor",
+  BUSINESSPROFILE:"/admin/fetch_location",
+  MESSAGECENTRE:"",
+  ARTICLEREGISTRATION:"/admin/create_article",
+  NOTIFICATIONREGISTRATION:"/admin/create_notification"
 };

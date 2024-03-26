@@ -1,5 +1,4 @@
 // Header.js
-
 import React from "react";
 import { FaUserCircle, FaSearch } from "react-icons/fa"; // Import FaSearch icon
 import { Link } from "react-router-dom";
@@ -8,7 +7,7 @@ import "./Header.css"; // Import CSS file for styling
 import { useSelector } from "react-redux";
 
 function Header() {
-  const { localData } = useSelector((state) => state.AUTH);
+  const { userData } = useSelector((state) => state.AUTH);
   return (
     <div className="header">
       <div className="search">
@@ -25,9 +24,11 @@ function Header() {
         </div>
         <div className="">
           <span className="admin-name">
-            {localData && localData ? localData.message : "Tom Jackman"}
+            {userData && userData.first_name + " " + userData.last_name}
           </span>
-          <span className="superadmin-name">Super Admin</span>
+          <span className="superadmin-name">
+            {userData && userData.assigned_role}
+          </span>
         </div>
       </div>
     </div>

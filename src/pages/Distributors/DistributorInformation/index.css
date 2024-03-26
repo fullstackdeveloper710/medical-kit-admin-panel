@@ -1,21 +1,23 @@
-
-.distributorinfo .companylogo{
-    background-color: #E5F0FF;
-    padding:15px;
-    text-align: center;
+.distributorinfo .companylogo {
+  background-color: #e5f0ff;
+  padding: 15px;
+  text-align: center;
 }
 
- .phoneinput input.form-control{
-    width: 100% !important;
-
- }
-.distributorinfo .companylogo{
-    background-color: #E5F0FF;
-    padding:15px;
-    text-align: center;
+.phoneinput input.form-control {
+  width: 100% !important;
+}
+.distributorinfo .companylogo {
+  background-color: #e5f0ff;
+  padding: 15px;
+  text-align: center;
 }
 
- .phoneinput input.form-control{
-    width: 100% !important;
+.phoneinput input.form-control {
+  width: 100% !important;
+}
 
- }
+.distributorinfo .custom_image {
+  width: 100% !important;
+  height: 100px !important;
+}

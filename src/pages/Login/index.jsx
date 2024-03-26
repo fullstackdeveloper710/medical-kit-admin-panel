@@ -5,12 +5,12 @@ import loginlogo from "../../Assets/Logo/logo.png";
 import "./index.css";
 import { useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
-import * as Yup from "yup";
 import { useDispatch, useSelector } from "react-redux";
 import { loginuser } from "../../redux/slice/LoginSlice";
 import { setAuthUser } from "../../redux/slice/AuthSlice";
 import { StatusCode } from "../../services/helper";
 import ButtonLoader from "../../components/Common/ButtonLoader";
+import ValidationSchema from "../../components/Common/ValidationScema";
 
 const Login = () => {
   const { status } = useSelector((state) => state.LOGIN);
@@ -21,16 +21,10 @@ const Login = () => {
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  // Define validation schema using Yup
-  const validationSchema = Yup.object().shape({
-    email: Yup.string().email().required("*Email is required"),
-    password: Yup.string().required("*Password is required"),
-  });
-
   const { values, errors, handleBlur, handleChange, touched, handleSubmit } =
     useFormik({
       initialValues: initialValues,
-      validationSchema: validationSchema,
+      validationSchema: ValidationSchema.login,
       onSubmit: async (values, action) => {
         const response = await dispatch(loginuser(values));
         if (response.payload?.status === 200) {

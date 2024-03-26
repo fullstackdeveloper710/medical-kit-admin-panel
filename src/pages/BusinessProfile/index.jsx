@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Form } from "react-bootstrap";
 import { Formik, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
@@ -7,9 +7,25 @@ import { FaPlus } from "react-icons/fa";
 import MapImage from "../../Assets/images/mapImage.png";
 import "../BusinessProfile/style.css";
 import PhoneInput from "react-phone-number-input";
+import { useDispatch, useSelector } from "react-redux";
+
 import "react-phone-number-input/style.css";
+import { fetchBusinessProfileData } from "../../redux/slice/BusinessProfileSlice";
+import Loader from "../../components/Common/Loader";
 
 const BusinessProfile = () => {
+  const dispatch = useDispatch();
+  const { status, BusinessProfileData } = useSelector(
+    (state) => state.BUSINESSPROFILE
+  );
+  // console.log(BusinessProfileData,"BUSINESSPROFILE")
+
+  useEffect(() => {
+    dispatch(fetchBusinessProfileData());
+  }, [dispatch]);
+
+
+
   const validationSchema = Yup.object().shape({
     businessName: Yup.string().required("Business Name is required"),
     email: Yup.string().email("Invalid email").required("Email is required"),
@@ -20,6 +36,23 @@ const BusinessProfile = () => {
     superAdmin: Yup.string().email("Invalid email").required("Email is required"),
     approver: Yup.string().email("Invalid email").required("Email is required"),
   });
+  if (status === "loading") {
+    return (
+      <div>
+        <Loader/>
+      </div>
+    );
+  }
+
+  const userData = BusinessProfileData?.locations|| [];
+  // console.log(userData,'userdataaaaaaaaaaaaaaa')
+ 
+  const company = BusinessProfileData?.company || [];
+  console.log(company,'companyyyyy')
+  const companyEmail = company.distributor_email || "";
+  const compNumber= company.distributor_email || "";
+
+
 
   return (
     <div className="p-3 business_block">
@@ -172,282 +205,106 @@ const BusinessProfile = () => {
       <h4 className="text-center">
         <b>Company Locations</b>
       </h4>
-      {/* Locations Display */}
-      <div className="row gx-5 mt-3">
-        <div className="col-md-4 p-2">
-          <>
-            <div className="d-flex justify-content-between">
-              <div>
-                <div className="d-flex">
-                  <div>
-                    <b className="smallText">
-                      <small>Location Name</small>
-                    </b>
-                    <p>The One Tower</p>
-                  </div>
-                </div>
-                <div className="d-flex">
-                  <div>
-                    <b className="smallText">
-                      <small>House Number and Street Name</small>
-                    </b>
-                    <p>23 Harvester Road</p>
-                  </div>
-                </div>
-                <div className="d-flex">
-                  <div>
-                    <b className="smallText">
-                      <small>City/Town</small>
-                    </b>
-                    <p>Epsom</p>
-                  </div>
-                </div>
-                <div className="d-flex">
-                  <div>
-                    <b className="smallText">
-                      <small>Country</small>
-                    </b>
-                    <p>United Kingdom</p>
-                  </div>
-                </div>
-              </div>
-
-              <div>
-                <img src={MapImage} style={{ width: 100, height: 90 }} />
-
-                <div className="d-flex">
-                  <div>
-                    <b className="smallText">
-                      <small>Post Code</small>
-                    </b>
-                    <p>KT19 5EL</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="divider"></div>
-
-            <div className="d-flex justify-content-between align-items-center">
+   
+    <div className="row gx-5 mt-3">
+      {userData.map((location,company) => (
+        <div key={location._id} className="col-md-4 p-2">
+          <div className="d-flex justify-content-between">
+            <div>
               <div className="d-flex">
                 <div>
                   <b className="smallText">
-                    <small>Email</small>
+                    <small>Location Name</small>
                   </b>
-                  <p>info@kanousei.com</p>
-                </div>
-              </div>
-              <div>
-                <div>
-                  <b className="smallText">
-                    <small>Contact</small>
-                  </b>
-                  <p>+971 50106 8988</p>
-                </div>
-              </div>
-            </div>
-            <div className="d-flex justify-content-between align-items-center">
-              <div className="d-flex">
-                <div>
-                  <b className="smallText">
-                    <small>Assigned Super Admin</small>
-                  </b>
-                  <p>Harold Dickenson Jr</p>
+                  <p>{location.location_name}</p>
                 </div>
               </div>
               <div className="d-flex">
                 <div>
                   <b className="smallText">
-                    <small>Assigned Approver</small>
+                    <small>House Number and Street Name</small>
                   </b>
-                  <p>Jugal Rupela</p>
-                </div>
-              </div>
-            </div>
-          </>
-        </div>
-        <div className="col-md-4 box p-2">
-          <>
-            <div className="d-flex justify-content-between">
-              <div>
-                <div className="d-flex">
-                  <div>
-                    <b className="smallText">
-                      <small>Location Name</small>
-                    </b>
-                    <p>The One Tower</p>
-                  </div>
-                </div>
-                <div className="d-flex">
-                  <div>
-                    <b className="smallText">
-                      <small>House Number and Street Name</small>
-                    </b>
-                    <p>23 Harvester Road</p>
-                  </div>
-                </div>
-                <div className="d-flex">
-                  <div>
-                    <b className="smallText">
-                      <small>City/Town</small>
-                    </b>
-                    <p>Epsom</p>
-                  </div>
-                </div>
-                <div className="d-flex">
-                  <div>
-                    <b className="smallText">
-                      <small>Country</small>
-                    </b>
-                    <p>United Kingdom</p>
-                  </div>
-                </div>
-              </div>
-
-              <div>
-                <img src={MapImage} style={{ width: 100, height: 90 }} />
-
-                <div className="d-flex">
-                  <div>
-                    <b className="smallText">
-                      <small>Post Code</small>
-                    </b>
-                    <p>KT19 5EL</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="divider"></div>
-
-            <div className="d-flex justify-content-between align-items-center">
-              <div className="d-flex">
-                <div>
-                  <b className="smallText">
-                    <small>Email</small>
-                  </b>
-                  <p>info@kanousei.com</p>
-                </div>
-              </div>
-              <div>
-                <div>
-                  <b className="smallText">
-                    <small>Contact</small>
-                  </b>
-                  <p>+971 50106 8988</p>
-                </div>
-              </div>
-            </div>
-            <div className="d-flex justify-content-between align-items-center">
-              <div className="d-flex">
-                <div>
-                  <b className="smallText">
-                    <small>Assigned Super Admin</small>
-                  </b>
-                  <p>Harold Dickenson Jr</p>
+                  <p>{location.street}</p>
                 </div>
               </div>
               <div className="d-flex">
                 <div>
                   <b className="smallText">
-                    <small>Assigned Approver</small>
+                    <small>City/Town</small>
                   </b>
-                  <p>Jugal Rupela</p>
-                </div>
-              </div>
-            </div>
-          </>
-        </div>
-        <div className="col-md-4 p-2">
-          <>
-            <div className="d-flex justify-content-between">
-              <div>
-                <div className="d-flex">
-                  <div>
-                    <b className="smallText">
-                      <small>Location Name</small>
-                    </b>
-                    <p>The One Tower</p>
-                  </div>
-                </div>
-                <div className="d-flex">
-                  <div>
-                    <b className="smallText">
-                      <small>House Number and Street Name</small>
-                    </b>
-                    <p>23 Harvester Road</p>
-                  </div>
-                </div>
-                <div className="d-flex">
-                  <div>
-                    <b className="smallText">
-                      <small>City/Town</small>
-                    </b>
-                    <p>Epsom</p>
-                  </div>
-                </div>
-                <div className="d-flex">
-                  <div>
-                    <b className="smallText">
-                      <small>Country</small>
-                    </b>
-                    <p>United Kingdom</p>
-                  </div>
-                </div>
-              </div>
-
-              <div>
-                <img src={MapImage} style={{ width: 100, height: 90 }} />
-
-                <div className="d-flex">
-                  <div>
-                    <b className="smallText">
-                      <small>Post Code</small>
-                    </b>
-                    <p>KT19 5EL</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="divider"></div>
-
-            <div className="d-flex justify-content-between align-items-center">
-              <div className="d-flex">
-                <div>
-                  <b className="smallText">
-                    <small>Email</small>
-                  </b>
-                  <p>info@kanousei.com</p>
-                </div>
-              </div>
-              <div>
-                <div>
-                  <b className="smallText">
-                    <small>Contact</small>
-                  </b>
-                  <p>+971 50106 8988</p>
-                </div>
-              </div>
-            </div>
-            <div className="d-flex justify-content-between align-items-center">
-              <div className="d-flex">
-                <div>
-                  <b className="smallText">
-                    <small>Assigned Super Admin</small>
-                  </b>
-                  <p>Harold Dickenson Jr</p>
+                  <p>{location.city}</p>
                 </div>
               </div>
               <div className="d-flex">
                 <div>
                   <b className="smallText">
-                    <small>Assigned Approver</small>
+                    <small>Country</small>
                   </b>
-                  <p>Jugal Rupela</p>
+                  <p>{location.country}</p>
                 </div>
               </div>
             </div>
-          </>
-        </div>
-      </div>
+            <div>
+              {/* Render map or any other location-related component */}
+              <img src={MapImage} style={{ width: 100, height: 90 }} />
+              <div className="d-flex">
+                <div>
+                  <b className="smallText">
+                    <small>Post Code</small>
+                  </b>
+                  <p>{location.zip_code}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="divider"></div>
+
+<div className="d-flex justify-content-between align-items-center border-top border-dark pt-2">
+  <div className="d-flex">
+    <div>
+      <b className="smallText">
+        <small>Email</small>
+      </b>
+      <p>{companyEmail}</p>
+    </div>
+  </div>
+  <div>
+    <div>
+      <b className="smallText">
+        <small>Contact</small>
+      </b>
+      <p>{location.telephone}</p>
+    </div>
+  </div>
+</div>
+<div className="d-flex justify-content-between align-items-center">
+  <div className="d-flex">
+    <div>
+      <b className="smallText">
+        <small>Assigned Super Admin</small>
+      </b>
+      <p>Harold Dickenson Jr</p>
+    </div>
+  </div>
+  <div className="d-flex">
+    <div>
+      <b className="smallText">
+        <small>Assigned Approver</small>
+      </b>
+      <p>Jugal Rupela</p>
+    </div>
+  </div>
+</div>
+          </div>
+          
+          
+          
+      ))}
+      
+    </div>
+   
+    
+
 
       <div className="d-flex justify-content-between align-items-center mt-4">
         <div className="d-flex align-items-center gap-2">

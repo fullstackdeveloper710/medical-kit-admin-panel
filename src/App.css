@@ -184,10 +184,21 @@ body .button-text,
 .icon-button{
   width: 100%;
 }
-.fWilUa div span.m-1.badge.bg-success,
-.registered_table div#cell-7-1 .badge.bg-success{
+.registered_table .bg-success,
+.registered_table .badge.bg-success{
     background: #D9F2DD !important;
     color: #359742;
+}
+.custom-pagination button.btn {
+  background-color: transparent;
+}
+span.dashboard-badge {
+  width: 100px;
+  font-weight: 500;
+}
+.registered_table .bg-warning{
+  background-color: #FFF5CC !important;
+  color: #CCA300;
 }
 .fWilUa div span.m-1.badge.bg-warning,
 .registered_table div#cell-7-1 .badge.bg-warning{
@@ -221,8 +232,9 @@ body .button-text,
   height: 100%;
 }
 .reported_incidents h4{
-  font-size: 20px;
+  font-size: 24px;
   color: black;
+  font-weight: 700;
 }
 .reported_incidents .card-body span{
   font-size: 16px;
@@ -232,7 +244,7 @@ body .button-text,
 }
 @media (max-width:1366px) {
   body .button-text{
-    font-size: 18px;
+    font-size: 15px;
     line-height: auto !important;
   }
   body .kits_row .icon-button svg {
@@ -304,7 +316,6 @@ body .button-text,
   padding-top: 20px;
 }
 }
-
 
 
 

@@ -93,12 +93,13 @@ function Resource() {
         <Row className="justify-content-between gap-2 resources_block flex-nowrap">
           <Col md={8} className="card p-3 border-0 box-shadow">
             <Row className="align-items-center border-bottom justify-content-between pb-3 mb-3">
-              <Col md={2}>
+              <Col md={3}>
                 <div className=" mb-3">
-                  <h3 className="listing pb-0 mb-0">Media</h3>
+                  <h3 className="listing pb-0 mb-0">Media Files</h3>
                 </div>
               </Col>
               <Col className="col-md-7 select_wrapper">
+                <label htmlFor="">Filter Media</label>
                 <select>
                   <option disabled selected value="">
                     All dates

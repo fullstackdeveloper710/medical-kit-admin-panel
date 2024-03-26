@@ -16,56 +16,93 @@ import {
   FaUsers,
 } from "react-icons/fa";
 import { RxDashboard } from "react-icons/rx";
+import dashboardIcon from "../Assets/icons/SquaresFour.png";
+import UserIcon from "../Assets/icons/Users.png";
+import Products from "../Assets/icons/products.png";
+import Kits from "../Assets/icons/Group.png";
+import Business from "../Assets/icons/businessprofile.png";
+import Distributors from "../Assets/icons/distributor.png";
+import Reports from "../Assets/icons/reports.png";
+import Resources from "../Assets/icons/resources.png";
+import Bell from "../Assets/icons/Bell.png";
 
 export const menus = [
   {
     title: "Dashboard",
-    icon: <RxDashboard className="icon" />,
+    icon: <img src={dashboardIcon} />,
     link: "/",
   },
   {
     title: "Products",
-    icon: <FaHome className="icon" />,
+    icon: <img src={Products} />,
     link: "/products",
   },
   {
     title: "Kit Management",
-    icon: <FaMedkit className="icon" />,
+    icon: <img src={Kits} />,
     link: "/kit",
   },
   {
     title: "User Management",
-    icon: <FaUsers className="icon" />,
+    icon: <img src={UserIcon} />,
     link: "/users",
   },
   {
     title: "Business Profile",
-    icon: <FaHome className="icon" />,
+    icon: <img src={Business} />,
     link: "/businessprofile",
   },
   {
     title: "Distributors",
-    icon: <FaUser className="icon" />,
+    icon: <img src={Distributors} />,
     link: "/distributors",
   },
   {
     title: "Reports",
-    icon: <FaChartBar className="icon" />,
+    icon: <img src={Reports} />,
     link: "/reports",
   },
   {
     title: "Resources",
-    icon: <FaFile className="icon" />,
+    icon: <img src={Resources} />,
     link: "/resource",
   },
   {
     title: "Message Center",
-    icon: <FaBell className="icon" />,
+    icon: <img src={Bell} />,
     link: "/messaging",
   },
   {
     title: "Notifications",
-    icon: <FaBell className="icon" />,
+    icon: <img src={Bell} />,
     link: "/notifications",
+  },
+];
+
+export const distributormenus = [
+  {
+    title: "Dashboard",
+    icon: <img src={dashboardIcon} />,
+    link: "/",
+  },
+  {
+    title: "User Management",
+    icon: <img src={Products} />,
+    link: "/usermanagement",
+  },
+  {
+    title: "Business Profile",
+    icon: <img src={Kits} />,
+    link: "businessprofile",
+  },
+  {
+    title: "Clients",
+    icon: <img src={UserIcon} />,
+    link: "/clients",
+  },
+  {
+    title: "Notification",
+    icon: <img src={Business} />,
+    link: "/notification",
   },
 ];
