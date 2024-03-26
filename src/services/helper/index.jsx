@@ -74,5 +74,8 @@ export const ApiEndPoint = {
   CREATENEWUSER: "/admin/register_user",
   REFRESHTOKEN: "/user/refresh_token",
   DISTRIBUTORMANAGEMENT:"/admin/fetch_distributor",
-  BUSINESSPROFILE:"/admin/fetch_location"
+  BUSINESSPROFILE:"/admin/fetch_location",
+  MESSAGECENTRE:"",
+  ARTICLEREGISTRATION:"/admin/create_article",
+  NOTIFICATIONREGISTRATION:"/admin/create_notification"
 };

@@ -8,6 +8,8 @@ import ProductManagementReducer from "../slice/ProductManagementSlice";
 import KitManagementReducer from "../slice/KitManagementSlice";
 import DistributorManagementReducer from "../slice/DistributionRegistrationSlice";
 import BusinessProfileReducer from "../slice/BusinessProfileSlice";
+import MessageCentreReducer from "../slice/MessageCentreSlice";
+
 
 
 
@@ -23,6 +25,7 @@ const store = configureStore({
     CREATEUSERANDLOCATION: CreateUserReducer,
     DISTRIBUTORMANAGEMENT:DistributorManagementReducer,
     BUSINESSPROFILE:BusinessProfileReducer,
+    MESSAGECENTRE:MessageCentreReducer,
 
 
   },
