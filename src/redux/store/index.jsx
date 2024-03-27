@@ -21,6 +21,7 @@ import ReportsListingReducer from "../slice/ReportsListingSlice";
 
 
 
+import CreateReportReducer from "../slice/CreateReportGroupSlice";
 
 const store = configureStore({
   reducer: {
@@ -32,17 +33,15 @@ const store = configureStore({
     PRODUCTMANAGEMENT: ProductManagementReducer,
     KITMANAGEMENT: KitManagementReducer,
     CREATEUSERANDLOCATION: CreateUserReducer,
-    DISTRIBUTORMANAGEMENT:DistributorManagementReducer,
-    BUSINESSPROFILE:BusinessProfileReducer,
-    MESSAGECENTRE:MessageCentreReducer,
+    DISTRIBUTORMANAGEMENT: DistributorManagementReducer,
+    BUSINESSPROFILE: BusinessProfileReducer,
+    MESSAGECENTRE: MessageCentreReducer,
     SUPERADMINAPPROVER: SuperAdminApproverDataReducer,
-    BUSINESSPROFILEFORM:UserProfileReducer,
+    BUSINESSPROFILEFORM: UserProfileReducer,
     DASHBOARDLISTING: DashboardListingReducer,
     REPORTSLISTING: ReportsListingReducer,
-
-
+    CREATEREPORT: CreateReportReducer,
   },
-
 });
 
 export default store;

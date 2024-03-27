@@ -14,7 +14,7 @@ import { StatusCode } from "../../../services/helper";
 import ButtonLoader from "../../../components/Common/ButtonLoader";
 import ValidationSchema from "../../../components/Common/ValidationScema";
 import { toast } from "react-toastify";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 const CreateLocation = () => {
   const dispatch = useDispatch();
@@ -67,7 +67,10 @@ const CreateLocation = () => {
   }, []);
   return (
     <div className="createlocation">
-      <h3 className="text-center mt-2 mb-3">Enter your business information</h3>
+      <h3 className="text-center border-bottom pb-3">Create A New Location</h3>
+      <h6 className="text-center mt-2 mb-4 mt-4">
+        Enter your business information
+      </h6>
       <div className="locationformdata">
         <form onSubmit={handleSubmit}>
           <div className="row">
@@ -298,9 +301,19 @@ const CreateLocation = () => {
               ) : null}
             </div>
           </div>
-          <button className="btn btn-primary" type="submit">
-            {status === StatusCode.LOADING ? <ButtonLoader /> : "Add Location"}
-          </button>
+          <hr />
+          <div className="text-end">
+            <NavLink className="btn btn-dark me-2" to="/businessprofile">
+              Cancel
+            </NavLink>
+            <button className="btn btn-primary" type="submit">
+              {status === StatusCode.LOADING ? (
+                <ButtonLoader />
+              ) : (
+                "Save Changes"
+              )}
+            </button>
+          </div>
         </form>
       </div>
     </div>

@@ -21,10 +21,11 @@ import ValidationSchema from "../../../components/Common/ValidationScema";
 import { NavLink, useNavigate } from "react-router-dom";
 
 function UpdateUser() {
+  const [updatedData, setUpdatedData] = useState(null);
   const existinguser = {
     first_name: "sunny",
     last_name: "dhiman",
-    location_id: "123f",
+    location_id: "65fabf37596942023c24d14b",
     contact_number: "34234324",
     employee_id: "inr123",
     country_code: "380",
@@ -37,6 +38,16 @@ function UpdateUser() {
       "Manage Company Users",
     ],
   };
+  const [companyLogoPreview, setCompanyLogoPreview] = useState(null);
+  const [checkedPermissions, setCheckedPermissions] = useState(
+    existinguser?.permissions
+  );
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { FetchLocationData } = useSelector(
+    (state) => state.CREATEUSERANDLOCATION
+  );
+
   const initialValues = {
     first_name: existinguser ? existinguser.first_name : "",
     last_name: existinguser ? existinguser.last_name : "",
@@ -46,18 +57,11 @@ function UpdateUser() {
     employee_id: existinguser ? existinguser.employee_id : "",
     job_title: existinguser ? existinguser.job_title : "",
     assigned_role: existinguser ? existinguser.assigned_role : "",
-    permissions: null,
+    permissions: checkedPermissions,
     email: existinguser ? existinguser.email : "",
     // profile_pic: null,
   };
   const whitelogoref = useRef();
-  const [companyLogoPreview, setCompanyLogoPreview] = useState(null);
-  const [checkedPermissions, setCheckedPermissions] = useState([]);
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-  const { FetchLocationData } = useSelector(
-    (state) => state.CREATEUSERANDLOCATION
-  );
   const {
     values,
     errors,
@@ -70,9 +74,26 @@ function UpdateUser() {
     initialValues: initialValues,
     validationSchema: ValidationSchema.createnewuser,
     onSubmit: async (values) => {
-      console.log(values, "values");
+      let data = { ...values };
+      data = {
+        ...data,
+        permissions: checkedPermissions,
+      };
+      console.log(data, "updated values");
     },
   });
+
+  useEffect(() => {
+    if (userPermissions && existinguser) {
+      const updatedPermissions = userPermissions.map((permission) => {
+        if (existinguser.permissions.includes(permission.id)) {
+          return { ...permission, defaultChecked: true };
+        }
+        return permission;
+      });
+      setUpdatedData(updatedPermissions);
+    }
+  }, []);
 
   const handleLogoChange = (e) => {
     const file = e.target.files[0];
@@ -213,7 +234,7 @@ function UpdateUser() {
                       onChange={handleChange}
                       value={values.location_id}
                     >
-                      <option>Office Location</option>
+                      <option>office</option>
                       {FetchLocationData &&
                         FetchLocationData?.locations?.map((curElm) => (
                           <option value={curElm._id} key={curElm._id}>
@@ -366,14 +387,15 @@ function UpdateUser() {
 
           <div className="permisioncard">
             <Row>
-              {userPermissions &&
-                userPermissions.map((curElm) => (
+              {updatedData &&
+                updatedData.map((curElm) => (
                   <Col key={curElm.id} className={curElm.column}>
                     <Form.Group name="permissions">
                       <Form.Check
                         type={curElm.type}
                         id={curElm.id}
                         label={curElm.label}
+                        defaultChecked={curElm.defaultChecked}
                         onChange={handlePermissionChange}
                       />
                     </Form.Group>

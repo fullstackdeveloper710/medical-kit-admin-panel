@@ -84,4 +84,5 @@ export const ApiEndPoint = {
   ADDLOCATION: "/admin/add_location",
   DASHBOARDLISTING:"",
   REPORTSLISTING:"/admin/fetch_report_group",
+  CREATEGROUPREPORT: "/admin/create_report_group",
 };

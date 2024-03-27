@@ -42,7 +42,9 @@ const createNewUserSchema = Yup.object().shape({
   employee_id: Yup.string().required("*Employee id is required"),
   job_title: Yup.string().required("*Job title is required"),
   assigned_role: Yup.string().required("*Role is required"),
-  permissions: Yup.array().required("*Permissions is required"),
+  permissions: Yup.array()
+    .required("*Permissions is required")
+    .min(1, "At least 1 permision is required"),
   email: Yup.string()
     .email("*Invalid email format")
     .required("*Business email is required"),
@@ -76,16 +78,20 @@ const updateUserSchema = Yup.object().shape({
   assigned_role: Yup.string().required("*Assigned_role is required"),
 });
 
-// Define validation schema for create report group using Yup
-const createGroupReportSchema = {};
+const createReportSchema = Yup.object().shape({
+  group_name: Yup.string().required("Group name is required"),
+  group_member: Yup.array()
+    .required("Group member is required")
+    .min(1, "At least 1 group member is required"),
+});
 
 const ValidationSchema = {
   login: loginSchema,
   distributorinformation: distributorInfoSchema,
   createnewuser: createNewUserSchema,
   createlocation: createLocationSchema,
-  creategroupreport: createGroupReportSchema,
   updateuser: updateUserSchema,
+  createreport: createReportSchema,
 };
 
 export default ValidationSchema;

@@ -16,6 +16,9 @@ const requestHandler = async (request) => {
 const refreshToken = async () => {
   try {
     const refreshTokenValue = localStorage.getItem("refreshToken");
+    if (refreshTokenValue === null) {
+      return;
+    }
     const response = await API.post(ApiEndPoint.REFRESHTOKEN, {
       refresh_token: refreshTokenValue,
     });
@@ -43,18 +46,13 @@ API.interceptors.request.use(requestHandler, (error) => {
   Promise.reject(error);
 });
 API.interceptors.response.use(responseHandler, async (error) => {
-  if (error.response && error.response.status !== 401) {
-    if (error.response.data) return Promise.reject(error.response.data);
-    return Promise.reject(error);
-  }
+  console.log("errror", error);
   if (error.response && error.response.status === 401) {
-    if (error.response.status === 401) {
-      const newAccessToken = await refreshToken();
-      console.log("newAccessTokennewAccessToken", newAccessToken);
-      if (error.response.data) return Promise.reject(error.response.data);
-      // message.error("Login session timed out! please login again");
-      return Promise.reject(error);
-    }
+    const newAccessToken = await refreshToken();
+    console.log("newAccessTokennewAccessToken", newAccessToken);
+    if (error.response.data) return Promise.reject(error.response.data);
+    // message.error("Login session timed out! please login again");
+    return Promise.reject(error);
   } else if (error.response && error.response.status === 500) {
     if (error.response.status === 500) {
       console.log("internal-server-error");

@@ -81,6 +81,10 @@ function CreateUser() {
       setCheckedPermissions(
         checkedPermissions.filter((id) => id !== permissionId)
       );
+      setValues({
+        ...values,
+        permissions: values.permissions.filter((id) => id !== permissionId),
+      });
     }
   };
   useEffect(() => {
