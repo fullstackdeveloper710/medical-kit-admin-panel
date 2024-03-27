@@ -12,13 +12,7 @@ import MessageCentreReducer from "../slice/MessageCentreSlice";
 import SuperAdminApproverDataReducer from "../slice/CreateLocationSlice";
 import UserProfileReducer from "../slice/UserProfileSlice";
 import DashboardListingReducer from "../slice/DashboardListingSlice";
-
-
-
-
-
-
-
+import CreateReportReducer from "../slice/CreateReportGroupSlice";
 
 const store = configureStore({
   reducer: {
@@ -30,16 +24,14 @@ const store = configureStore({
     PRODUCTMANAGEMENT: ProductManagementReducer,
     KITMANAGEMENT: KitManagementReducer,
     CREATEUSERANDLOCATION: CreateUserReducer,
-    DISTRIBUTORMANAGEMENT:DistributorManagementReducer,
-    BUSINESSPROFILE:BusinessProfileReducer,
-    MESSAGECENTRE:MessageCentreReducer,
+    DISTRIBUTORMANAGEMENT: DistributorManagementReducer,
+    BUSINESSPROFILE: BusinessProfileReducer,
+    MESSAGECENTRE: MessageCentreReducer,
     SUPERADMINAPPROVER: SuperAdminApproverDataReducer,
-    BUSINESSPROFILEFORM:UserProfileReducer,
+    BUSINESSPROFILEFORM: UserProfileReducer,
     DASHBOARDLISTING: DashboardListingReducer,
-
-
+    CREATEREPORT: CreateReportReducer,
   },
-
 });
 
 export default store;

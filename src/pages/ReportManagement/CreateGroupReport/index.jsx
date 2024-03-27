@@ -1,21 +1,83 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { IoIosCloseCircleOutline } from "react-icons/io";
 import "./index.css";
 import { Form } from "react-bootstrap";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import ValidationSchema from "../../../components/Common/ValidationScema";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchUserManagementData } from "../../../redux/slice/UserManagementSlice";
+import { createReport } from "../../../redux/slice/CreateReportGroupSlice";
+import { StatusCode } from "../../../services/helper";
+import ButtonLoader from "../../../components/Common/ButtonLoader";
 const CreateGroupReport = () => {
-  const [managebutton, setManageButton] = useState(6);
-  const initialValues = {};
-  const { values, handleBlur, handleChange, errors, touched, handleSubmit } =
-    useFormik({
-      initialValues: initialValues,
-      // validationSchema:ValidationSchema.creategroupreport,
-      onSubmit: async (values) => {
-        console.log(values);
-      },
+  const initialValues = {
+    group_name: "",
+    group_member: null,
+  };
+  const { status, UserManagementData } = useSelector(
+    (state) => state.USERMANAGEMENT
+  );
+  const { reportstatus } = useSelector((state) => state.CREATEREPORT);
+  const [search, setSearch] = useState("");
+  const [finalname, setFinalName] = useState({});
+  const [nameData, setNameData] = useState([]);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const [managebutton, setManageButton] = useState();
+  const {
+    values,
+    handleBlur,
+    handleChange,
+    setValues,
+    errors,
+    touched,
+    handleSubmit,
+  } = useFormik({
+    initialValues: initialValues,
+    validationSchema: ValidationSchema.createreport,
+    onSubmit: async (values) => {
+      const res = await dispatch(createReport(values));
+      if (res.payload?.status) {
+        navigate("/reports");
+      }
+    },
+  });
+
+  const addGroupHandler = (data) => {
+    if (Object.keys(data).length === 0) {
+      return;
+    }
+    const paydata = {
+      user_id: data._id,
+      full_name: data.first_name + data.last_name,
+      assigned_role: data.assigned_role,
+    };
+    setNameData((prev) => [...prev, paydata]);
+    setSearch("");
+    setFinalName({});
+    setValues({
+      ...values,
+      group_member: [...nameData, paydata],
     });
+  };
+
+  const getNameDataFromList = (data) => {
+    setSearch(data.first_name + data.last_name);
+    setFinalName(data);
+  };
+
+  const removeGroup = (groupid) => {
+    const filtername = nameData.filter((curElm) => curElm.user_id !== groupid);
+    setNameData(filtername);
+    setValues({
+      ...values,
+      group_member: filtername,
+    });
+  };
+  useEffect(() => {
+    dispatch(fetchUserManagementData());
+  }, []);
 
   return (
     <div className="container-fluid creategroupreport">
@@ -27,159 +89,102 @@ const CreateGroupReport = () => {
           <Form.Group className="mb-3" controlId="formBasicGroupName">
             <Form.Control
               type="text"
-              name="groupname"
+              name="group_name"
+              value={values.group_name}
+              onChange={handleChange}
+              onBlur={handleBlur}
               placeholder="Group Name"
             />
           </Form.Group>
+          {errors.group_name && touched.group_name ? (
+            <p className="text-danger">{errors.group_name} </p>
+          ) : null}
           <div className="row">
             <div className="col-9">
               <Form.Group className="mb-3" controlId="formBasicGroupName">
                 <Form.Control
                   type="text"
                   name="groupname"
+                  autoComplete="off"
                   placeholder="Search"
+                  value={search}
+                  onChange={(e) => setSearch(e.target.value)}
                 />
               </Form.Group>
             </div>
             <div className="col-3">
-              <button className="btn btn-primary w-100">Add to Group</button>
+              <button
+                className="btn btn-primary w-100"
+                type="button"
+                onClick={() => addGroupHandler(finalname)}
+              >
+                Add to Group
+              </button>
             </div>
+          </div>
+          <div className="name_listing">
+            <ul>
+              {UserManagementData &&
+                UserManagementData?.data?.Users.filter((name) => {
+                  if (search === "") {
+                    return null;
+                  } else if (
+                    (name.first_name + name.last_name)
+                      .toLowerCase()
+                      .includes(search.toLocaleLowerCase())
+                  ) {
+                    return name;
+                  }
+                }).map((curElm, index) => (
+                  <li
+                    key={index}
+                    className="cursor"
+                    onClick={() => getNameDataFromList(curElm)}
+                  >
+                    {curElm.first_name + curElm.last_name}
+                  </li>
+                ))}
+            </ul>
           </div>
           <hr />
           <div className="row pb-3">
             <h4>In this Group</h4>
-            <div className="col-4 mb-3 position-relative">
-              <button
-                className={`w-100 border btn ${
-                  managebutton === 1
-                    ? "border-primary text-primary"
-                    : "text-black-50"
-                }`}
-                type="button"
-                onClick={() => setManageButton(1)}
+
+            {nameData.map((curElm, index) => (
+              <div
+                className="col-4 mb-3 position-relative"
+                name="group_member"
+                key={index}
               >
-                Full Name of person{" "}
-              </button>
-              {managebutton === 1 && (
-                <span
-                  className={`closebuttonspan ${
-                    managebutton === 1 ? "text-primary" : ""
+                <button
+                  className={`w-100 border btn ${
+                    managebutton === index + 1
+                      ? "border-primary text-primary"
+                      : "text-black-50"
                   }`}
+                  type="button"
+                  onClick={() => setManageButton(index + 1)}
                 >
-                  <IoIosCloseCircleOutline size={25} />
-                </span>
-              )}
-            </div>
-            <div className="col-4 mb-3 position-relative">
-              <button
-                className={`w-100 border btn ${
-                  managebutton === 2
-                    ? "border-primary text-primary"
-                    : "text-black-50"
-                }`}
-                type="button"
-                onClick={() => setManageButton(2)}
-              >
-                Full Name of person
-              </button>
-              {managebutton === 2 && (
-                <span
-                  className={`closebuttonspan ${
-                    managebutton === 2 ? "text-primary" : ""
-                  }`}
-                >
-                  <IoIosCloseCircleOutline size={25} />
-                </span>
-              )}
-            </div>
-            <div className="col-4 mb-3 position-relative">
-              <button
-                className={`w-100 border btn ${
-                  managebutton === 3
-                    ? "border-primary text-primary"
-                    : "text-black-50"
-                }`}
-                type="button"
-                onClick={() => setManageButton(3)}
-              >
-                Full Name of person{" "}
-              </button>
-              {managebutton === 3 && (
-                <span
-                  className={`closebuttonspan ${
-                    managebutton === 3 ? "text-primary" : ""
-                  }`}
-                >
-                  <IoIosCloseCircleOutline size={25} />
-                </span>
-              )}
-            </div>
-            <div className="col-4 mb-3 position-relative">
-              <button
-                className={`w-100 border btn ${
-                  managebutton === 4
-                    ? "border-primary text-primary"
-                    : "text-black-50"
-                }`}
-                type="button"
-                onClick={() => setManageButton(4)}
-              >
-                Full Name of person{" "}
-              </button>
-              {managebutton === 4 && (
-                <span
-                  className={`closebuttonspan ${
-                    managebutton === 4 ? "text-primary" : ""
-                  }`}
-                >
-                  <IoIosCloseCircleOutline size={25} />
-                </span>
-              )}
-            </div>
-            <div className="col-4 mb-3 position-relative">
-              <button
-                className={`w-100 border btn ${
-                  managebutton === 5
-                    ? "border-primary text-primary"
-                    : "text-black-50"
-                }`}
-                type="button"
-                onClick={() => setManageButton(5)}
-              >
-                Full Name of person{" "}
-              </button>
-              {managebutton === 5 && (
-                <span
-                  className={`closebuttonspan ${
-                    managebutton === 5 ? "text-primary" : ""
-                  }`}
-                >
-                  <IoIosCloseCircleOutline size={25} />
-                </span>
-              )}
-            </div>
-            <div className="col-4 mb-3 position-relative">
-              <button
-                className={`w-100 border btn ${
-                  managebutton === 6
-                    ? "border-primary text-primary"
-                    : "text-black-50"
-                }`}
-                type="button"
-                onClick={() => setManageButton(6)}
-              >
-                Full Name of person{" "}
-              </button>
-              {managebutton === 6 && (
-                <span
-                  className={`closebuttonspan ${
-                    managebutton === 6 ? "text-primary" : ""
-                  }`}
-                >
-                  <IoIosCloseCircleOutline size={25} />
-                </span>
-              )}
-            </div>
+                  {curElm.full_name}
+                </button>
+                {managebutton === index + 1 && (
+                  <span
+                    className={`closebuttonspan ${
+                      managebutton === index + 1 ? "text-primary" : ""
+                    }`}
+                  >
+                    <IoIosCloseCircleOutline
+                      className="cursor"
+                      onClick={() => removeGroup(curElm.user_id)}
+                      size={25}
+                    />
+                  </span>
+                )}
+              </div>
+            ))}
+            {errors.group_member && touched.group_member ? (
+              <p className="text-danger">{errors.group_member} </p>
+            ) : null}
           </div>
           <hr />
 
@@ -188,7 +193,11 @@ const CreateGroupReport = () => {
               Cancel
             </NavLink>
             <button className="btn-primary btn customsavebuttonwidth">
-              Save Changes
+              {reportstatus === StatusCode.LOADING ? (
+                <ButtonLoader />
+              ) : (
+                "Save Changes"
+              )}
             </button>
           </div>
         </Form>

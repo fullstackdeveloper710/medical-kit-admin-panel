@@ -82,5 +82,6 @@ export const ApiEndPoint = {
   UPDATEBUSINESSPROFILE: "/admin/edit_business_details",
   SUPERADMINAPPROVERDATA: "/admin/get_approver",
   ADDLOCATION: "/admin/add_location",
-  DASHBOARDLISTING:"",
+  DASHBOARDLISTING: "",
+  CREATEGROUPREPORT: "/admin/create_report_group",
 };
