@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import "./Products.css";
-import products from "../../Assets/images/product.png";
 import DataTableComponent from "../../components/DataTable";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchProductsManagementData } from "../../redux/slice/ProductManagementSlice";
 import Loader from "../../components/Common/Loader";
+import imageData from "../../data";
 
 function Products() {
   const dispatch = useDispatch();
@@ -15,17 +15,18 @@ function Products() {
   useEffect(() => {
     dispatch(fetchProductsManagementData());
   }, [dispatch]);
+
   const columns = [
     {
       name: "Product",
-      selector: (row) => (
+      cell: (row) => (
         <div className="products-wrapper">
           <img
-            src={products}
+            src={row.product_picture}
             alt={row.description}
             className="products-image"
           />
-          <span>{row.description}</span>
+          <span className="product-description">{row.description}</span>
         </div>
       ),
     },
@@ -37,20 +38,23 @@ function Products() {
       name: "Contents",
       selector: (row) => row.quantity,
     },
-
     {
       name: "LOT no.",
       selector: (row) => row.lot_number,
     },
     {
       name: "Batch",
-      selector: (row) => row.batch,
+      selector: (row) => row.batch_number,
     },
     {
       name: "Expiry Date",
-      selector: (row) => row.expiry_date,
-    },
+    
+      selector: (row) => new Date(row.expiry_date).toLocaleDateString(),
+
+    }
+
   ];
+
   if (status === "loading") {
     return (
       <div>

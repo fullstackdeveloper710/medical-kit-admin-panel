@@ -84,6 +84,22 @@ const createReportSchema = Yup.object().shape({
     .required("Group member is required")
     .min(1, "At least 1 group member is required"),
 });
+  const createnewreportSchema = Yup.object().shape({
+
+    report_name: Yup.string()
+      .required('Report name is required'),
+    start_on: Yup.date()
+      .required('Start date is required'),
+    frequency_units: Yup.string()
+      .required('Frequency units are required'),
+    how_often: Yup.string()
+      .required('How often is required'),
+    send_to_group: Yup.array()
+      .min(1, 'At least one group must be selected'),
+    send_to_user: Yup.array()
+      .min(1, 'At least one user must be selected'),
+  });
+
 
 const ValidationSchema = {
   login: loginSchema,
@@ -92,6 +108,7 @@ const ValidationSchema = {
   createlocation: createLocationSchema,
   updateuser: updateUserSchema,
   createreport: createReportSchema,
+  createnewreport:createnewreportSchema,
 };
 
 export default ValidationSchema;

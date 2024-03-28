@@ -13,15 +13,10 @@ import SuperAdminApproverDataReducer from "../slice/CreateLocationSlice";
 import UserProfileReducer from "../slice/UserProfileSlice";
 import DashboardListingReducer from "../slice/DashboardListingSlice";
 import ReportsListingReducer from "../slice/ReportsListingSlice";
-
-
-
-
-
-
-
-
+import CreateNewReportReducer from "../slice/CreateReportSlice";
 import CreateReportReducer from "../slice/CreateReportGroupSlice";
+import CreateReportsdataReducer from "../slice/AddtoReportSlice";
+
 
 const store = configureStore({
   reducer: {
@@ -41,6 +36,8 @@ const store = configureStore({
     DASHBOARDLISTING: DashboardListingReducer,
     REPORTSLISTING: ReportsListingReducer,
     CREATEREPORT: CreateReportReducer,
+    CREATENEWREPORT: CreateNewReportReducer,
+    REPORTSDATA: CreateReportsdataReducer,
   },
 });
 

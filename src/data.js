@@ -33,9 +33,11 @@ const tableData = [
     frequency:"1 x Monthly",
     recipients:"5",
     lastSent:"12 Jan 2024 ",
+
     notification:"The topic of the question",
     notificationTime:"3 mins ago",
      actions: [{ name: "Complaint", type: "primary" }],
+
   },
   {
     id: 2,
@@ -72,6 +74,7 @@ const tableData = [
     notification:"The topic of the question",
     notificationTime:"3 mins ago",
     actions: [{ name: "Expiring", type: "secondary" }],
+    images:''
   },
   {
     id: 3,
@@ -330,5 +333,17 @@ const tableData = [
   //
   // Add more data as needed
 ];
+// const imageData=[
+//   { 
+//      images: "https://tradeportal.reliancemedical.co.uk/images/product/source/101_Wallet.jpg", // Add the image path here
 
+//     },
+//     { 
+//       images: "https://tradeportal.reliancemedical.co.uk/images/product/source/101_Wallet.jpg", // Add the image path here
+ 
+//      }
+ 
+
+
+// ]
 export default tableData;

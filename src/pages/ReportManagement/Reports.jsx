@@ -64,11 +64,11 @@ function Reports() {
       selector: (row) => row.lastSent,
       
     },
-    {
-      name: "Status",
-      selector: (row) => row.status,
+    // {
+    //   name: "Status",
+    //   selector: (row) => row.status,
       
-    },
+    // },
     
   ];
   

@@ -85,4 +85,6 @@ export const ApiEndPoint = {
   DASHBOARDLISTING:"",
   REPORTSLISTING:"/admin/fetch_report_group",
   CREATEGROUPREPORT: "/admin/create_report_group",
+  CREATEREPORT:"/admin/create_report",
+  REPORTSDATA:"/admin/get_reportData_list"
 };
